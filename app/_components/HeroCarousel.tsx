@@ -14,12 +14,13 @@ type Props = {
         title: string;
         backdrop_path: string;
         poster_path: string;
+        vote_average: number;
     }[];
 };
 
 export default function HeroCarousel({ movies }: Props) {
     const plugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true }));
-    console.log(movies);
+
     return (
         <Carousel
             plugins={[plugin.current]}
@@ -28,24 +29,29 @@ export default function HeroCarousel({ movies }: Props) {
             onMouseLeave={plugin.current.reset}
         >
             <CarouselContent>
-                {movies.slice(0, 6).map((m) => (
-                    <CarouselItem key={m.id} className="relative  h-100">
-                        <div className="relative aspect-[21/9] w-full rounded-xl overflow-hidden">
-                            <Image
-                                src={`https://image.tmdb.org/t/p/w1280/${m.backdrop_path}`}
-                                alt={m.title}
-                                fill
-                                sizes="100vw"
-                                className="object-cover object-center "
-                                priority
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                            <h2 className="absolute bottom-6 left-6 text-2xl font-bold text-white drop-shadow">
-                                {m.title}
-                            </h2>
-                        </div>
-                    </CarouselItem>
-                ))}
+                {movies
+                    .filter((m) => m.vote_average >= 7)
+                    .map((m) => (
+                        <CarouselItem key={m.id} className="relative">
+                            <div className="relative aspect-[21/9] w-full rounded-xl overflow-hidden">
+                                <Image
+                                    src={`https://image.tmdb.org/t/p/w1280/${m.backdrop_path}`}
+                                    alt={m.title}
+                                    fill
+                                    sizes="100vw"
+                                    className="object-cover object-center "
+                                    priority
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                                <h2 className="absolute bottom-6 left-6 text-2xl font-bold text-white drop-shadow">
+                                    {m.title}
+                                </h2>
+                                <h3 className="absolute top-4 right-2 text-2xl font-bold text-white drop-shadow ">
+                                    {m.vote_average.toFixed(1)} ⭐
+                                </h3>
+                            </div>
+                        </CarouselItem>
+                    ))}
             </CarouselContent>
         </Carousel>
     );
