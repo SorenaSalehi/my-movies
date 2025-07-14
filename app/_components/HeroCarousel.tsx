@@ -24,7 +24,7 @@ export default function HeroCarousel({ movies }: Props) {
     return (
         <Carousel
             plugins={[plugin.current]}
-            className="p-3 pt-4"
+            className="p-3 pt-4 md:absolute md:-z-50 top-0 right-0 left-0 "
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
         >
@@ -39,14 +39,14 @@ export default function HeroCarousel({ movies }: Props) {
                                     alt={m.title}
                                     fill
                                     sizes="100vw"
-                                    className="object-cover object-center "
+                                    className="object-cover object-center brightness-50"
                                     priority
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                                <h2 className="absolute bottom-6 left-6 text-2xl font-bold text-white drop-shadow">
+                                <h2 className="absolute bottom-6 left-6 text-2xl font-bold text-white drop-shadow md:hidden">
                                     {m.title}
                                 </h2>
-                                <h3 className="absolute top-4 right-2 text-2xl font-bold text-white drop-shadow ">
+                                <h3 className="absolute top-4 right-2 text-2xl font-bold text-white drop-shadow md:hidden">
                                     {m.vote_average.toFixed(1)} ⭐
                                 </h3>
                             </div>

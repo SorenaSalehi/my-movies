@@ -7,9 +7,9 @@ export default async function page() {
     const movies = await popular.results;
     console.log(movies);
     return (
-        <div className="min-h-screen flex flex-col justify-start">
+        <>
             <HeroCarousel movies={movies} />
             <MainCarousel movies={movies} />
-        </div>
+        </>
     );
 }

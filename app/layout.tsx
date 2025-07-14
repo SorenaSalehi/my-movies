@@ -5,6 +5,7 @@ import { ThemeProvider } from "./_context/themeProvider";
 import { SidebarProvider, SidebarTrigger } from "./_components/ui/sidebar";
 import { AppSidebar } from "./_components/AppSidebar";
 import Header from "./_components/Header";
+import MobileNavigation from "./_components/MobileNavigation";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -39,10 +40,12 @@ export default function RootLayout({
                 >
                     <SidebarProvider>
                         <AppSidebar />
-                        <main className="min-w-screen">
+                        <main className="min-h-screen flex flex-col justify-start md:relative">
                             <Header />
 
                             {children}
+
+                            <MobileNavigation />
                         </main>
                     </SidebarProvider>
                 </ThemeProvider>
