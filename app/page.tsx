@@ -1,15 +1,17 @@
 import HeroCarousel from "./_components/HeroCarousel";
 import { MainCarousel } from "./_components/MainCarousel";
-import { getPopular } from "./_lib/tmdb";
+import { fetchList } from "@/app/_lib/tmdb";
 
 export default async function page() {
-    const popular = await getPopular();
-    const movies = await popular.results;
-    console.log(movies);
+    const [topRated, popular] = await Promise.all([
+        fetchList("movie", "top_rated"),
+        fetchList("movie", "popular"),
+    ]);
+    console.log(popular);
     return (
         <>
-            <HeroCarousel movies={movies} />
-            <MainCarousel movies={movies} />
+            <HeroCarousel topRated={topRated} />
+            <MainCarousel popular={popular} />
         </>
     );
 }

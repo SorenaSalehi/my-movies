@@ -1,15 +1,20 @@
 const TMDB = "https://api.themoviedb.org/3";
 
-export async function getPopular(page = 1) {
-    const d = await fetch(
-        `${TMDB}/movie/popular?api_key=${process.env.TMDB_KEY}&page=${page}`,
-        { next: { revalidate: 3600 } }
-    );
+type MediaType = "movie" | "tv";
+type ListKind = "popular" | "top_rated" | "now_playing";
 
-    if (d.status !== 200)
-        throw new Error("something went wrong in getPopular!!");
+export async function fetchList(
+    media: MediaType,
+    list: ListKind,
+    page = 1,
+    signal?: AbortSignal
+) {
+    const url = `${TMDB}/${media}/${list}?api_key=${process.env.TMDB_KEY}&page=${page}`;
+    const res = await fetch(url, { signal, next: { revalidate: 3600 } });
 
-    const r = d.json();
+    if (!res.ok) throw new Error(`${media}/${list} failed (${res.status})`);
 
-    return r;
+    const data = await res.json();
+
+    return data.results;
 }

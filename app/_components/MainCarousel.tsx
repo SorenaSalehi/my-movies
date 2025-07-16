@@ -8,8 +8,9 @@ import {
     CarouselPrevious,
 } from "@/app/_components/ui/carousel";
 import HomeCarouselsTitle from "./HomeCarouselsTitle";
+import Image from "next/image";
 type Props = {
-    movies: {
+    popular: {
         id: number;
         title: string;
         backdrop_path: string;
@@ -17,31 +18,39 @@ type Props = {
     }[];
 };
 
-export function MainCarousel({ movies }: Props) {
+export function MainCarousel({ popular }: Props) {
     return (
-        <div>
+        <div
+            id="main-carousel-container"
+            className="w-[80vw] flex flex-col justify-center "
+        >
             <HomeCarouselsTitle />
-            <Carousel className="w-full max-w-4xl " opts={{ align: "start" }}>
+            <Carousel className="w-full" opts={{ align: "center" }}>
                 <CarouselContent className="-ml-1">
-                    {movies.slice(6, -1).map((m) => (
+                    {popular.slice(0, 5).map((m) => (
                         <CarouselItem
                             key={m.id}
                             className="  md:basis-1/2 lg:basis-1/3"
                         >
                             <div className="p-1">
                                 <Card>
-                                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                                        <span className="text-2xl font-semibold">
-                                            {m.title}
-                                        </span>
+                                    <CardContent className="flex aspect-square items-center justify-center p-6 relative">
+                                        <Image
+                                            src={`https://image.tmdb.org/t/p/original${m.poster_path}`}
+                                            alt={m.title}
+                                            fill
+                                            sizes="100vw"
+                                            className="object-cover object-center brightness-50"
+                                            priority
+                                        />
                                     </CardContent>
                                 </Card>
                             </div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                {/* <CarouselPrevious />
-            <CarouselNext /> */}
+                <CarouselPrevious />
+                <CarouselNext />
             </Carousel>
         </div>
     );

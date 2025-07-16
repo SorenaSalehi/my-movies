@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -18,6 +17,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/app/_components/popover";
+import { useState } from "react";
 
 const frameworks = [
     {
@@ -42,9 +42,9 @@ const frameworks = [
     },
 ];
 
-export function ComboboxDemo() {
-    const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState("");
+export function SearchInput() {
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState("");
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -53,24 +53,23 @@ export function ComboboxDemo() {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-[200px] justify-between"
+                    className="w-[200px]  text-center text-2xl"
                 >
                     {value
                         ? frameworks.find(
                               (framework) => framework.value === value
                           )?.label
-                        : "Select framework..."}
-                    <ChevronsUpDown className="opacity-50" />
+                        : "What are you looking for?"}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0">
+            <PopoverContent className="w-96 p-0">
                 <Command>
                     <CommandInput
-                        placeholder="Search framework..."
-                        className="h-9"
+                        placeholder="Search for movie/series..."
+                        className="h-14 text-2xl"
                     />
                     <CommandList>
-                        <CommandEmpty>No framework found.</CommandEmpty>
+                        <CommandEmpty>No result.</CommandEmpty>
                         <CommandGroup>
                             {frameworks.map((framework) => (
                                 <CommandItem

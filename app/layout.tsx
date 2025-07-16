@@ -40,7 +40,7 @@ export default function RootLayout({
                 >
                     <SidebarProvider>
                         <AppSidebar />
-                        <main className="min-h-screen flex flex-col justify-start md:relative">
+                        <main className="max-h-screen sm:h-auto flex flex-col justify-start relative items-center">
                             <Header />
 
                             {children}
