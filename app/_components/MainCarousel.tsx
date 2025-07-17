@@ -1,4 +1,3 @@
-"use client";
 import { Card, CardContent } from "@/app/_components/ui/card";
 import {
     Carousel,
@@ -9,6 +8,7 @@ import {
 } from "@/app/_components/ui/carousel";
 import HomeCarouselsTitle from "./HomeCarouselsTitle";
 import Image from "next/image";
+import OptimizedMovieImg from "./OptimizedMovieImg";
 type Props = {
     popular: {
         id: number;
@@ -27,7 +27,7 @@ export function MainCarousel({ popular }: Props) {
             <HomeCarouselsTitle />
             <Carousel className="w-full" opts={{ align: "center" }}>
                 <CarouselContent className="-ml-1">
-                    {popular.slice(0, 5).map((m) => (
+                    {popular.map((m, i) => (
                         <CarouselItem
                             key={m.id}
                             className="  md:basis-1/2 lg:basis-1/3"
@@ -35,13 +35,10 @@ export function MainCarousel({ popular }: Props) {
                             <div className="p-1">
                                 <Card>
                                     <CardContent className="flex aspect-square items-center justify-center p-6 relative">
-                                        <Image
-                                            src={`https://image.tmdb.org/t/p/original${m.poster_path}`}
-                                            alt={m.title}
-                                            fill
-                                            sizes="100vw"
-                                            className="object-cover object-center brightness-50"
-                                            priority
+                                        <OptimizedMovieImg
+                                            movie={m}
+                                            priority={i <= 2}
+                                            isHero={false}
                                         />
                                     </CardContent>
                                 </Card>

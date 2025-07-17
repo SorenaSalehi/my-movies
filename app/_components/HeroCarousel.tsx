@@ -7,6 +7,7 @@ import {
     CarouselItem,
 } from "@/app/_components/ui/carousel";
 import Image from "next/image";
+import OptimizedMovieImg from "./OptimizedMovieImg";
 
 type Props = {
     topRated: {
@@ -19,7 +20,7 @@ type Props = {
 };
 
 export default function HeroCarousel({ topRated }: Props) {
-    const plugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true }));
+    const plugin = useRef(Autoplay({ delay: 10000, stopOnInteraction: true }));
 
     return (
         <Carousel
@@ -29,17 +30,10 @@ export default function HeroCarousel({ topRated }: Props) {
             onMouseLeave={plugin.current.reset}
         >
             <CarouselContent>
-                {topRated.map((m) => (
+                {topRated.map((m, i) => (
                     <CarouselItem key={m.id} className="relative">
                         <div className="relative aspect-[21/9] w-full rounded-xl overflow-hidden">
-                            <Image
-                                src={`https://image.tmdb.org/t/p/w1280/${m.backdrop_path}`}
-                                alt={m.title}
-                                fill
-                                sizes="100vw"
-                                className="object-cover object-center brightness-50"
-                                priority
-                            />
+                            <OptimizedMovieImg movie={m} priority={i === 0} />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                             <h2 className="absolute bottom-6 left-6 text-2xl font-bold text-white drop-shadow md:hidden">
                                 {m.title}
