@@ -18,3 +18,14 @@ export async function fetchList(
 
     return data.results;
 }
+
+export async function fetchGenres(media: MediaType) {
+    const url = `${TMDB}/genre/${media}/list?api_key=${process.env.TMDB_KEY}`;
+    const res = await fetch(url, { next: { revalidate: 3600 * 24 } });
+
+    if (!res.ok) throw new Error(`${media}/genres failed (${res.status})`);
+
+    const data = await res.json();
+
+    return data.genres;
+}

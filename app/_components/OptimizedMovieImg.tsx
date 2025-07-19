@@ -7,15 +7,14 @@ export type Movie = {
     title: string;
     backdrop_path: string | null;
     poster_path: string | null;
+    vote_average?: number;
+    genre_ids: number[];
 };
 
 type Props = {
     movie: Movie;
-
     priority?: boolean;
-
     maxSize?: "w500" | "w780" | "w1280";
-
     isHero?: boolean;
 };
 
@@ -44,7 +43,7 @@ export default function OptimizedMovieImg({
   `;
 
     return (
-        <picture className="block w-full h-full">
+        <picture>
             {/* Largest size only for big screens */}
             {maxSize === "w1280" && (
                 <source
@@ -74,16 +73,18 @@ export default function OptimizedMovieImg({
                     backgroundImage: `url(https://image.tmdb.org/t/p/w92${path})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    filter: isHero
-                        ? blurOff
-                            ? "brightness(20%)"
-                            : "blur(20px)"
-                        : "none",
-
                     transition: "filter .4s ease-out",
                 }}
                 onLoad={() => setBlurOff(true)}
-                className="object-cover object-center w-full h-auto"
+                className={`w-full h-auto object-center object-cover ${
+                    !isHero && "absolute top-0 left-0 right-0"
+                } ${
+                    isHero
+                        ? blurOff
+                            ? "md:brightness-[20%]"
+                            : "md:blur(20px)"
+                        : ""
+                }`}
             />
         </picture>
     );

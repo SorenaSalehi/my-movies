@@ -7,15 +7,15 @@ import { AppSidebar } from "./_components/AppSidebar";
 import Header from "./_components/Header";
 import MobileNavigation from "./_components/MobileNavigation";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
+// const geistSans = Geist({
+//     variable: "--font-geist-sans",
+//     subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//     variable: "--font-geist-mono",
+//     subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -37,7 +37,8 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={` antialiased`}
             >
                 <ThemeProvider
                     attribute="class"
@@ -47,7 +48,7 @@ export default function RootLayout({
                 >
                     <SidebarProvider>
                         <AppSidebar />
-                        <main className="max-h-screen sm:h-auto flex flex-col justify-start relative items-center">
+                        <main className="relative flex flex-col justify-start items-center sm:h-auto max-h-screen">
                             <Header />
 
                             {children}

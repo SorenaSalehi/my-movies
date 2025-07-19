@@ -7,22 +7,16 @@ import {
     CarouselPrevious,
 } from "@/app/_components/ui/carousel";
 import HomeCarouselsTitle from "./HomeCarouselsTitle";
-import Image from "next/image";
-import OptimizedMovieImg from "./OptimizedMovieImg";
+import OptimizedMovieImg, { Movie } from "./OptimizedMovieImg";
 type Props = {
-    popular: {
-        id: number;
-        title: string;
-        backdrop_path: string;
-        poster_path: string;
-    }[];
+    popular: Movie[];
 };
 
 export function MainCarousel({ popular }: Props) {
     return (
         <div
             id="main-carousel-container"
-            className="w-[80vw] flex flex-col justify-center "
+            className="md:hidden flex flex-col justify-center w-[80vw]"
         >
             <HomeCarouselsTitle />
             <Carousel className="w-full" opts={{ align: "center" }}>
@@ -30,11 +24,11 @@ export function MainCarousel({ popular }: Props) {
                     {popular.map((m, i) => (
                         <CarouselItem
                             key={m.id}
-                            className="  md:basis-1/2 lg:basis-1/3"
+                            className="basis-1/4 md:basis-1/2 lg:basis-1/3"
                         >
                             <div className="p-1">
                                 <Card>
-                                    <CardContent className="flex aspect-square items-center justify-center p-6 relative">
+                                    <CardContent className="relative flex justify-center items-center p-6 aspect-square">
                                         <OptimizedMovieImg
                                             movie={m}
                                             priority={i <= 2}
