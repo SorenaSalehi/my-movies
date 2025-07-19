@@ -33,7 +33,7 @@ export default function OptimizedMovieImg({
 }: Props) {
     const [blurOff, setBlurOff] = useState(false);
 
-    const path = movie.backdrop_path ?? movie.poster_path;
+    const path = isHero ? movie.backdrop_path : movie.poster_path;
     if (!path) return null;
 
     const srcSet = `
@@ -77,7 +77,7 @@ export default function OptimizedMovieImg({
                 }}
                 onLoad={() => setBlurOff(true)}
                 className={`w-full h-auto object-center object-cover ${
-                    !isHero && "absolute top-0 left-0 right-0"
+                    !isHero && "absolute top-0 left-0 right-0 "
                 } ${
                     isHero
                         ? blurOff

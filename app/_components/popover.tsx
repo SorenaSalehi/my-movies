@@ -18,7 +18,7 @@ function PopoverTrigger({
         <PopoverPrimitive.Trigger
             data-slot="popover-trigger"
             {...props}
-            className="hidden sm:flex sm:flex-1 h-15 "
+            className="hidden md:flex sm:flex-1 h-15"
         />
     );
 }
@@ -36,7 +36,7 @@ function PopoverContent({
                 align={align}
                 sideOffset={sideOffset}
                 className={cn(
-                    "bg-popover z-[1000] text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 w-72 origin-(--radix-popover-content-transform-origin) rounded-md border p-4 shadow-md outline-hidden",
+                    "data-[side=left]:slide-in-from-right-2 data-[side=top]:slide-in-from-bottom-2 z-[1000] bg-popover data-[side=bottom]:slide-in-from-top-2 data-[side=right]:slide-in-from-left-2 shadow-md p-4 border rounded-md outline-hidden w-72 text-popover-foreground origin-(--radix-popover-content-transform-origin) data-[state=closed]:animate-out data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
                     className
                 )}
                 {...props}

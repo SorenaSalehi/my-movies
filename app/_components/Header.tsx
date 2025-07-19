@@ -5,12 +5,12 @@ import { SidebarTrigger } from "./ui/sidebar";
 
 export default function Header() {
     return (
-        <div className="min-w-screen sticky-top flex justify-between p-2 items-center bg-gray-800/20 backdrop-blur-3xl h-20 z-[100]">
-            <SidebarTrigger className="md:hidden" />
+        <div className="z-[100] sticky-top flex justify-between items-center bg-gray-800/20 backdrop-blur-3xl p-2 px-[2rem] md:px-0 min-w-screen h-20">
+            <SidebarTrigger />
 
             <HeaderNavigation />
             <SearchInput />
-            <div className="hidden sm:block w-25"></div>
+            <div className="md:hidden block w-25">My Movies</div>
 
             <ThemeModeToggle />
         </div>
