@@ -20,10 +20,11 @@ export function MainCarousel({ popular }: Props) {
         >
             <HomeCarouselsTitle />
             <Carousel className="w-full" opts={{ align: "center" }}>
-                <CarouselContent className="-ml-1">
+                <CarouselContent className="-ml-1 ">
                     {popular.map((m, i) => (
                         <CarouselItem key={m.id} className="basis-1/3">
                             <MainLcItems movie={m} priority={i <= 2} />
+                            <h1>{m.title}</h1>
                         </CarouselItem>
                     ))}
                 </CarouselContent>

@@ -26,7 +26,7 @@ export default function HeroCarousel({ topRated }: Props) {
             <CarouselContent>
                 {topRated.map((m, i) => (
                     <CarouselItem key={m.id} className="relative">
-                        <div className="relative rounded-xl w-full aspect-[21/9] md:aspect-[21/12] overflow-hidden">
+                        <div className="relative rounded-xl w-full aspect-[21/9]  overflow-hidden">
                             <OptimizedMovieImg movie={m} priority={i === 0} />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                             <h2 className="md:hidden bottom-6 left-6 absolute drop-shadow font-bold text-white text-2xl">

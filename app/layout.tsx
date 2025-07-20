@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./_styles/globals.css";
 import { ThemeProvider } from "./_context/themeProvider";
-import { SidebarProvider, SidebarTrigger } from "./_components/ui/sidebar";
+import { SidebarProvider } from "./_components/ui/sidebar";
 import { AppSidebar } from "./_components/AppSidebar";
 import Header from "./_components/Header";
 import MobileNavigation from "./_components/MobileNavigation";
@@ -48,7 +47,7 @@ export default function RootLayout({
                 >
                     <SidebarProvider>
                         <AppSidebar />
-                        <main className="relative flex flex-col justify-start items-center sm:h-auto max-h-screen">
+                        <main className="relative flex flex-col justify-start items-center ">
                             <Header />
 
                             {children}

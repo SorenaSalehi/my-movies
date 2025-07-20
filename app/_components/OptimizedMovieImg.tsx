@@ -18,13 +18,6 @@ type Props = {
     isHero?: boolean;
 };
 
-function chooseSize(width: number) {
-    if (width <= 500) return "w500";
-    if (width <= 780) return "w780";
-    if (width <= 1280) return "w1280";
-    return "original";
-}
-
 export default function OptimizedMovieImg({
     movie,
     priority = false,

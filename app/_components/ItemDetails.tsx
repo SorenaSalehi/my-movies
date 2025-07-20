@@ -1,7 +1,5 @@
 "use client";
-import { filterGenresName } from "../_lib/helpers";
 import { Movie } from "./OptimizedMovieImg";
-import { useData } from "../_context/DataProvider";
 
 interface Props {
     movie: Movie;

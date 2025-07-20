@@ -18,11 +18,13 @@ export default async function page() {
 
     return (
         <DataProvider genres={genres.flat()}>
+            {/* hero carousel for sm/md screens */}
             <HeroCarousel topRated={topRated} />
-            {/* //carousel for sm/md screen  */}
+
+            {/* //carousel for sm/md screens  */}
             <MainCarousel popular={popular} />
 
-            {/* //list for lg screen   */}
+            {/* //list for lg screens   */}
             <MainLcList movies={popular} />
         </DataProvider>
     );
