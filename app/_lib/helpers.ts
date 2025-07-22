@@ -7,3 +7,7 @@ export const filterGenresName = (ids: number[], genresMap: GenreMap) => {
         .filter(Boolean)
         .join(", ");
 };
+
+export const largeTitleConverter = (title: string) => {
+    return title?.slice(0, 16) + "...";
+};
