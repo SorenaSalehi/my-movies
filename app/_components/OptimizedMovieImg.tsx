@@ -9,6 +9,7 @@ export type Movie = {
     poster_path: string | null;
     vote_average?: number;
     genre_ids: number[];
+    release_date: string;
 };
 
 type Props = {
@@ -36,7 +37,7 @@ export default function OptimizedMovieImg({
   `;
 
     return (
-        <picture>
+        <picture className="h-full w-full block ">
             {/* Largest size only for big screens */}
             {maxSize === "w1280" && (
                 <source
@@ -69,8 +70,8 @@ export default function OptimizedMovieImg({
                     transition: "filter .4s ease-out",
                 }}
                 onLoad={() => setBlurOff(true)}
-                className={`w-full h-auto object-center object-cover ${
-                    !isHero && "absolute top-0 left-0 right-0 "
+                className={`w-full h-full object-center object-cover ${
+                    !isHero && "absolute top-0 left-0 right-0 p-3 md:p-6"
                 } ${
                     isHero
                         ? blurOff
