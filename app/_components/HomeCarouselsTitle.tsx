@@ -13,12 +13,16 @@ export default function HomeCarouselsTitle({ title, seeMoreBtnText }: Props) {
         <div className="flex justify-between items-center w-full">
             <div className="flex items-center  gap-1 ">
                 <Skeleton className="h-[10px] w-[10px] rounded-full" />
-                <h1 className="text-center font-bold ">{title}</h1>
-                <Skeleton className="h-[10px] w-[100px] rounded-full" />
+                <h1 className="text-center font-bold text-xs sm:text-base text-nowrap">
+                    {title}
+                </h1>
+                <Skeleton className="h-[10px] w-[15vw] sm:w-[30vw] rounded-full" />
             </div>
 
             <SeeMoreBtn>
-                <span>{seeMoreBtnText}</span>
+                <span className="text-[.5rem] sm:text-sm">
+                    {seeMoreBtnText}
+                </span>
                 <ArrowRightIcon className="w-4 h-4" />
             </SeeMoreBtn>
         </div>

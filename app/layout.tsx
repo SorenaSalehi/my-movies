@@ -48,7 +48,7 @@ export default function RootLayout({
                 >
                     <SidebarProvider>
                         <AppSidebar />
-                        <main className="relative flex flex-col justify-start items-center p-4 md:p-0">
+                        <main className="relative flex flex-col justify-start items-center  md:p-0 bg-sidebar-secondary/20">
                             <Header />
 
                             {children}

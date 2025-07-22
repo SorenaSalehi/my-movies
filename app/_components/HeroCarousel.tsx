@@ -8,6 +8,7 @@ import {
 } from "@/app/_components/ui/carousel";
 import OptimizedMovieImg from "./OptimizedMovieImg";
 import { Movie } from "./OptimizedMovieImg";
+import { useRouter } from "next/navigation";
 
 type Props = {
     topRated: Movie[];
@@ -15,7 +16,7 @@ type Props = {
 
 export default function HeroCarousel({ topRated }: Props) {
     const plugin = useRef(Autoplay({ delay: 10000, stopOnInteraction: true }));
-
+    const router = useRouter();
     return (
         <Carousel
             plugins={[plugin.current]}
@@ -25,7 +26,13 @@ export default function HeroCarousel({ topRated }: Props) {
         >
             <CarouselContent>
                 {topRated.map((m, i) => (
-                    <CarouselItem key={m.id} className="relative">
+                    <CarouselItem
+                        key={m.id}
+                        className="relative"
+                        onClick={() => {
+                            router.push(`/movie/${m.id}`);
+                        }}
+                    >
                         <div className="relative rounded-xl w-full aspect-[21/9]  overflow-hidden">
                             <OptimizedMovieImg movie={m} priority={i === 0} />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
