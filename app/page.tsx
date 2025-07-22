@@ -3,13 +3,15 @@ import { MainCarousel } from "./_components/MainCarousel";
 import { fetchGenres, fetchList } from "@/app/_lib/tmdb";
 import MainLcList from "./_components/MainLcList";
 import { DataProvider } from "./_context/DataProvider";
+import { Separator } from "./_components/ui/separator";
 
 export default async function page() {
-    const [topRated, popular] = await Promise.all([
+    const [topRated, popular, tvPopular] = await Promise.all([
         fetchList("movie", "top_rated"),
         fetchList("movie", "popular"),
+        fetchList("tv", "popular"),
     ]);
-    console.log("popular", popular);
+    console.log(tvPopular);
 
     const [...genres] = await Promise.all([
         fetchGenres("movie"),
@@ -20,10 +22,14 @@ export default async function page() {
         <DataProvider genres={genres.flat()}>
             {/* hero carousel for sm/md screens */}
             <HeroCarousel topRated={topRated} />
-
-            {/* //carousel for sm/md screens  */}
-            <MainCarousel popular={popular} />
-
+            {/* //movie carousel for sm/md screens  */}
+            <MainCarousel data={popular} title="What's Hot" />
+            <Separator className="my-4 bg-red-500/20 md:hidden " />
+            {/* //tv carousel for sm/md screens  */}
+            <MainCarousel data={tvPopular} title="Top TV Shows" />{" "}
+            <Separator className="my-4 bg-red-500/20 md:hidden " />
+            {/* //top rated carousel for sm/md screens  */}
+            <MainCarousel data={topRated} title="Top Rated Movies" />
             {/* //list for lg screens   */}
             <MainLcList movies={popular} />
         </DataProvider>

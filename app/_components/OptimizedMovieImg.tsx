@@ -5,6 +5,7 @@ import React, { useState } from "react";
 export type Movie = {
     id: number;
     title: string;
+    name: string;
     backdrop_path: string | null;
     poster_path: string | null;
     vote_average?: number;
@@ -62,7 +63,7 @@ export default function OptimizedMovieImg({
                 fetchPriority={priority ? "high" : "auto"}
                 width={1280}
                 height={720}
-                alt={movie.title}
+                alt={movie.title || movie.name}
                 style={{
                     backgroundImage: `url(https://image.tmdb.org/t/p/w92${path})`,
                     backgroundSize: "cover",

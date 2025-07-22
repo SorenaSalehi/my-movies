@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { HeaderNavigation } from "./HeaderNavigation";
 import { SearchInput } from "./SearchInput";
 import { ThemeModeToggle } from "./ThemeModeToggle";
@@ -10,7 +11,9 @@ export default function Header() {
 
             <HeaderNavigation />
             <SearchInput />
-            <div className="md:hidden block w-25">My Movies</div>
+            <Link href="/" className="md:hidden block">
+                Created With 💖, to show my skills and personal use.
+            </Link>
 
             <ThemeModeToggle />
         </div>
