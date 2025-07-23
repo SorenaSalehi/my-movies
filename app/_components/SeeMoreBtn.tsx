@@ -1,13 +1,17 @@
 import React from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
+    path: string;
 }
-export default function SeeMoreBtn({ children, ...props }: Props) {
+export default function SeeMoreBtn({ path, children, ...props }: Props) {
     return (
-        <Button variant={"ghost"} {...props}>
-            {children}
-        </Button>
+        <Link href={path}>
+            <Button variant={"ghost"} {...props}>
+                {children}
+            </Button>
+        </Link>
     );
 }

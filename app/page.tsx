@@ -23,15 +23,27 @@ export default async function page() {
             {/* hero carousel for sm/md screens */}
             <HeroCarousel topRated={topRated} />
             {/* //movie carousel for sm/md screens  */}
-            <MainCarousel data={popular} title="What's Hot" />
+            <MainCarousel
+                data={popular}
+                title="What's Hot"
+                path="/movies/popular"
+            />
             <Separator className="my-4 bg-red-500/20 md:hidden " />
             {/* //tv carousel for sm/md screens  */}
-            <MainCarousel data={tvPopular} title="Top TV Shows" />{" "}
+            <MainCarousel
+                data={tvPopular}
+                title="Top TV Shows"
+                path="/tv/popular"
+            />{" "}
             <Separator className="my-4 bg-red-500/20 md:hidden " />
             {/* //top rated carousel for sm/md screens  */}
-            <MainCarousel data={topRated} title="Top Rated Movies" />
+            <MainCarousel
+                data={topRated}
+                title="Top Rated Movies"
+                path="/movies/top_rated"
+            />
             {/* //list for lg screens   */}
-            <MainLcList movies={popular} />
+            <MainLcList initialItems={popular} apiPath="/api/tmdb/movie/popular" />
         </DataProvider>
     );
 }

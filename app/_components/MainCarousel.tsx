@@ -10,16 +10,21 @@ import { largeTitleConverter } from "../_lib/helpers";
 type Props = {
     data: Movie[];
     title: string;
+    path: string;
 };
 
-export function MainCarousel({ data, title }: Props) {
+export function MainCarousel({ data, title, path }: Props) {
     console.log(data[0]);
     return (
         <div
             id="main-carousel-container"
             className="md:hidden flex flex-col justify-center w-[90vw] bg-red-500/3 rounded-md"
         >
-            <HomeCarouselsTitle title={title} seeMoreBtnText="See More" />
+            <HomeCarouselsTitle
+                title={title}
+                seeMoreBtnText="See More"
+                path={path}
+            />
             <Carousel className="w-full" opts={{ align: "center" }}>
                 <CarouselContent className="-ml-1 gap-2">
                     {data.map((m, i) => (

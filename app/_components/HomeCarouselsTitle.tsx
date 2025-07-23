@@ -6,9 +6,14 @@ import { ArrowRightIcon } from "lucide-react";
 interface Props {
     title: string;
     seeMoreBtnText: string;
+    path: string;
 }
 
-export default function HomeCarouselsTitle({ title, seeMoreBtnText }: Props) {
+export default function HomeCarouselsTitle({
+    title,
+    seeMoreBtnText,
+    path,
+}: Props) {
     return (
         <div className="flex justify-between items-center w-full">
             <div className="flex items-center  gap-1 ">
@@ -19,7 +24,7 @@ export default function HomeCarouselsTitle({ title, seeMoreBtnText }: Props) {
                 <Skeleton className="h-[10px] w-[15vw] sm:w-[30vw] rounded-full" />
             </div>
 
-            <SeeMoreBtn>
+            <SeeMoreBtn path={path}>
                 <span className="text-[.5rem] sm:text-sm">
                     {seeMoreBtnText}
                 </span>
