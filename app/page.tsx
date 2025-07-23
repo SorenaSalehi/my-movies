@@ -26,24 +26,27 @@ export default async function page() {
             <MainCarousel
                 data={popular}
                 title="What's Hot"
-                path="/movies/popular"
+                path="movie/popular"
             />
             <Separator className="my-4 bg-red-500/20 md:hidden " />
             {/* //tv carousel for sm/md screens  */}
             <MainCarousel
                 data={tvPopular}
                 title="Top TV Shows"
-                path="/tv/popular"
+                path="tv/popular"
             />{" "}
             <Separator className="my-4 bg-red-500/20 md:hidden " />
             {/* //top rated carousel for sm/md screens  */}
             <MainCarousel
                 data={topRated}
                 title="Top Rated Movies"
-                path="/movies/top_rated"
+                path="movie/top_rated"
             />
             {/* //list for lg screens   */}
-            <MainLcList initialItems={popular} apiPath="/api/tmdb/movie/popular" />
+            <MainLcList
+                initialItems={popular}
+                apiPath="/api/tmdb/movie/popular"
+            />
         </DataProvider>
     );
 }

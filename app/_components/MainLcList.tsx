@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import MainLcItems from "./MainLcItems";
 import { Movie } from "./OptimizedMovieImg";
+import { largeTitleConverter } from "../_lib/helpers";
 
 type Props = {
     initialItems: Movie[];
@@ -13,7 +14,8 @@ export default function MainLcList({ initialItems, apiPath }: Props) {
     const pageRef = useRef(1);
     const isLoading = useRef(false);
     const loaderRef = useRef<HTMLLIElement>(null);
-    async function loadMoreItems() {
+
+    const loadMoreItems = useCallback(async () => {
         if (isLoading.current) return;
         isLoading.current = true;
 
@@ -26,12 +28,12 @@ export default function MainLcList({ initialItems, apiPath }: Props) {
             const data: Movie[] = await res.json();
             setItems((prev) => [...prev, ...data]);
             pageRef.current = nextPage;
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.log(err);
         } finally {
             isLoading.current = false;
         }
-    }
+    }, [apiPath]);
 
     useEffect(() => {
         const observe = new IntersectionObserver(
@@ -49,13 +51,18 @@ export default function MainLcList({ initialItems, apiPath }: Props) {
         return () => {
             observe.disconnect();
         };
-    }, [apiPath]);
+    }, [apiPath, loadMoreItems]);
 
     return (
-        <ul className="hidden gap-4 md:grid xl:grid-cols-7 px-6 md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 ">
+        <ul
+            className={`grid-cols-2 gap-2 w-full md:gap-4 grid xl:grid-cols-7 px-6 md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 `}
+        >
             {items.map((m) => (
                 <li key={m.id}>
                     <MainLcItems movie={m} />
+                    <h1 className="text-center text-base md:hidden">
+                        {largeTitleConverter(m?.title || m?.name)}
+                    </h1>
                 </li>
             ))}
             <li ref={loaderRef} className="h-10 w-full" />

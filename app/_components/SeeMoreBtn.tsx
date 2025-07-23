@@ -4,11 +4,11 @@ import Link from "next/link";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    path: string;
+    path?: string;
 }
 export default function SeeMoreBtn({ path, children, ...props }: Props) {
     return (
-        <Link href={path}>
+        <Link href={path || "#"}>
             <Button variant={"ghost"} {...props}>
                 {children}
             </Button>

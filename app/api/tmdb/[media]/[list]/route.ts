@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: { media: string; list: string } }
+    { params }: { params: Promise<{ media: string; list: string }> }
 ) {
-    const { media, list } = params;
+    const { media, list } = await params;
     const page = req.nextUrl.searchParams.get("page") ?? "1";
 
     try {
@@ -15,7 +15,7 @@ export async function GET(
             parseInt(page, 10)
         );
         return NextResponse.json(data);
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        return NextResponse.json({ error: error }, { status: 500 });
     }
 }
