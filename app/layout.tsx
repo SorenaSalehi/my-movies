@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./_styles/globals.css";
 import { ThemeProvider } from "./_context/themeProvider";
 import { SidebarProvider } from "./_components/ui/sidebar";
@@ -57,6 +58,7 @@ export default function RootLayout({
                         </main>
                     </SidebarProvider>
                 </ThemeProvider>
+                <Analytics />
             </body>
         </html>
     );
