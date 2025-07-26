@@ -14,11 +14,11 @@ type Props = {
 };
 
 export function MainCarousel({ data, title, path }: Props) {
-    console.log(data[0]);
+    // console.log(data[0]);
     return (
         <div
             id="main-carousel-container"
-            className="md:hidden flex flex-col justify-center w-[90vw] bg-red-500/3 rounded-md"
+            className="lg:hidden flex flex-col justify-center w-[90vw] bg-red-500/3 rounded-md"
         >
             <HomeCarouselsTitle
                 title={title}
@@ -32,7 +32,11 @@ export function MainCarousel({ data, title, path }: Props) {
                             key={m.id}
                             className="basis-1/2 sm:basis-1/3"
                         >
-                            <MainLcItems movie={m} priority={i <= 2} />
+                            <MainLcItems
+                                movie={m}
+                                priority={i <= 2}
+                                key={m.id}
+                            />
                             <h1 className="text-center text-xs sm:text-sm">
                                 {largeTitleConverter(m?.title || m?.name)}
                             </h1>

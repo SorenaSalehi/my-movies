@@ -280,7 +280,7 @@ function SidebarTrigger({
             data-slot="sidebar-trigger"
             variant="destructive"
             size="icon"
-            className={cn("md:hidden size-10 ", className)}
+            className={cn("lg:hidden size-10 ", className)}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                 onClick?.(event);
                 toggleSidebar();

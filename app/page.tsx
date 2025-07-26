@@ -11,7 +11,6 @@ export default async function page() {
         fetchList("movie", "popular"),
         fetchList("tv", "popular"),
     ]);
-    console.log(tvPopular);
 
     const [...genres] = await Promise.all([
         fetchGenres("movie"),
@@ -20,33 +19,38 @@ export default async function page() {
 
     return (
         <DataProvider genres={genres.flat()}>
-            {/* hero carousel for sm/md screens */}
+            {/*begin:: hero carousel for sm/md screens */}
             <HeroCarousel topRated={topRated} />
-            {/* //movie carousel for sm/md screens  */}
+            {/*end:: hero carousel for sm/md screens */}
+            {/* //begin:: movie carousel for sm/md screens  */}
             <MainCarousel
                 data={popular}
                 title="What's Hot"
                 path="movie/popular"
             />
-            <Separator className="my-4 bg-red-500/20 md:hidden " />
-            {/* //tv carousel for sm/md screens  */}
+            {/* //end:: movie carousel for sm/md screens  */}
+            <Separator className="my-4 bg-red-500/20 lg:hidden " />
+            {/* //begin:: tv carousel for sm/md screens  */}
             <MainCarousel
                 data={tvPopular}
                 title="Top TV Shows"
                 path="tv/popular"
-            />{" "}
-            <Separator className="my-4 bg-red-500/20 md:hidden " />
-            {/* //top rated carousel for sm/md screens  */}
+            />
+            {/* //end:: tv carousel for sm/md screens  */}
+            <Separator className="my-4 bg-red-500/20 lg:hidden " />
+            {/* //begin:: top rated carousel for sm/md screens  */}
             <MainCarousel
                 data={topRated}
                 title="Top Rated Movies"
                 path="movie/top_rated"
             />
-            {/* //list for lg screens   */}
+            {/* //end:: top rated carousel for sm/md screens  */}
+            {/* //begin:: list for lg screens   */}
             <MainLcList
                 initialItems={popular}
                 apiPath="/api/tmdb/movie/popular"
             />
+            {/* //end:: list for lg screens   */}
         </DataProvider>
     );
 }

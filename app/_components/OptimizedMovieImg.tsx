@@ -72,12 +72,12 @@ export default function OptimizedMovieImg({
                 }}
                 onLoad={() => setBlurOff(true)}
                 className={`w-full h-full object-center object-cover ${
-                    !isHero && "absolute top-0 left-0 right-0 p-3 md:p-6"
+                    !isHero && "absolute top-0 left-0 right-0 p-3 lg:p-6"
                 } ${
                     isHero
                         ? blurOff
-                            ? "md:brightness-[20%]"
-                            : "md:blur(20px)"
+                            ? "lg:brightness-[20%]"
+                            : "lg:blur(20px)"
                         : ""
                 }`}
             />

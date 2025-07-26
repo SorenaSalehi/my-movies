@@ -3,6 +3,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import MainLcItems from "./MainLcItems";
 import { Movie } from "./OptimizedMovieImg";
 import { largeTitleConverter } from "../_lib/helpers";
+import { Loader2 } from "lucide-react";
+import { Skeleton } from "./ui/skeleton";
 
 type Props = {
     initialItems: Movie[];
@@ -66,6 +68,11 @@ export default function MainLcList({ initialItems, apiPath }: Props) {
                 </li>
             ))}
             <li ref={loaderRef} className="h-10 w-full" />
+            {isLoading.current && (
+                <div className="flex items-center justify-center w-full h-10">
+                    <Skeleton className="h-10 w-full" />
+                </div>
+            )}
         </ul>
     );
 }

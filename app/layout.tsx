@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./_styles/globals.css";
 import { ThemeProvider } from "./_context/themeProvider";
 import { SidebarProvider } from "./_components/ui/sidebar";
@@ -48,17 +49,29 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <SidebarProvider>
+                        {/* begin:: App sidebar */}
                         <AppSidebar />
-                        <main className="relative flex flex-col justify-start items-center  md:p-0 bg-sidebar-secondary/20 ">
+                        {/* end:: App sidebar */}
+
+                        {/* begin:: App Main */}
+                        <main className="relative flex flex-col justify-start items-center  lg:p-0 bg-sidebar-secondary/20 min-h-screen w-full ">
+                            {/* // begin:: Header  */}
                             <Header />
+                            {/* // end:: Header  */}
 
+                            {/* // begin:: Children */}
                             {children}
+                            {/* // end:: Children */}
 
+                            {/* begin:: Mobile Navigation */}
                             <MobileNavigation />
+                            {/* end:: Mobile Navigation */}
                         </main>
+                        {/* end:: App Main */}
                     </SidebarProvider>
                 </ThemeProvider>
                 <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
