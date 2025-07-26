@@ -7,13 +7,15 @@ import HomeCarouselsTitle from "./HomeCarouselsTitle";
 import { Movie } from "./OptimizedMovieImg";
 import MainLcItems from "./MainLcItems";
 import { largeTitleConverter } from "../_lib/helpers";
+import Link from "next/link";
 type Props = {
     data: Movie[];
     title: string;
     path: string;
+    mediaType: string;
 };
 
-export function MainCarousel({ data, title, path }: Props) {
+export function MainCarousel({ data, title, path, mediaType }: Props) {
     // console.log(data[0]);
     return (
         <div
@@ -28,19 +30,25 @@ export function MainCarousel({ data, title, path }: Props) {
             <Carousel className="w-full" opts={{ align: "center" }}>
                 <CarouselContent className="-ml-1 gap-2">
                     {data.map((m, i) => (
-                        <CarouselItem
+                        <Link
                             key={m.id}
-                            className="basis-1/2 sm:basis-1/3"
+                            href={`/${mediaType}/${m.id}`}
+                            role="group"
+                            data-slot="carousel-item"
+                            aria-roledescription="slide"
+                            className="min-w-0 shrink-0 grow-0 pl-4 basis-1/3 sm:basis-1/3"
                         >
-                            <MainLcItems
-                                movie={m}
-                                priority={i <= 2}
-                                key={m.id}
-                            />
-                            <h1 className="text-center text-xs sm:text-sm">
-                                {largeTitleConverter(m?.title || m?.name)}
-                            </h1>
-                        </CarouselItem>
+                            <CarouselItem key={m.id}>
+                                <MainLcItems
+                                    movie={m}
+                                    priority={i <= 2}
+                                    key={m.id}
+                                />
+                                <h1 className="text-center text-xs sm:text-sm">
+                                    {largeTitleConverter(m?.title || m?.name)}
+                                </h1>
+                            </CarouselItem>
+                        </Link>
                     ))}
                 </CarouselContent>
                 {/* <CarouselPrevious />

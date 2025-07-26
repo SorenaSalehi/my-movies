@@ -48,6 +48,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
+                    {/* // begin:: Sidebar Provider  */}
                     <SidebarProvider>
                         {/* begin:: App sidebar */}
                         <AppSidebar />
@@ -69,6 +70,7 @@ export default function RootLayout({
                         </main>
                         {/* end:: App Main */}
                     </SidebarProvider>
+                    {/* // end:: Sidebar Provider  */}
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />

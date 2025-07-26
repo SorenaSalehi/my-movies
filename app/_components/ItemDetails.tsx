@@ -11,7 +11,7 @@ export default function ItemDetails({ movie }: Props) {
     const { genresMap } = useData();
     const genres = movie.genre_ids.map((id) => genresMap[id]);
     return (
-        <div className="bottom-0 absolute  transition-all duration-300 ease-in-out   inset-x-0 flex flex-col gap-2 bg-red-500 p-4 h-40 translate-y-full rounded-xl opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 ">
+        <div className="bottom-0 absolute  transition-all duration-300 ease-in-out   inset-x-0 flex flex-col gap-2 bg-red-500 p-4 h-40 translate-y-full rounded-xl opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 ">
             <h1 className="justify-self-center text-center text-sm col-start-1 row-start-1 font-bold md:text-xl">
                 {largeTitleConverter(movie?.title) ||
                     largeTitleConverter(movie?.name)}

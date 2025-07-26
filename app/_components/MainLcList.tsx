@@ -3,37 +3,53 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import MainLcItems from "./MainLcItems";
 import { Movie } from "./OptimizedMovieImg";
 import { largeTitleConverter } from "../_lib/helpers";
-import { Loader2 } from "lucide-react";
-import { Skeleton } from "./ui/skeleton";
+import Spinner from "./Spinner";
+import Link from "next/link";
+import MainMediaUL from "./MainMediaUL";
 
 type Props = {
     initialItems: Movie[];
     apiPath: string;
+    mediaType: string;
 };
 
-export default function MainLcList({ initialItems, apiPath }: Props) {
+export default function MainLcList({
+    initialItems,
+    apiPath,
+    mediaType,
+}: Props) {
     const [items, setItems] = useState(initialItems);
+    const [isLoading, setIsLoading] = useState(false);
     const pageRef = useRef(1);
-    const isLoading = useRef(false);
-    const loaderRef = useRef<HTMLLIElement>(null);
+    const loaderRef = useRef<HTMLLIElement | null>(null);
 
     const loadMoreItems = useCallback(async () => {
-        if (isLoading.current) return;
-        isLoading.current = true;
+        if (isLoading) return;
+        setIsLoading(true);
 
         const nextPage = pageRef.current + 1;
-        console.log("loading next page", nextPage);
         try {
             const res = await fetch(`${apiPath}?page=${nextPage}`);
             if (!res.ok) throw new Error("Failed to load more items");
 
             const data: Movie[] = await res.json();
-            setItems((prev) => [...prev, ...data]);
+            setItems((prev) => {
+                const map = new Map<number, Movie>();
+
+                prev.forEach((m) => map.set(m.id, m));
+
+                data.forEach((m) => {
+                    if (!map.has(m.id)) {
+                        map.set(m.id, m);
+                    }
+                });
+
+                return Array.from(map.values());
+            });
             pageRef.current = nextPage;
         } catch (err: unknown) {
-            console.log(err);
         } finally {
-            isLoading.current = false;
+            setIsLoading(false);
         }
     }, [apiPath]);
 
@@ -44,7 +60,7 @@ export default function MainLcList({ initialItems, apiPath }: Props) {
                     loadMoreItems();
                 }
             },
-            { root: null, rootMargin: "100px", threshold: 0 }
+            { root: null, rootMargin: "200px", threshold: 0 }
         );
 
         const el = loaderRef.current;
@@ -54,25 +70,13 @@ export default function MainLcList({ initialItems, apiPath }: Props) {
             observe.disconnect();
         };
     }, [apiPath, loadMoreItems]);
-
+    console.log("apiPath", apiPath.split("/"));
     return (
-        <ul
-            className={`grid-cols-2 gap-2 w-full md:gap-4 grid xl:grid-cols-7 px-6 md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 `}
-        >
-            {items.map((m) => (
-                <li key={m.id}>
-                    <MainLcItems movie={m} />
-                    <h1 className="text-center text-base md:hidden">
-                        {largeTitleConverter(m?.title || m?.name)}
-                    </h1>
-                </li>
-            ))}
-            <li ref={loaderRef} className="h-10 w-full" />
-            {isLoading.current && (
-                <div className="flex items-center justify-center w-full h-10">
-                    <Skeleton className="h-10 w-full" />
-                </div>
-            )}
-        </ul>
+        <MainMediaUL
+            items={items}
+            isLoading={isLoading}
+            loaderRef={loaderRef}
+            mediaType={mediaType}
+        />
     );
 }

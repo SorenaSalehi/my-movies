@@ -2,21 +2,17 @@
 
 import MainLcList from "@/app/_components/MainLcList";
 import MediaTitle from "@/app/_components/MediaTitle";
-import { fetchList } from "@/app/_lib/tmdb";
+import { ListKind } from "@/app/_lib/tmdb";
 import { Separator } from "@radix-ui/react-separator";
+import { Movie } from "../../_components/OptimizedMovieImg";
 
 interface Props {
-    params: Promise<{
-        media: "movie" | "tv";
-        list: "popular" | "top_rated" | "now_playing";
-    }>;
+    initialItems: Movie[];
+    media: "movie" | "tv";
+    list: ListKind;
 }
 
-export default async function Page({ params }: Props) {
-    const paramsPromise = await params;
-    const { media, list } = paramsPromise;
-
-    const initialItems = await fetchList(media, list, 1);
+export default async function ListView({ initialItems, media, list }: Props) {
     const apiPath = `/api/tmdb/${media}/${list}`;
 
     return (
@@ -24,11 +20,15 @@ export default async function Page({ params }: Props) {
             <MediaTitle
                 title={`${media === "movie" ? "Movies" : "TV Shows"} - ${list
                     .replace("_", "")
-                    .replace(/\b\w/g, (c) => c.toUpperCase())}`}
+                    .replace(/\b\w/g, (c: string) => c.toUpperCase())}`}
             />
 
             <Separator className="my-4 bg-red-500/20 md:hidden " />
-            <MainLcList initialItems={initialItems} apiPath={apiPath} />
+            <MainLcList
+                initialItems={initialItems}
+                apiPath={apiPath}
+                mediaType={media}
+            />
         </div>
     );
 }
