@@ -20,7 +20,7 @@ export default function HeroCarousel({ topRated }: Props) {
     return (
         <Carousel
             plugins={[plugin.current]}
-            className="top-0 right-0 bottom-0 left-0 lg:-z-50 lg:absolute p-3 pt-4 "
+            className="top-0 right-0 bottom-0 left-0 lg:-z-50 lg:absolute p-3 pt-4 lg:brightness-25"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
         >

@@ -15,7 +15,7 @@ export type Movie = {
 };
 
 type Props = {
-    movie: Movie |MovieDetails;
+    movie: Movie | MovieDetails;
     priority?: boolean;
     maxSize?: "w500" | "w780" | "w1280";
     isHero?: boolean;
@@ -56,7 +56,11 @@ export default function OptimizedMovieImg({
 
             {/* Fallback <img> with low-res blur placeholder */}
             <img
-                src={`https://image.tmdb.org/t/p/${maxSize}${path}`}
+                src={
+                    blurOff
+                        ? `https://image.tmdb.org/t/p/${maxSize}${path}`
+                        : `https://image.tmdb.org/t/p/w92${path}`
+                }
                 srcSet={srcSet}
                 sizes="100vw"
                 decoding="async"
@@ -65,22 +69,11 @@ export default function OptimizedMovieImg({
                 width={1280}
                 height={720}
                 alt={movie.title || movie.name}
-                style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/w92${path})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    transition: "filter .4s ease-out",
-                }}
                 onLoad={() => setBlurOff(true)}
-                className={`w-full h-full object-center object-cover ${
-                    !isHero && "absolute top-0 left-0 right-0 p-3 lg:p-6"
-                } ${
-                    isHero
-                        ? blurOff
-                            ? "lg:brightness-[20%]"
-                            : "lg:blur(20px)"
-                        : ""
-                }`}
+                className={`  object-cover ${
+                    !isHero &&
+                    "absolute top-0 left-0 right-0 p-3 lg:p-6 object-contain h-75 w-[200px]"
+                } `}
             />
         </picture>
     );

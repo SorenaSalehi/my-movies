@@ -20,7 +20,7 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
     return (
         <div
             id="main-carousel-container"
-            className="lg:hidden flex flex-col justify-center w-[90vw] bg-red-500/3 rounded-md"
+            className="lg:hidden flex flex-col justify-center w-[85vw]  rounded-md"
         >
             <HomeCarouselsTitle
                 title={title}
@@ -43,6 +43,7 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
                                     movie={m}
                                     priority={i <= 2}
                                     key={m.id}
+                                    
                                 />
                                 <h1 className="text-center text-xs sm:text-sm">
                                     {largeTitleConverter(m?.title || m?.name)}
