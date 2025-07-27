@@ -14,6 +14,7 @@ export default async function page({ params }: Props) {
             paramsPromise.slug,
             1
         );
+        // begin:: Media List
         return (
             <ListView
                 initialItems={initialItems}
@@ -21,10 +22,14 @@ export default async function page({ params }: Props) {
                 list={paramsPromise.slug}
             />
         );
+        // end:: Media List
     } else {
         const id = parseInt(paramsPromise.slug, 10);
         const details = await fetchMediaDetails(paramsPromise.media, id);
+        console.log("details", details);
 
+        // begin:: Media Details
         return <MediaDetailsView details={details} />;
+        // end:: Media Details
     }
 }

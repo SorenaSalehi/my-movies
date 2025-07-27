@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { MovieDetails } from "../_types/tmdbTypes";
 
 export type Movie = {
     id: number;
@@ -14,7 +15,7 @@ export type Movie = {
 };
 
 type Props = {
-    movie: Movie;
+    movie: Movie |MovieDetails;
     priority?: boolean;
     maxSize?: "w500" | "w780" | "w1280";
     isHero?: boolean;

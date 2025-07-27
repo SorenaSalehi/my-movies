@@ -1,11 +1,8 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import MainLcItems from "./MainLcItems";
 import { Movie } from "./OptimizedMovieImg";
-import { largeTitleConverter } from "../_lib/helpers";
-import Spinner from "./Spinner";
-import Link from "next/link";
 import MainMediaUL from "./MainMediaUL";
+import { useData } from "../_context/DataProvider";
 
 type Props = {
     initialItems: Movie[];
@@ -18,11 +15,15 @@ export default function MainLcList({
     apiPath,
     mediaType,
 }: Props) {
+    const { genresMap } = useData();
     const [items, setItems] = useState(initialItems);
     const [isLoading, setIsLoading] = useState(false);
     const pageRef = useRef(1);
     const loaderRef = useRef<HTMLLIElement | null>(null);
-
+    console.log(
+        "items-------------------------------------------------------------------------------------------",
+        items
+    );
     const loadMoreItems = useCallback(async () => {
         if (isLoading) return;
         setIsLoading(true);
@@ -44,14 +45,22 @@ export default function MainLcList({
                     }
                 });
 
-                return Array.from(map.values());
+                const mergedItems = Array.from(map.values());
+                const filteredItems = mergedItems.filter(
+                    (m) =>
+                        !m.genre_ids
+                            .map((id) => genresMap[id])
+                            .includes("Romance")
+                );
+                return filteredItems;
             });
             pageRef.current = nextPage;
         } catch (err: unknown) {
+            console.log("err", err);
         } finally {
             setIsLoading(false);
         }
-    }, [apiPath]);
+    }, [apiPath, genresMap, isLoading]);
 
     useEffect(() => {
         const observe = new IntersectionObserver(
