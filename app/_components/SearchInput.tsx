@@ -53,7 +53,7 @@ export function SearchInput() {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-[200px]  text-center text-2xl"
+                    className=" text-center text-xl "
                 >
                     {value
                         ? frameworks.find(
@@ -62,7 +62,7 @@ export function SearchInput() {
                         : "What are you looking for?"}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-96 p-0">
+            <PopoverContent className="w-100 p-0">
                 <Command>
                     <CommandInput
                         placeholder="Search for movie/series..."

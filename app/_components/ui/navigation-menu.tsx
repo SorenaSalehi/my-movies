@@ -18,7 +18,7 @@ function NavigationMenu({
             data-slot="navigation-menu"
             data-viewport={viewport}
             className={cn(
-                "group/navigation-menu hidden z-[1000] relative lg:flex flex-1 justify-center items-center max-w-max",
+                "group/navigation-menu hidden z-[1000] relative lg:flex justify-center items-center ",
                 className
             )}
             {...props}
@@ -37,7 +37,7 @@ function NavigationMenuList({
         <NavigationMenuPrimitive.List
             data-slot="navigation-menu-list"
             className={cn(
-                "group flex flex-1 justify-center items-center gap-1 [&>li]:[&>a]:text-3xl [&>li]:[&>button]:text-3xl list-none",
+                "group flex flex-1 justify-center items-center gap-1 [&>li]:[&>a]:text-xl [&>li]:[&>button]:text-xl list-none",
                 className
             )}
             {...props}
