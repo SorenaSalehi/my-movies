@@ -27,23 +27,23 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
                 seeMoreBtnText="See More"
                 path={path}
             />
-            <Carousel className="w-full" opts={{ align: "center" }}>
+            <Carousel className="w-full mx-auto" opts={{ align: "center" }}>
                 <CarouselContent className="-ml-1 gap-2">
                     {data.map((m, i) => (
                         <Link
+                            id="carousel-content-container-link"
                             key={m.id}
                             href={`/${mediaType}/${m.id}`}
                             role="group"
                             data-slot="carousel-item"
                             aria-roledescription="slide"
-                            className="min-w-0 shrink-0 grow-0 pl-4 basis-1/3 sm:basis-1/3"
+                            className="min-w-0 shrink-0 grow-0  basis-1/2 md:basis-1/3 "
                         >
-                            <CarouselItem key={m.id}>
+                            <CarouselItem key={m.id} id="carousel-item">
                                 <MainLcItems
                                     movie={m}
                                     priority={i <= 2}
                                     key={m.id}
-                                    
                                 />
                                 <h1 className="text-center text-xs sm:text-sm">
                                     {largeTitleConverter(m?.title || m?.name)}

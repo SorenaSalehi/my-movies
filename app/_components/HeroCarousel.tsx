@@ -20,7 +20,7 @@ export default function HeroCarousel({ topRated }: Props) {
     return (
         <Carousel
             plugins={[plugin.current]}
-            className="top-0 right-0 bottom-0 left-0 lg:-z-50 lg:absolute p-3 pt-4 lg:brightness-25"
+            className="lg:top-0 lg:right-0 lg:bottom-0 lg:left-0 lg:-z-50 lg:sticky p-3 pt-4 lg:brightness-10"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
         >
@@ -28,12 +28,13 @@ export default function HeroCarousel({ topRated }: Props) {
                 {topRated.map((m, i) => (
                     <CarouselItem
                         key={m.id}
-                        className="relative"
+                        className="relative pl-4 lg:pl-0 "
                         onClick={() => {
                             router.push(`/movie/${m.id}`);
                         }}
+                        id="hero-carousel-item"
                     >
-                        <div className="relative rounded-xl w-full aspect-[21/9]  overflow-hidden">
+                        <div className="relative rounded-xl w-full aspect-[21/9] lg:aspect-[21/13]  overflow-hidden">
                             <OptimizedMovieImg movie={m} priority={i === 0} />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                             <h2 className="lg:hidden bottom-6 left-6 absolute drop-shadow font-bold text-white text-2xl">

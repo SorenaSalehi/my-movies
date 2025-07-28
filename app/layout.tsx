@@ -55,7 +55,7 @@ export default function RootLayout({
                         {/* end:: App sidebar */}
 
                         {/* begin:: App Main */}
-                        <main className="relative flex flex-col justify-start items-center   bg-sidebar-secondary/20  max-w-screen overflow-x-hidden">
+                        <main className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 h-screen  w-screen overflow-x-hidden">
                             {/* // begin:: Header  */}
                             <Header />
                             {/* // end:: Header  */}

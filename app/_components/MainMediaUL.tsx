@@ -14,7 +14,7 @@ type Props = {
 function MainMediaUL({ items, isLoading, loaderRef, mediaType }: Props) {
     return (
         <ul
-            className={`grid-cols-3 gap-2 w-full md:gap-4 grid xl:grid-cols-7 px-6 md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 `}
+            className={` grid-cols-2 gap-2 w-full md:gap-4 lg:grid xl:grid-cols-6  md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 `}
         >
             {items.map((m) => (
                 <li key={m.id}>

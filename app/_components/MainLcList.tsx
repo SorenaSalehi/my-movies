@@ -20,10 +20,7 @@ export default function MainLcList({
     const [isLoading, setIsLoading] = useState(false);
     const pageRef = useRef(1);
     const loaderRef = useRef<HTMLLIElement | null>(null);
-    console.log(
-        "items-------------------------------------------------------------------------------------------",
-        items
-    );
+
     const loadMoreItems = useCallback(async () => {
         if (isLoading) return;
         setIsLoading(true);
@@ -79,7 +76,7 @@ export default function MainLcList({
             observe.disconnect();
         };
     }, [apiPath, loadMoreItems]);
-    console.log("apiPath", apiPath.split("/"));
+
     return (
         <MainMediaUL
             items={items}

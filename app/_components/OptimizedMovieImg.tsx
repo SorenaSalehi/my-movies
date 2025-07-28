@@ -71,8 +71,7 @@ export default function OptimizedMovieImg({
                 alt={movie.title || movie.name}
                 onLoad={() => setBlurOff(true)}
                 className={`  object-cover ${
-                    !isHero &&
-                    "absolute top-0 left-0 right-0 p-3 lg:p-6 object-contain h-75 w-[200px]"
+                    !isHero && "w-full h-full p-3 lg:p-6  object-contain "
                 } `}
             />
         </picture>

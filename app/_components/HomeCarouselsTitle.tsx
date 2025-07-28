@@ -25,10 +25,10 @@ export default function HomeCarouselsTitle({
             </div>
 
             <SeeMoreBtn path={path}>
-                <span className="text-[.5rem] sm:text-sm">
+                <span className="text-[.8rem] text-amber-500 sm:text-sm">
                     {seeMoreBtnText}
                 </span>
-                <ArrowRightIcon className="w-4 h-4" />
+                <ArrowRightIcon className="w-4 h-4 text-amber-500" />
             </SeeMoreBtn>
         </div>
     );
