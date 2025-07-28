@@ -13,7 +13,6 @@ type Props = {
     path: string;
     mediaType: string;
 };
-
 export function MainCarousel({ data, title, path, mediaType }: Props) {
     return (
         <div

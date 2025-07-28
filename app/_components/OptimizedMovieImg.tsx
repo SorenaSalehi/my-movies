@@ -71,7 +71,7 @@ export default function OptimizedMovieImg({
                 className={
                     isHero
                         ? "object-cover w-[1080px] lg:w-[1380px] xl:w-[1680px] 2xl:w-[2080px] lg:h-screen"
-                        : "w-full h-full p-3 lg:p-6  object-contain "
+                        : "w-full h-full  object-cover"
                 }
             />
         </picture>

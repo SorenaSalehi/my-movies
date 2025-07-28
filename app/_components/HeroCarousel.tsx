@@ -15,9 +15,7 @@ type Props = {
 };
 
 export default function HeroCarousel({ topRated }: Props) {
-    const plugin = useRef(
-        Autoplay({ delay: 100000000, stopOnInteraction: true })
-    );
+    const plugin = useRef(Autoplay({ delay: 10000, stopOnInteraction: true }));
     const router = useRouter();
     return (
         <Carousel
