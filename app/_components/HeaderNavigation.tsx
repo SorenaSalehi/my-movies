@@ -12,6 +12,7 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/app/_components/ui/navigation-menu";
+import Image from "next/image";
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -60,7 +61,15 @@ export function HeaderNavigation() {
                         asChild
                         className={navigationMenuTriggerStyle()}
                     >
-                        <Link href="/">LOGO</Link>
+                        <Link href="/" className="h-20 mx-4">
+                            <Image
+                                src={"/icon.webp"}
+                                alt="my movies icon , it is a old camera mixed by red and gray colors"
+                                fill
+                                className="object-cover"
+                                quality={100}
+                            />
+                        </Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
