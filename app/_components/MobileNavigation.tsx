@@ -37,7 +37,7 @@ const MobileNavigation = () => {
     ];
 
     return (
-        <div className="lg:hidden z-[1000] right-0 bottom-2 left-0 sticky flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-destructive/10  p-2 rounded-xl">
+        <div className="lg:hidden z-[1000]   sticky bottom-2   flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-destructive/10  p-2 rounded-xl">
             {navItems.map((item) => (
                 <a
                     key={item.id}

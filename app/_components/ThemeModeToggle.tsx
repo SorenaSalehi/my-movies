@@ -16,7 +16,7 @@ export function ThemeModeToggle() {
     const { setTheme } = useTheme();
 
     return (
-        <DropdownMenu>
+        <DropdownMenu modal={true}>
             <DropdownMenuTrigger asChild>
                 <Button
                     variant="destructive"

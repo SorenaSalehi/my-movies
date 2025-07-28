@@ -6,7 +6,6 @@ import {
 import HomeCarouselsTitle from "./HomeCarouselsTitle";
 import { Movie } from "./OptimizedMovieImg";
 import MainLcItems from "./MainLcItems";
-import { largeTitleConverter } from "../_lib/helpers";
 import Link from "next/link";
 type Props = {
     data: Movie[];
@@ -16,7 +15,6 @@ type Props = {
 };
 
 export function MainCarousel({ data, title, path, mediaType }: Props) {
-    // console.log(data[0]);
     return (
         <div
             id="main-carousel-container"
@@ -37,7 +35,7 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
                             role="group"
                             data-slot="carousel-item"
                             aria-roledescription="slide"
-                            className="min-w-0 shrink-0 grow-0  basis-1/2 md:basis-1/3 "
+                            className="min-w-0 shrink-0 grow-0 basis-1/2 md:basis-1/3 text-center"
                         >
                             <CarouselItem key={m.id} id="carousel-item">
                                 <MainLcItems
@@ -45,9 +43,6 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
                                     priority={i <= 2}
                                     key={m.id}
                                 />
-                                <h1 className="text-center text-xs sm:text-sm">
-                                    {largeTitleConverter(m?.title || m?.name)}
-                                </h1>
                             </CarouselItem>
                         </Link>
                     ))}

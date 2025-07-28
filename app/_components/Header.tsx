@@ -6,7 +6,7 @@ import { SidebarTrigger } from "./ui/sidebar";
 
 export default function Header() {
     return (
-        <div className="z-[100] sticky top-0 flex justify-between items-center bg-sidebar-secondary/20 backdrop-blur-3xl p-2 px-[2rem] lg:pr-4 w-full  h-20">
+        <div className="z-[100] sticky top-0 flex justify-between lg:justify-start items-center bg-sidebar-secondary/20 backdrop-blur-3xl p-2 px-[2rem] lg:pr-4 w-full border-b-[.01rem] border-red-500/10  h-20">
             <SidebarTrigger />
 
             <HeaderNavigation />

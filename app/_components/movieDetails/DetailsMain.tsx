@@ -20,17 +20,19 @@ export default function DetailsMain({ movie }: Props) {
                     </span>
                 ))}
             </div>
-            <Separator className="bg-red-500/50 lg:max-w-100" />
+            <Separator className="bg-red-500/20 lg:max-w-100" />
 
             <h5 className="text-center px-10  md:text-xl lg:text-2xl">
                 {movie.overview}
             </h5>
-            <Separator className="bg-red-500/50 max-w-100" />
+            <Separator className="bg-red-500/20 max-w-100" />
             <p className="lg:text-lg">
                 <span>languages: </span>
-                {movie.spoken_languages.map((lang) => lang.name).join(", ")}
+                {movie.spoken_languages
+                    .map((lang) => lang.english_name)
+                    .join(", ")}
             </p>
-            <Separator className="bg-red-500/50 max-w-100" />
+            <Separator className="bg-red-500/20 max-w-100" />
             <div className="flex gap-4">
                 <Button className="bg-amber-300 w-50 font-bold">
                     <Bookmark strokeWidth={3} />

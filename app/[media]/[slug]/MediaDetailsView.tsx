@@ -9,7 +9,7 @@ interface Props {
 
 export default async function MediaDetailsView({ details }: Props) {
     return (
-        <div className="flex flex-col min-h-screen w-full gap-4 justify-start items-center   px-4 ">
+        <div className="flex flex-col pb-10 w-full gap-4 justify-start items-center   px-4 ">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-baseline mt-4 justify-evenly">
                 {/* // begin:: Details left side : img , title,... */}
                 <DetailsLeftSide movie={details} />
@@ -19,7 +19,7 @@ export default async function MediaDetailsView({ details }: Props) {
                 <DetailsMain movie={details} />
                 {/* // end:: Details Main : genres , overview ,... */}
             </div>
-            <Separator className="bg-red-500/50  " />
+            <Separator className="bg-red-500/20  " />
         </div>
     );
 }

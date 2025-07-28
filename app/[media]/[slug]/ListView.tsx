@@ -16,10 +16,10 @@ export default async function ListView({ initialItems, media, list }: Props) {
     const apiPath = `/api/tmdb/${media}/${list}`;
 
     return (
-        <div className="px-6 pt-4 w-full">
+        <div className="px-6 pt-4 ">
             <MediaTitle
                 title={`${media === "movie" ? "Movies" : "TV Shows"} - ${list
-                    .replace("_", "")
+                    .replace("_", " - ")
                     .replace(/\b\w/g, (c: string) => c.toUpperCase())}`}
             />
 

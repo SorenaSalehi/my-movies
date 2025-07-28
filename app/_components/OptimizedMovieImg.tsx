@@ -18,14 +18,14 @@ type Props = {
     movie: Movie | MovieDetails;
     priority?: boolean;
     maxSize?: "w500" | "w780" | "w1280";
-    isHero?: boolean;
+    isHero: boolean;
 };
 
 export default function OptimizedMovieImg({
     movie,
     priority = false,
     maxSize = "w780",
-    isHero = true,
+    isHero,
 }: Props) {
     const [blurOff, setBlurOff] = useState(false);
 
@@ -66,13 +66,13 @@ export default function OptimizedMovieImg({
                 decoding="async"
                 loading={priority ? "eager" : "lazy"}
                 fetchPriority={priority ? "high" : "auto"}
-                width={1280}
-                height={720}
                 alt={movie.title || movie.name}
                 onLoad={() => setBlurOff(true)}
-                className={`  object-cover ${
-                    !isHero && "w-full h-full p-3 lg:p-6  object-contain "
-                } `}
+                className={
+                    isHero
+                        ? "object-cover w-[1080px] lg:w-[1380px] xl:w-[1680px] 2xl:w-[2080px] lg:h-screen"
+                        : "w-full h-full p-3 lg:p-6  object-contain "
+                }
             />
         </picture>
     );

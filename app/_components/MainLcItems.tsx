@@ -20,7 +20,9 @@ export default function MainLcItems({ movie, priority }: Props) {
                     priority={priority}
                     isHero={false}
                 />
-
+                <h1 className=" lg:hidden text-xs sm:text-sm absolute bottom-0 left-1 bg-red-500 px-2 py-1 rounded-md">
+                    {movie?.title || movie?.name}
+                </h1>
                 <ItemDetails movie={movie} />
             </CardContent>
         </Card>

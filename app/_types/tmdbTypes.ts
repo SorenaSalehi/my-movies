@@ -9,7 +9,7 @@ export interface Movie {
 
 export interface MovieDetails extends Movie {
     runtime: number;
-    release_date: string;
+    release_date: string | null;
     name: string;
     genres: { id: number; name: string }[];
     original_language: string;
@@ -20,6 +20,11 @@ export interface MovieDetails extends Movie {
         name: string;
     }[];
     status: string;
+    episode_run_time: number[];
+    first_air_date: string | null;
+    last_air_date: string | null;
+    number_of_episodes: number;
+    number_of_seasons: number;
 }
 
 export interface MovieList {
