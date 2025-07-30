@@ -18,7 +18,7 @@ function PopoverTrigger({
         <PopoverPrimitive.Trigger
             data-slot="popover-trigger"
             {...props}
-            className="hidden lg:flex min-w-75 lg:min-w-75 h-15"
+            className="hidden lg:flex min-w-75 lg:min-w-75 h-10"
         />
     );
 }

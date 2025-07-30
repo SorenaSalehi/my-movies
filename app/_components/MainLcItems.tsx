@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default function MainLcItems({ movie }: Props) {
-    console.log("movie", movie);
     return (
         <Card className="flex flex-col gap-6  shadow-sm  border rounded-xl text-card-foreground p-1 max-w-[220px] min-w-[150px]  h-[240px]  w-full overflow-clip">
             <CardContent className="relative h-full aspect-square group ">

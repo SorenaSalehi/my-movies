@@ -14,6 +14,7 @@ import {
 } from "@/app/_components/ui/navigation-menu";
 import Image from "next/image";
 import { Genre } from "../_types/dataProvTypes";
+import { useSearchContext } from "../_context/SearchContext";
 
 const watchlist: ListItem[] = [
     {
@@ -45,6 +46,7 @@ export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
         title: genre.name,
         href: `/tv/genre/${genre.id}`,
     }));
+    const { setQuery } = useSearchContext();
     return (
         <NavigationMenu viewport={false}>
             <NavigationMenuList>
@@ -53,7 +55,11 @@ export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
                         asChild
                         className={navigationMenuTriggerStyle()}
                     >
-                        <Link href="/" className="h-20 mx-4">
+                        <Link
+                            href="/"
+                            className="h-20 mx-4"
+                            onClick={() => setQuery("")}
+                        >
                             <Image
                                 src={"/icon.webp"}
                                 alt="my movies icon , it is a old camera mixed by red and gray colors"
@@ -68,6 +74,7 @@ export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
                     <NavigationMenuLink
                         asChild
                         className={navigationMenuTriggerStyle()}
+                        onClick={() => setQuery("")}
                     >
                         <Link href="/">Home</Link>
                     </NavigationMenuLink>

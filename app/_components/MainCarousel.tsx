@@ -26,7 +26,7 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
             />
             <Carousel className="w-full mx-auto" opts={{ align: "center" }}>
                 <CarouselContent className="-ml-1 gap-2">
-                    {data.map((m, i) => (
+                    {data.map((m) => (
                         <Link
                             id="carousel-content-container-link"
                             key={m.id}
@@ -37,11 +37,7 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
                             className="min-w-0 shrink-0 grow-0 basis-1/2 md:basis-1/3 text-center"
                         >
                             <CarouselItem key={m.id} id="carousel-item">
-                                <MainLcItems
-                                    movie={m}
-                                    priority={i <= 2}
-                                    key={m.id}
-                                />
+                                <MainLcItems movie={m} key={m.id} />
                             </CarouselItem>
                         </Link>
                     ))}

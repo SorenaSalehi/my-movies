@@ -14,10 +14,12 @@ import {
 } from "./command";
 import { Film, Tv } from "lucide-react";
 import OptimizedMovieImg from "./OptimizedMovieImg";
+import { useSearchContext } from "../_context/SearchContext";
+import SpinnerMini from "./SpinnerMini";
 
 export default function SearchInput() {
+    const { query, setQuery } = useSearchContext();
     const [open, setOpen] = useState(false);
-    const [query, setQuery] = useState("");
     const { results, isLoading } = useSearchMulti(query);
     const router = useRouter();
     const inputRef = useRef<HTMLInputElement>(null);
@@ -26,9 +28,6 @@ export default function SearchInput() {
         if (open) inputRef.current?.focus();
     }, [open]);
 
-    useEffect(() => {
-        if (!open) setQuery("");
-    }, [open]);
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -36,7 +35,7 @@ export default function SearchInput() {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className=" text-center text-xl "
+                    className=" text-center text-xl  "
                     onClick={() => setOpen(true)}
                 >
                     {query || "Search..."}
@@ -57,12 +56,10 @@ export default function SearchInput() {
                             setQuery(value);
                         }}
                         placeholder="Search for movie/series..."
-                        className="h-14 text-2xl"
+                        className="h-10 text-md"
                     />
                     <CommandList key={query}>
-                        {isLoading && (
-                            <CommandEmpty>Is Searching...</CommandEmpty>
-                        )}
+                        {isLoading && <SpinnerMini />}
                         {!isLoading && results.length === 0 && (
                             <CommandEmpty>No Results.</CommandEmpty>
                         )}

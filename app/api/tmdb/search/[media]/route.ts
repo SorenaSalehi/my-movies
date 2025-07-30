@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json(filtered);
     } catch (err: unknown) {
+        console.log("err", err);
         return NextResponse.json([], { status: 500 });
     }
 }

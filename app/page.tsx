@@ -5,6 +5,8 @@ import MainLcList from "./_components/MainLcList";
 import { DataProvider } from "./_context/DataProvider";
 import { Separator } from "./_components/ui/separator";
 import { Skeleton } from "./_components/ui/skeleton";
+import SearchResultsList from "./_components/SearchResultsList";
+import HeroTextBanner from "./_components/HeroTextBanner";
 
 export default async function page() {
     const [topRated, popular, tvPopular] = await Promise.all([
@@ -21,6 +23,9 @@ export default async function page() {
 
     return (
         <DataProvider genres={genres.flat()}>
+            <SearchResultsList />
+
+            <HeroTextBanner />
             {/*begin:: hero carousel for sm/md screens */}
             <HeroCarousel topRated={topRated} />
             {/*end:: hero carousel for sm/md screens */}
