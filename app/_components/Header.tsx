@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { HeaderNavigation } from "./HeaderNavigation";
-import { SearchInput } from "./SearchInput";
 import { ThemeModeToggle } from "./ThemeModeToggle";
 import Image from "next/image";
 import { fetchGenres } from "../_lib/tmdb";
+import SearchInput from "./SearchInput";
 
 export default async function Header() {
     const [movieGenres, tvGenres] = await Promise.all([

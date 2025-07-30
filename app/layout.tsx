@@ -5,6 +5,7 @@ import "./_styles/globals.css";
 import { ThemeProvider } from "./_context/themeProvider";
 import Header from "./_components/Header";
 import MobileNavigation from "./_components/MobileNavigation";
+import ReactQueryProvider from "./_context/ReactQueryProvider";
 
 // const geistSans = Geist({
 //     variable: "--font-geist-sans",
@@ -46,22 +47,24 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {/* begin:: App Main */}
-                    <main className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 h-screen  w-screen overflow-x-hidden ">
-                        {/* // begin:: Header  */}
-                        <Header />
-                        {/* // end:: Header  */}
+                    <ReactQueryProvider>
+                        {/* begin:: App Main */}
+                        <main className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 h-screen  w-screen overflow-x-hidden ">
+                            {/* // begin:: Header  */}
+                            <Header />
+                            {/* // end:: Header  */}
 
-                        {/* // begin:: Children */}
-                        {children}
-                        {/* // end:: Children */}
+                            {/* // begin:: Children */}
+                            {children}
+                            {/* // end:: Children */}
 
-                        {/* begin:: Mobile Navigation */}
-                        <MobileNavigation />
+                            {/* begin:: Mobile Navigation */}
+                            <MobileNavigation />
 
-                        {/* end:: Mobile Navigation */}
-                    </main>
-                    {/* end:: App Main */}
+                            {/* end:: Mobile Navigation */}
+                        </main>
+                        {/* end:: App Main */}
+                    </ReactQueryProvider>
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />

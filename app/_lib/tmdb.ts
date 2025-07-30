@@ -54,3 +54,16 @@ export async function fetchByGenre(
     const data = await res.json();
     return data.results;
 }
+
+export async function fetchBySearch(query: string) {
+    const url = `${TMDB}/search/multi?api_key=${
+        process.env.TMDB_KEY
+    }&query=${encodeURIComponent(query)}&include_adult=false`;
+
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+
+    if (!res.ok) throw new Error("Search Failed!!");
+
+    const data = await res.json();
+    return data.results;
+}

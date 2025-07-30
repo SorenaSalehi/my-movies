@@ -1,9 +1,9 @@
 "use client";
-
-import { Check } from "lucide-react";
-
-import { cn } from "@/lib/utils";
-import { Button } from "@/app/_components/ui/button";
+import React, { useEffect, useRef, useState } from "react";
+import { useSearchMulti } from "../_lib/useSearchMulti";
+import { useRouter } from "next/navigation";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Button } from "./ui/button";
 import {
     Command,
     CommandEmpty,
@@ -11,41 +11,24 @@ import {
     CommandInput,
     CommandItem,
     CommandList,
-} from "@/app/_components/command";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/app/_components/popover";
-import { useState } from "react";
+} from "./command";
+import { Film, Tv } from "lucide-react";
+import OptimizedMovieImg from "./OptimizedMovieImg";
 
-const frameworks = [
-    {
-        value: "next.js",
-        label: "Next.js",
-    },
-    {
-        value: "sveltekit",
-        label: "SvelteKit",
-    },
-    {
-        value: "nuxt.js",
-        label: "Nuxt.js",
-    },
-    {
-        value: "remix",
-        label: "Remix",
-    },
-    {
-        value: "astro",
-        label: "Astro",
-    },
-];
-
-export function SearchInput() {
+export default function SearchInput() {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState("");
+    const [query, setQuery] = useState("");
+    const { results, isLoading } = useSearchMulti(query);
+    const router = useRouter();
+    const inputRef = useRef<HTMLInputElement>(null);
 
+    useEffect(() => {
+        if (open) inputRef.current?.focus();
+    }, [open]);
+
+    useEffect(() => {
+        if (!open) setQuery("");
+    }, [open]);
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -54,47 +37,84 @@ export function SearchInput() {
                     role="combobox"
                     aria-expanded={open}
                     className=" text-center text-xl "
+                    onClick={() => setOpen(true)}
                 >
-                    {value
-                        ? frameworks.find(
-                              (framework) => framework.value === value
-                          )?.label
-                        : "What are you looking for?"}
+                    {query || "Search..."}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-100 p-0">
-                <Command>
+            <PopoverContent className="w-75 p-0">
+                <Command shouldFilter={false}>
                     <CommandInput
+                        ref={inputRef}
+                        value={query}
+                        onValueChange={(value) => {
+                            if (!open) {
+                                setOpen(true);
+                                requestAnimationFrame(() =>
+                                    inputRef.current?.focus()
+                                );
+                            }
+                            setQuery(value);
+                        }}
                         placeholder="Search for movie/series..."
                         className="h-14 text-2xl"
                     />
-                    <CommandList>
-                        <CommandEmpty>No result.</CommandEmpty>
-                        <CommandGroup>
-                            {frameworks.map((framework) => (
-                                <CommandItem
-                                    key={framework.value}
-                                    value={framework.value}
-                                    onSelect={(currentValue) => {
-                                        setValue(
-                                            currentValue === value
-                                                ? ""
-                                                : currentValue
-                                        );
-                                        setOpen(false);
-                                    }}
-                                >
-                                    {framework.label}
-                                    <Check
-                                        className={cn(
-                                            "ml-auto",
-                                            value === framework.value
-                                                ? "opacity-100"
-                                                : "opacity-0"
-                                        )}
-                                    />
-                                </CommandItem>
-                            ))}
+                    <CommandList key={query}>
+                        {isLoading && (
+                            <CommandEmpty>Is Searching...</CommandEmpty>
+                        )}
+                        {!isLoading && results.length === 0 && (
+                            <CommandEmpty>No Results.</CommandEmpty>
+                        )}
+
+                        <CommandGroup
+                            heading={query.trim().length > 0 ? "Movies" : ""}
+                        >
+                            {results
+                                .filter((i) => i.media_type === "movie")
+                                .map((movie) => (
+                                    <CommandItem
+                                        key={"m" + movie.id}
+                                        onSelect={() => {
+                                            router.push(`/movie/${movie.id}`);
+                                            setOpen(false);
+                                        }}
+                                        className="flex items-center justify-start"
+                                    >
+                                        <Film className="mr-2" /> {movie.title}
+                                        <div className="h-[3rem] w-[3rem] ml-auto">
+                                            <OptimizedMovieImg
+                                                movie={movie}
+                                                isHero={false}
+                                            />
+                                        </div>
+                                    </CommandItem>
+                                ))}
+                        </CommandGroup>
+
+                        <CommandGroup
+                            heading={query.trim().length > 0 ? "TV Shows" : ""}
+                        >
+                            {results
+                                .filter((i) => i.media_type === "tv")
+                                .map((tv) => (
+                                    <CommandItem
+                                        key={"t" + tv.id}
+                                        onSelect={() => {
+                                            router.push(`/tv/${tv.id}`);
+                                            setOpen(false);
+                                        }}
+                                        className="flex items-center justify-start"
+                                    >
+                                        <Tv className="mr-2" /> {tv.name}
+                                        <div className="h-[3rem] w-[3rem] ml-auto">
+                                            <OptimizedMovieImg
+                                                movie={tv}
+                                                isHero={false}
+                                            />
+                                        </div>
+                                    </CommandItem>
+                                ))}
                         </CommandGroup>
                     </CommandList>
                 </Command>
