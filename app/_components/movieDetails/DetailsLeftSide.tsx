@@ -12,7 +12,7 @@ export default function DetailsLeftSide({ movie }: Props) {
             <h4 className="text-lg md:text-2xl font-bold">
                 {movie.title || movie.name}
             </h4>
-            <Separator className="bg-red-500/20 max-w-50 mb-2" />
+            <Separator className="bg-red-500/20 max-w-50 my-2" />
 
             <div className="flex gap-2 ">
                 <span className="text-primary/70 border-[.01rem] border-red-500/50 rounded-xl px-2 py1">
@@ -32,7 +32,7 @@ export default function DetailsLeftSide({ movie }: Props) {
                     </span>
                 </p>
             </div>
-            <div className="w-[200px] md:w-[250px] h-75 md:h-100 relative">
+            <div className="w-[200px] md:w-[250px] h-75 md:h-100 relative pt-4">
                 <OptimizedMovieImg movie={movie} isHero={false} />
             </div>
         </div>

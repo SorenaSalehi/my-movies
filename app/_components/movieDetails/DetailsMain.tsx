@@ -2,6 +2,7 @@ import { MovieDetails } from "@/app/_types/tmdbTypes";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 import { Bookmark, Eye } from "lucide-react";
+import CollapseText from "../CollapseText";
 
 interface Props {
     movie: MovieDetails;
@@ -22,9 +23,7 @@ export default function DetailsMain({ movie }: Props) {
             </div>
             <Separator className="bg-red-500/20 lg:max-w-100" />
 
-            <h5 className="text-center px-10  md:text-xl lg:text-2xl">
-                {movie.overview}
-            </h5>
+            <CollapseText text={movie.overview} />
             <Separator className="bg-red-500/20 max-w-100" />
             <p className="lg:text-lg">
                 <span>languages: </span>
@@ -33,7 +32,7 @@ export default function DetailsMain({ movie }: Props) {
                     .join(", ")}
             </p>
             <Separator className="bg-red-500/20 max-w-100" />
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
                 <Button className="bg-amber-300 w-50 font-bold">
                     <Bookmark strokeWidth={3} />
                     Add to WatchList

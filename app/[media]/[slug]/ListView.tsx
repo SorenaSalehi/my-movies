@@ -10,11 +10,15 @@ interface Props {
     initialItems: Movie[];
     media: "movie" | "tv";
     list: ListKind;
+    apiPath: string;
 }
 
-export default async function ListView({ initialItems, media, list }: Props) {
-    const apiPath = `/api/tmdb/${media}/${list}`;
-
+export default async function ListView({
+    initialItems,
+    media,
+    list,
+    apiPath,
+}: Props) {
     return (
         <div className="px-6 pt-4 ">
             <MediaTitle

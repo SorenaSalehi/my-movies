@@ -10,7 +10,7 @@ export async function fetchList(
     signal?: AbortSignal
 ) {
     const url = `${TMDB}/${media}/${list}?api_key=${process.env.TMDB_KEY}&page=${page}`;
-    const res = await fetch(url, { signal, next: { revalidate: 3600 } });
+    const res = await fetch(url, { signal, next: { revalidate: 3600 * 24 } });
 
     if (!res.ok) throw new Error(`${media}/${list} failed (${res.status})`);
 
@@ -39,4 +39,18 @@ export async function fetchMediaDetails(media: "movie" | "tv", id: number) {
 
     const data = await res.json();
     return data;
+}
+
+export async function fetchByGenre(
+    media: MediaType,
+    genreId: number,
+    page = 1
+) {
+    const url = `${TMDB}/discover/${media}?api_key=${process.env.TMDB_KEY}&with_genres=${genreId}&page=${page}`;
+
+    const res = await fetch(url, { next: { revalidate: 3600 * 24 } });
+    if (!res.ok) throw new Error(`Discover ${media} failed (${res.status})`);
+
+    const data = await res.json();
+    return data.results;
 }

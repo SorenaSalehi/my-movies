@@ -1,7 +1,6 @@
 import MainLcItems from "./MainLcItems";
 import { Movie } from "./OptimizedMovieImg";
 import Link from "next/link";
-import { largeTitleConverter } from "../_lib/helpers";
 import Spinner from "./Spinner";
 
 type Props = {
@@ -12,6 +11,7 @@ type Props = {
 };
 
 function MainMediaUL({ items, isLoading, loaderRef, mediaType }: Props) {
+    console.log("items", items);
     return (
         <ul
             className={` grid-cols-2 gap-2 grid  md:gap-4 lg:grid xl:grid-cols-6  md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 `}
@@ -20,9 +20,6 @@ function MainMediaUL({ items, isLoading, loaderRef, mediaType }: Props) {
                 <li key={m.id}>
                     <Link href={`/${mediaType}/${m.id}`}>
                         <MainLcItems movie={m} />
-                        <h1 className="text-center text-base lg:hidden">
-                            {largeTitleConverter(m?.title || m?.name)}
-                        </h1>
                     </Link>
                 </li>
             ))}

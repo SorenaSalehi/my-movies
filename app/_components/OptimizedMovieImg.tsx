@@ -16,14 +16,12 @@ export type Movie = {
 
 type Props = {
     movie: Movie | MovieDetails;
-    priority?: boolean;
     maxSize?: "w500" | "w780" | "w1280";
     isHero: boolean;
 };
 
 export default function OptimizedMovieImg({
     movie,
-    priority = false,
     maxSize = "w780",
     isHero,
 }: Props) {
@@ -64,8 +62,8 @@ export default function OptimizedMovieImg({
                 srcSet={srcSet}
                 sizes="100vw"
                 decoding="async"
-                loading={priority ? "eager" : "lazy"}
-                fetchPriority={priority ? "high" : "auto"}
+                loading={"lazy"}
+                fetchPriority={"auto"}
                 alt={movie.title || movie.name}
                 onLoad={() => setBlurOff(true)}
                 className={

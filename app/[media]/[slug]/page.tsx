@@ -20,6 +20,7 @@ export default async function page({ params }: Props) {
                 initialItems={initialItems}
                 media={paramsPromise.media}
                 list={paramsPromise.slug}
+                apiPath={`/api/tmdb/${paramsPromise.media}/${paramsPromise.slug}`}
             />
         );
         // end:: Media List
