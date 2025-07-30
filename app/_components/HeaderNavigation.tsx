@@ -36,6 +36,11 @@ interface Props {
     movieGenres: Genre[];
     tvGenres: Genre[];
 }
+const contactMe = [
+    { title: "Whatsapp", href: "https://wa.me/905379676995" },
+    { title: "Email", href: "mailto:itssorenadev@gmail.com" },
+    { title: "Github", href: "https://github.com/SorenaSalehi" },
+];
 
 export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
     const movieGenresList = movieGenres.map((genre) => ({
@@ -82,12 +87,13 @@ export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Watchlist</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                        <ul className="grid gap-2  md:grid-cols-2 w-max">
                             {watchlist.map((component) => (
                                 <ListItem
                                     key={component.title}
                                     title={component.title}
                                     href={component.href}
+                                    className="border-l-2 border-red-500/25 "
                                 ></ListItem>
                             ))}
                         </ul>
@@ -96,12 +102,13 @@ export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Movies</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                        <ul className="grid gap-2  md:grid-cols-2 w-max">
                             {movieGenresList.map((component) => (
                                 <ListItem
                                     key={component.title}
                                     title={component.title}
                                     href={component.href}
+                                    className="border-l-2  border-red-500/25"
                                 ></ListItem>
                             ))}
                         </ul>
@@ -110,24 +117,32 @@ export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>TV Shows</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                        <ul className="grid gap-2  md:grid-cols-2 w-max">
                             {tvGenresList.map((component) => (
                                 <ListItem
                                     key={component.title}
                                     title={component.title}
                                     href={component.href}
+                                    className="border-l-2 border-red-500/25 "
                                 ></ListItem>
                             ))}
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <NavigationMenuLink
-                        asChild
-                        className={navigationMenuTriggerStyle()}
-                    >
-                        <Link href="#">Contact me</Link>
-                    </NavigationMenuLink>
+                    <NavigationMenuTrigger>Contact me</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <ul className="grid gap-2  md:grid-cols-2 w-max">
+                            {contactMe.map((component) => (
+                                <ListItem
+                                    key={component.title}
+                                    title={component.title}
+                                    href={component.href}
+                                    className="border-l-2 border-red-500/25 "
+                                ></ListItem>
+                            ))}
+                        </ul>
+                    </NavigationMenuContent>
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu>

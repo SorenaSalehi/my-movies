@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSearchMulti } from "../_lib/useSearchMulti";
 import { useRouter } from "next/navigation";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import {
     Command,
@@ -38,6 +38,7 @@ export default function SearchInput() {
                     className=" text-center text-xl  "
                     onClick={() => setOpen(true)}
                 >
+                    
                     {query || "Search..."}
                 </Button>
             </PopoverTrigger>
