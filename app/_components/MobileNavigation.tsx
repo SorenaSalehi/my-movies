@@ -1,10 +1,11 @@
 import React from "react";
 import { User, LayoutGrid, Search, Bookmark, Home } from "lucide-react";
 import Link from "next/link";
+import MobileSearch from "./MobileSearch";
 
 type NavItem = {
     id: string;
-    icon: React.ReactNode;
+    icon: React.ReactNode | React.ReactElement;
     href: string;
 };
 
@@ -12,13 +13,13 @@ const MobileNavigation = () => {
     const navItems: NavItem[] = [
         {
             id: "categories",
-            href: "#",
+            href: "/categories",
             icon: <LayoutGrid className="w-6 h-6" />,
         },
         {
             id: "search",
             href: "#",
-            icon: <Search className="w-6 h-6" />,
+            icon: <MobileSearch />,
         },
         {
             id: "home",

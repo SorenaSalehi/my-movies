@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { type ReactNode, useEffect, useRef, useState } from "react";
 import { useSearchMulti } from "../_lib/useSearchMulti";
 import { useRouter } from "next/navigation";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
@@ -17,7 +17,7 @@ import OptimizedMovieImg from "./OptimizedMovieImg";
 import { useSearchContext } from "../_context/SearchContext";
 import SpinnerMini from "./SpinnerMini";
 
-export default function SearchInput() {
+export default function SearchInputCopy({ children }: { children: ReactNode }) {
     const { query, setQuery } = useSearchContext();
     const [open, setOpen] = useState(false);
     const { results, isLoading } = useSearchMulti(query);
@@ -30,17 +30,7 @@ export default function SearchInput() {
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-                <Button
-                    variant="outline"
-                    role="combobox"
-                    aria-expanded={open}
-                    className=" text-center text-xl  "
-                    onClick={() => setOpen(true)}
-                >
-                    {query || "Search..."}
-                </Button>
-            </PopoverTrigger>
+            <PopoverTrigger asChild>{children}</PopoverTrigger>
             <PopoverContent className="w-75 p-0">
                 <Command shouldFilter={false}>
                     <CommandInput
