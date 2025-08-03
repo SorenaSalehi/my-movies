@@ -1,8 +1,7 @@
 import React from "react";
-import { User, LayoutGrid, Search, Bookmark, Home } from "lucide-react";
+import { User, LayoutGrid, Bookmark, Home } from "lucide-react";
 import Link from "next/link";
 import MobileSearch from "./MobileSearch";
-import NavigationItemReusable from "./NavigationItemReusable";
 
 type NavItem = {
     id: string;

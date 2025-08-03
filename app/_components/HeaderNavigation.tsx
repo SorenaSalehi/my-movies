@@ -1,20 +1,13 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 
 import {
     NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
 } from "@/app/_components/ui/navigation-menu";
 import Image from "next/image";
 import { Genre } from "../_types/dataProvTypes";
-import { useSearchContext } from "../_context/SearchContext";
 import NavigationItemReusable from "./NavigationItemReusable";
 
 const watchlist: ListItem[] = [
