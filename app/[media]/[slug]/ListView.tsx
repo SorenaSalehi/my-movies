@@ -5,6 +5,8 @@ import MediaTitle from "@/app/_components/MediaTitle";
 import { ListKind } from "@/app/_lib/tmdb";
 import { Separator } from "@radix-ui/react-separator";
 import { Movie } from "../../_components/OptimizedMovieImg";
+import { Suspense } from "react";
+import Spinner from "@/app/_components/Spinner";
 
 interface Props {
     initialItems: Movie[];
@@ -28,11 +30,13 @@ export default async function ListView({
             />
 
             <Separator className="my-4 bg-red-500/20 md:hidden " />
-            <MainLcList
-                initialItems={initialItems}
-                apiPath={apiPath}
-                mediaType={media}
-            />
+            <Suspense fallback={<Spinner />}>
+                <MainLcList
+                    initialItems={initialItems}
+                    apiPath={apiPath}
+                    mediaType={media}
+                />
+            </Suspense>
         </div>
     );
 }

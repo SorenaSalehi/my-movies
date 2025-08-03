@@ -7,6 +7,7 @@ type NavItem = {
     id: string;
     icon: React.ReactNode | React.ReactElement;
     href: string;
+    title: string;
 };
 
 const navItems: NavItem[] = [
@@ -14,39 +15,45 @@ const navItems: NavItem[] = [
         id: "categories",
         href: "/categories",
         icon: <LayoutGrid className="w-6 h-6" />,
+        title: "Cats",
     },
 
     {
         id: "watch-list",
         href: "/watch-list",
         icon: <Bookmark className="w-6 h-6" />,
+        title: "Saves",
     },
     {
         id: "home",
         href: "/",
         icon: <Home className="w-6 h-6" />,
+        title: "Home",
     },
     {
         id: "search",
         href: "/search",
         icon: <MobileSearch />,
+        title: "Search",
     },
     {
         id: "dashboard",
         href: "/dashboard",
         icon: <User className="w-6 h-6" />,
+        title: "Profile",
     },
 ];
 const MobileNavigation = () => {
     return (
-        <div className="lg:hidden z-[1000] fixed bottom-2   flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-red-950/70  p-2 rounded-xl">
+        <div className="lg:hidden z-[1000] fixed bottom-2   flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-sidebar-secondary  p-2 rounded-xl">
             {navItems.map((item) => (
                 <Link
                     key={item.id}
                     href={item.href}
-                    className="group inline-flex z-[1000]  justify-center items-center gap-2 rounded-lg focus:outline-none w-[50px]  h-[50px]  transition-all duration-200 ease-in focus:bg-destructive text-center"
+                    className="group inline-flex z-[1000] flex-col  justify-center items-center bg-red-800/50 mx-1 p-4  rounded-lg focus:outline-none w-[50px] md:w-[80px]  h-[50px]  transition-all duration-200 ease-in focus:bg-destructive text-center"
                 >
                     <span className="w-7 h-7">{item.icon}</span>
+                    <p className="text-xs text-nowrap">{item.title}</p>
                 </Link>
             ))}
         </div>

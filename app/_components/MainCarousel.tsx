@@ -25,11 +25,11 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
                 path={path}
             />
             <Carousel className="w-full mx-auto" opts={{ align: "center" }}>
-                <CarouselContent className="-ml-1 gap-2">
+                <CarouselContent className="-ml-1 gap-4">
                     {data.map((m) => (
                         <Link
                             id="carousel-content-container-link"
-                            key={m.id}
+                            key={m.title || m.name || m.id}
                             href={`/${mediaType}/${m.id}`}
                             role="group"
                             data-slot="carousel-item"

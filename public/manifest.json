@@ -1,0 +1,27 @@
+{
+    "name": "My Movies",
+    "short_name": "MyMovies",
+    "description": "Movie & TV discovery app , by Reza (Sorena) Salehi to show my skills and for my personal use.User can find,search and see the movie/series and save it to their watchlist and also watch the trailer right here.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f0f17",
+    "theme_color": "#ffcc00",
+    "icons": [
+        {
+            "src": "./icon.webp",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./icon.webp",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "./icon.webp",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

@@ -40,7 +40,7 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                     <Link
                         href={m.href}
                         key={i}
-                        className={`text-center bg-primary-foreground px-2 py-1 rounded-xl border-b-2 ${
+                        className={`text-center bg-primary-foreground px-2 py-1 rounded-xl border-b-2 font-bold ${
                             i % 2 === 0
                                 ? "border-red-500/50"
                                 : "border-amber-500/50"
@@ -58,7 +58,7 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                     <Link
                         href={m.href}
                         key={i}
-                        className={`text-center bg-primary-foreground px-2 py-1 rounded-xl border-b-2 ${
+                        className={`text-center bg-primary-foreground px-2 py-1 rounded-xl border-b-2 font-bold ${
                             i % 2 === 0
                                 ? "border-red-500/50"
                                 : "border-amber-500/50"

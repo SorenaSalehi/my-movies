@@ -7,6 +7,7 @@ import Header from "./_components/Header";
 import MobileNavigation from "./_components/MobileNavigation";
 import ReactQueryProvider from "./_context/ReactQueryProvider";
 import { SearchProvider } from "./_context/SearchContext";
+import ClientInit from "./_context/ClientInit";
 
 // const geistSans = Geist({
 //     variable: "--font-geist-sans",
@@ -37,6 +38,17 @@ export default function RootLayout({
                     href="https://image.tmdb.org"
                     crossOrigin=""
                 />
+                <link rel="manifest" href="./manifest.json" />
+                <meta name="theme-color" content="#0f0f17" />
+
+                {/* iOS support */}
+                <link rel="apple-touch-icon" href="./icon.png" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta
+                    name="apple-mobile-web-app-status-bar-style"
+                    content="black-translucent"
+                />
+                <meta name="apple-mobile-web-app-title" content="My Movies" />
             </head>
             <body
                 // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -50,27 +62,29 @@ export default function RootLayout({
                 >
                     <ReactQueryProvider>
                         <SearchProvider>
-                            {/* begin:: App Main */}
-                            <main
-                                style={{
-                                    minHeight: "100dvh",
-                                }}
-                                className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden my-20"
-                            >
-                                {/* // begin:: Header  */}
-                                <Header />
-                                {/* // end:: Header  */}
+                            <ClientInit>
+                                {/* begin:: App Main */}
+                                <main
+                                    style={{
+                                        minHeight: "100dvh",
+                                    }}
+                                    className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden my-20"
+                                >
+                                    {/* // begin:: Header  */}
+                                    <Header />
+                                    {/* // end:: Header  */}
 
-                                {/* // begin:: Children */}
-                                {children}
-                                {/* // end:: Children */}
+                                    {/* // begin:: Children */}
+                                    {children}
+                                    {/* // end:: Children */}
 
-                                {/* begin:: Mobile Navigation */}
-                                <MobileNavigation />
+                                    {/* begin:: Mobile Navigation */}
+                                    <MobileNavigation />
 
-                                {/* end:: Mobile Navigation */}
-                            </main>
-                            {/* end:: App Main */}
+                                    {/* end:: Mobile Navigation */}
+                                </main>
+                                {/* end:: App Main */}
+                            </ClientInit>
                         </SearchProvider>
                     </ReactQueryProvider>
                 </ThemeProvider>
