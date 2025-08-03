@@ -7,6 +7,8 @@ import { Separator } from "./_components/ui/separator";
 import { Skeleton } from "./_components/ui/skeleton";
 import HeroTextBanner from "./_components/HeroTextBanner";
 
+export const revalidate = 86400;
+
 export default async function page() {
     const [topRated, popular, tvPopular] = await Promise.all([
         fetchList("movie", "top_rated"),
