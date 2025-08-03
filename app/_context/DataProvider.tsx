@@ -26,10 +26,7 @@ export const DataProvider = ({ genres, children }: DataProviderProps) => {
         () => Object.fromEntries(genres.map((g) => [g.id, g.name])),
         [genres]
     );
-    console.log(
-        "genresMap---------------------------------------------------------------------------------------------------------",
-        genresMap
-    );
+
     return (
         <DataContext.Provider value={{ genres, genresMap, children }}>
             {children}

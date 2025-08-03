@@ -2,6 +2,7 @@ import React from "react";
 import { User, LayoutGrid, Search, Bookmark, Home } from "lucide-react";
 import Link from "next/link";
 import MobileSearch from "./MobileSearch";
+import NavigationItemReusable from "./NavigationItemReusable";
 
 type NavItem = {
     id: string;
@@ -16,10 +17,11 @@ const MobileNavigation = () => {
             href: "/categories",
             icon: <LayoutGrid className="w-6 h-6" />,
         },
+
         {
-            id: "search",
-            href: "#",
-            icon: <MobileSearch />,
+            id: "watch-list",
+            href: "/watch-list",
+            icon: <Bookmark className="w-6 h-6" />,
         },
         {
             id: "home",
@@ -27,9 +29,9 @@ const MobileNavigation = () => {
             icon: <Home className="w-6 h-6" />,
         },
         {
-            id: "watch-list",
-            href: "/watch-list",
-            icon: <Bookmark className="w-6 h-6" />,
+            id: "search",
+            href: "#",
+            icon: <MobileSearch />,
         },
         {
             id: "dashboard",
@@ -39,7 +41,7 @@ const MobileNavigation = () => {
     ];
 
     return (
-        <div className="lg:hidden z-[1000]   sticky bottom-2   flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-red-950/70  p-2 rounded-xl">
+        <div className="lg:hidden z-[1000] sticky bottom-2   flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-red-950/70  p-2 rounded-xl">
             {navItems.map((item) => (
                 <Link
                     key={item.id}

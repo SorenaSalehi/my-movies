@@ -11,7 +11,7 @@ import {
     CommandInput,
     CommandItem,
     CommandList,
-} from "./command";
+} from "./ui/command";
 import { Film, Tv } from "lucide-react";
 import OptimizedMovieImg from "./OptimizedMovieImg";
 import { useSearchContext } from "../_context/SearchContext";

@@ -14,7 +14,6 @@ export default async function page() {
         fetchList("movie", "popular"),
         fetchList("tv", "popular"),
     ]);
-    console.log("topRated", topRated);
 
     const [...genres] = await Promise.all([
         fetchGenres("movie"),

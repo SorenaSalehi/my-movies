@@ -15,6 +15,7 @@ import {
 import Image from "next/image";
 import { Genre } from "../_types/dataProvTypes";
 import { useSearchContext } from "../_context/SearchContext";
+import NavigationItemReusable from "./NavigationItemReusable";
 
 const watchlist: ListItem[] = [
     {
@@ -51,122 +52,52 @@ export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
         title: genre.name,
         href: `/tv/genre/${genre.id}`,
     }));
-    const { setQuery } = useSearchContext();
+
+    const navItems = [
+        {
+            type: "link" as const,
+            href: "/",
+            children: (
+                <Image
+                    src={"/icon.webp"}
+                    alt="my movies icon , it is a old camera mixed by red and gray colors"
+                    fill
+                    className="object-cover "
+                    quality={100}
+                    // width={100}
+                    // height={0}
+                />
+            ),
+        },
+        { type: "link" as const, href: "/", children: "Home" },
+        {
+            type: "button" as const,
+            triggerText: "Watchlist",
+            listItems: watchlist,
+        },
+        {
+            type: "button" as const,
+            triggerText: "Movies",
+            listItems: movieGenresList,
+        },
+        {
+            type: "button" as const,
+            triggerText: "TV Shows",
+            listItems: tvGenresList,
+        },
+        {
+            type: "button" as const,
+            triggerText: "Contact me",
+            listItems: contactMe,
+        },
+    ];
     return (
-        <NavigationMenu viewport={false}>
+        <NavigationMenu viewport={false} className="hidden lg:flex">
             <NavigationMenuList>
-                <NavigationMenuItem>
-                    <NavigationMenuLink
-                        asChild
-                        className={navigationMenuTriggerStyle()}
-                    >
-                        <Link
-                            href="/"
-                            className="h-20 mx-4"
-                            onClick={() => setQuery("")}
-                        >
-                            <Image
-                                src={"/icon.webp"}
-                                alt="my movies icon , it is a old camera mixed by red and gray colors"
-                                fill
-                                className="object-cover"
-                                quality={100}
-                            />
-                        </Link>
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuLink
-                        asChild
-                        className={navigationMenuTriggerStyle()}
-                        onClick={() => setQuery("")}
-                    >
-                        <Link href="/">Home</Link>
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Watchlist</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul className="grid gap-2  md:grid-cols-2 w-max">
-                            {watchlist.map((component) => (
-                                <ListItem
-                                    key={component.title}
-                                    title={component.title}
-                                    href={component.href}
-                                    className="border-l-2 border-red-500/25 "
-                                ></ListItem>
-                            ))}
-                        </ul>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Movies</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul className="grid gap-2  md:grid-cols-2 w-max">
-                            {movieGenresList.map((component) => (
-                                <ListItem
-                                    key={component.title}
-                                    title={component.title}
-                                    href={component.href}
-                                    className="border-l-2  border-red-500/25"
-                                ></ListItem>
-                            ))}
-                        </ul>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>TV Shows</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul className="grid gap-2  md:grid-cols-2 w-max">
-                            {tvGenresList.map((component) => (
-                                <ListItem
-                                    key={component.title}
-                                    title={component.title}
-                                    href={component.href}
-                                    className="border-l-2 border-red-500/25 "
-                                ></ListItem>
-                            ))}
-                        </ul>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Contact me</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul className="grid gap-2  md:grid-cols-2 w-max">
-                            {contactMe.map((component) => (
-                                <ListItem
-                                    key={component.title}
-                                    title={component.title}
-                                    href={component.href}
-                                    className="border-l-2 border-red-500/25 "
-                                ></ListItem>
-                            ))}
-                        </ul>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
+                {navItems.map((item, i) => (
+                    <NavigationItemReusable key={i} {...item} />
+                ))}
             </NavigationMenuList>
         </NavigationMenu>
-    );
-}
-
-function ListItem({
-    title,
-    children,
-    href,
-    ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-    return (
-        <li {...props}>
-            <NavigationMenuLink asChild>
-                <Link href={href}>
-                    <div className="text-sm leading-none font-medium">
-                        {title}
-                    </div>
-                    <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                        {children}
-                    </p>
-                </Link>
-            </NavigationMenuLink>
-        </li>
     );
 }

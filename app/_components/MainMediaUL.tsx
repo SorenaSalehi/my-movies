@@ -11,7 +11,6 @@ type Props = {
 };
 
 function MainMediaUL({ items, isLoading, loaderRef, mediaType }: Props) {
-    console.log("items", items);
     return (
         <ul
             className={` grid-cols-2 gap-2 grid  md:gap-4 lg:grid xl:grid-cols-6  md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 `}

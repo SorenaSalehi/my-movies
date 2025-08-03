@@ -3,7 +3,6 @@ import React, { type ReactNode, useEffect, useRef, useState } from "react";
 import { useSearchMulti } from "../_lib/useSearchMulti";
 import { useRouter } from "next/navigation";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Button } from "./ui/button";
 import {
     Command,
     CommandEmpty,
@@ -11,7 +10,7 @@ import {
     CommandInput,
     CommandItem,
     CommandList,
-} from "./command";
+} from "./ui/command";
 import { Film, Tv } from "lucide-react";
 import OptimizedMovieImg from "./OptimizedMovieImg";
 import { useSearchContext } from "../_context/SearchContext";
