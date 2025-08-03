@@ -34,7 +34,7 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
                             role="group"
                             data-slot="carousel-item"
                             aria-roledescription="slide"
-                            className="min-w-0 shrink-0 grow-0 basis-1/2 md:basis-1/3 text-center"
+                            className="min-w-0 shrink-0 grow-0 basis-1/2 md:basis-1/3 text-center "
                         >
                             <CarouselItem key={m.id} id="carousel-item">
                                 <MainLcItems movie={m} key={m.id} />

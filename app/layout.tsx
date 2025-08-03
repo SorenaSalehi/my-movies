@@ -51,7 +51,12 @@ export default function RootLayout({
                     <ReactQueryProvider>
                         <SearchProvider>
                             {/* begin:: App Main */}
-                            <main className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 h-screen w-screen overflow-x-hidden ">
+                            <main
+                                style={{
+                                    minHeight: "100dvh",
+                                }}
+                                className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20  overflow-x-hidden "
+                            >
                                 {/* // begin:: Header  */}
                                 <Header />
                                 {/* // end:: Header  */}

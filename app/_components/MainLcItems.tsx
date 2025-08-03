@@ -9,7 +9,7 @@ type Props = {
 
 export default function MainLcItems({ movie }: Props) {
     return (
-        <Card className="flex flex-col gap-6  shadow-sm  border rounded-xl text-card-foreground p-1 max-w-[220px] min-w-[150px]  h-[240px]  w-full overflow-clip">
+        <Card className="flex flex-col gap-6  shadow-sm  border rounded-xl text-card-foreground p-1 max-w-[200px] min-w-[150px]  h-[240px]  w-full overflow-clip">
             <CardContent className="relative h-full aspect-square group ">
                 <p className="top-0 right-0 z-10 absolute bg-amber-300 shadow-2xl p-1 rounded-md max-w-max font-bold text-gray-900 text-xs md:text-sm">
                     IMDb : {movie?.vote_average?.toFixed(1)}
