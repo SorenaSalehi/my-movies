@@ -55,7 +55,7 @@ export default function RootLayout({
                                 style={{
                                     minHeight: "100dvh",
                                 }}
-                                className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20  overflow-x-hidden "
+                                className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden my-20"
                             >
                                 {/* // begin:: Header  */}
                                 <Header />

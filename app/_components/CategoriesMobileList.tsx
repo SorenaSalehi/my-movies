@@ -25,8 +25,13 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
     return (
         <Tabs
             defaultValue="account"
-            className="flex flex-col justify-center items-center gap-4"
+            style={{ minHeight: "65dvh" }}
+            className="flex flex-col justify-center  items-center gap-4 my-4"
         >
+            <TabsList className="my-4">
+                <TabsTrigger value="password">TV Shows</TabsTrigger>
+                <TabsTrigger value="account">Movies</TabsTrigger>
+            </TabsList>
             <TabsContent
                 value="account"
                 className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 md:grid-cols-3"
@@ -63,10 +68,6 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                     </Link>
                 ))}
             </TabsContent>
-            <TabsList className="mb-4">
-                <TabsTrigger value="password">TV Shows</TabsTrigger>
-                <TabsTrigger value="account">Movies</TabsTrigger>
-            </TabsList>
         </Tabs>
     );
 }

@@ -15,12 +15,12 @@ export default function SearchResultsList() {
     if (results.length === 0) return <p className="p-4">No results.</p>;
 
     return (
-        <div className="px-6 py-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="px-6 py-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 ">
             {results.map((item) => (
                 <Link
                     key={`${item.media_type}-${item.id}`}
                     href={`/${item.media_type}/${item.id}`}
-                    className="block"
+                    className="block shadow-sm  border rounded-xl text-card-foreground p-1 max-w-[200px] min-w-[150px]  h-[240px]  w-full overflow-clip"
                 >
                     <div className="aspect-square overflow-hidden rounded-lg">
                         <OptimizedMovieImg movie={item} isHero={false} />

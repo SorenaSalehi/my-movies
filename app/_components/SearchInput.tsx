@@ -28,6 +28,11 @@ export default function SearchInput() {
         if (open) inputRef.current?.focus();
     }, [open]);
 
+    function handleClick() {
+        setOpen(true);
+        router.push("/search");
+    }
+
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -36,7 +41,7 @@ export default function SearchInput() {
                     role="combobox"
                     aria-expanded={open}
                     className=" text-center text-xl  "
-                    onClick={() => setOpen(true)}
+                    onClick={handleClick}
                 >
                     {query || "Search..."}
                 </Button>

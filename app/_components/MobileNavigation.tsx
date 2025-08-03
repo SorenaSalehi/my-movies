@@ -28,7 +28,7 @@ const navItems: NavItem[] = [
     },
     {
         id: "search",
-        href: "#",
+        href: "/search",
         icon: <MobileSearch />,
     },
     {

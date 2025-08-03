@@ -2,6 +2,8 @@ import { fetchList, fetchMediaDetails, ListKind } from "@/app/_lib/tmdb";
 import ListView from "./ListView";
 import MediaDetailsView from "./MediaDetailsView";
 
+export const revalidate = 86400;
+
 interface Props {
     params: Promise<{ media: "movie" | "tv"; slug: ListKind | string }>;
 }

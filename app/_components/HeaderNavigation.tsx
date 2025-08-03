@@ -1,7 +1,3 @@
-"use client";
-
-import * as React from "react";
-
 import {
     NavigationMenu,
     NavigationMenuList,
@@ -9,6 +5,9 @@ import {
 import Image from "next/image";
 import { Genre } from "../_types/dataProvTypes";
 import NavigationItemReusable from "./NavigationItemReusable";
+import { fetchGenres } from "../_lib/tmdb";
+
+export const revalidate = 86400;
 
 const watchlist: ListItem[] = [
     {
@@ -26,17 +25,17 @@ interface ListItem {
     href: string;
 }
 
-interface Props {
-    movieGenres: Genre[];
-    tvGenres: Genre[];
-}
 const contactMe = [
     { title: "Whatsapp", href: "https://wa.me/905379676995" },
     { title: "Email", href: "mailto:itssorenadev@gmail.com" },
     { title: "Github", href: "https://github.com/SorenaSalehi" },
 ];
 
-export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
+export async function HeaderNavigation() {
+    const [movieGenres, tvGenres] = await Promise.all<Genre[]>([
+        fetchGenres("movie"),
+        fetchGenres("tv"),
+    ]);
     const movieGenresList = movieGenres.map((genre) => ({
         title: genre.name,
         href: `/movie/genre/${genre.id}`,
@@ -57,8 +56,6 @@ export function HeaderNavigation({ movieGenres, tvGenres }: Props) {
                     fill
                     className="object-cover "
                     quality={100}
-                    // width={100}
-                    // height={0}
                 />
             ),
         },

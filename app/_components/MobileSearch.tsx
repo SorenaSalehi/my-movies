@@ -2,6 +2,8 @@
 import {
     Drawer,
     DrawerContent,
+    DrawerDescription,
+    DrawerTitle,
     DrawerTrigger,
 } from "@/app/_components/ui/drawer";
 import { Film, Search, Tv } from "lucide-react";
@@ -13,7 +15,7 @@ import {
     CommandItem,
     CommandList,
 } from "./ui/command";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchContext } from "../_context/SearchContext";
 import SpinnerMini from "./SpinnerMini";
 import { useSearchMulti } from "../_lib/useSearchMulti";
@@ -27,11 +29,30 @@ export default function MobileSearch() {
     const inputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
 
+    function handleSelect(path: string) {
+        setOpen(false);
+        setTimeout(() => {
+            router.push(path);
+        }, 150);
+    }
+
+    useEffect(() => {
+        if (open) {
+            requestAnimationFrame(() => inputRef.current?.focus());
+        }
+    }, [open]);
+
     return (
-        <Drawer>
+        <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger>
                 <Search />
             </DrawerTrigger>
+
+            <DrawerTitle className="hidden">Search Movie/Series...</DrawerTitle>
+            <DrawerDescription className="hidden">
+                my movie search drawer, it open from bottom and user will search
+                movie/series to find it.
+            </DrawerDescription>
             <DrawerContent>
                 <Command shouldFilter={false}>
                     <CommandInput
@@ -64,9 +85,9 @@ export default function MobileSearch() {
                                 .map((movie) => (
                                     <CommandItem
                                         key={"m" + movie.id}
+                                        value={movie.title || ""}
                                         onSelect={() => {
-                                            router.push(`/movie/${movie.id}`);
-                                            setOpen(false);
+                                            handleSelect(`/movie/${movie.id}`);
                                         }}
                                         className="flex items-center justify-start"
                                     >
@@ -90,8 +111,7 @@ export default function MobileSearch() {
                                     <CommandItem
                                         key={"t" + tv.id}
                                         onSelect={() => {
-                                            router.push(`/tv/${tv.id}`);
-                                            setOpen(false);
+                                            handleSelect(`/tv/${tv.id}`);
                                         }}
                                         className="flex items-center justify-start"
                                     >
