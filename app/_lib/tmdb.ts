@@ -78,3 +78,13 @@ export async function fetchBySearch(query: string) {
     const data = await res.json();
     return data.results;
 }
+export async function fetchById(media: "movie" | "tv", id: number) {
+    const url = `${TMDB}/${media}/${id}?api_key=${process.env.TMDB_KEY}`;
+    console.log("url", url);
+    const res = await fetch(url, { next: { revalidate: 86400 } });
+    console.log("res", res);
+    if (!res.ok) throw new Error("Fetch by id Failed!!");
+
+    const data = await res.json();
+    return data;
+}

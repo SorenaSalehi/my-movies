@@ -10,7 +10,6 @@ import MediaTitle from "./MediaTitle";
 export default function SearchResultsList() {
     const { query } = useSearchContext();
     const { results, isLoading } = useSearchMulti(query);
-
     if (query.trim() === "") return <h1>Search for movie / series...</h1>;
     if (isLoading) return <Spinner />;
     if (results.length === 0) return <p className="p-4">No results.</p>;

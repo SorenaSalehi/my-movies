@@ -19,8 +19,8 @@ const navItems: NavItem[] = [
     },
 
     {
-        id: "watch-list",
-        href: "/watch-list",
+        id: "watchlist",
+        href: "/watchlist",
         icon: <Bookmark className="w-6 h-6" />,
         title: "Saves",
     },

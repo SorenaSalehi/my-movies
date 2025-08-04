@@ -1,3 +1,3 @@
 export default function dashboardPage() {
-    return <div>page</div>;
+    return <div>Coming soon</div>;
 }
