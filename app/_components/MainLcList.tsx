@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Movie } from "./OptimizedMovieImg";
 import MainMediaUL from "./MainMediaUL";
 import { useData } from "../_context/DataProvider";
+import useScrollRestoration from "../_hooks/useScrollRestoration";
 
 type Props = {
     initialItems: Movie[];
@@ -15,11 +16,12 @@ export default function MainLcList({
     apiPath,
     mediaType,
 }: Props) {
+    useScrollRestoration();
     const { genresMap } = useData();
+    const loaderRef = useRef<HTMLLIElement | null>(null);
     const [items, setItems] = useState(initialItems);
     const [isLoading, setIsLoading] = useState(false);
     const pageRef = useRef(1);
-    const loaderRef = useRef<HTMLLIElement | null>(null);
 
     const loadMoreItems = useCallback(async () => {
         if (isLoading) return;
@@ -30,24 +32,24 @@ export default function MainLcList({
             const res = await fetch(`${apiPath}?page=${nextPage}`);
             if (!res.ok) throw new Error("Failed to load more items");
 
-            const data: Movie[] = await res.json();
+            const { results }: { results: Movie[] } = await res.json();
             setItems((prev) => {
                 const map = new Map<number, Movie>();
 
-                prev.forEach((m) => map.set(m.id, m));
+                prev?.forEach((m) => map.set(m.id, m));
 
-                data.forEach((m) => {
+                results?.forEach((m) => {
                     if (!map.has(m.id)) {
                         map.set(m.id, m);
                     }
                 });
 
-                const mergedItems = Array.from(map.values());
-                const filteredItems = mergedItems.filter(
+                const mergedItems = Array.from(map?.values());
+                const filteredItems = mergedItems?.filter(
                     (m) =>
                         !m.genre_ids
-                            .map((id) => genresMap[id])
-                            .includes("Romance")
+                            ?.map((id) => genresMap[id])
+                            ?.includes("Romance")
                 );
                 return filteredItems;
             });

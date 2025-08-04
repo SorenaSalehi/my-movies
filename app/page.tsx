@@ -10,7 +10,11 @@ import HeroTextBanner from "./_components/HeroTextBanner";
 export const revalidate = 86400;
 
 export default async function page() {
-    const [topRated, popular, tvPopular] = await Promise.all([
+    const [
+        { results: topRated },
+        { results: popular },
+        { results: tvPopular },
+    ] = await Promise.all([
         fetchList("movie", "top_rated"),
         fetchList("movie", "popular"),
         fetchList("tv", "popular"),

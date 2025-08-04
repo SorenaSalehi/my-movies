@@ -1,8 +1,7 @@
 import { MovieDetails } from "@/app/_types/tmdbTypes";
 import { Separator } from "../ui/separator";
-import { Button } from "../ui/button";
-import { Bookmark, Eye } from "lucide-react";
 import CollapseText from "../CollapseText";
+import DetailsBtns from "./DetailsBtns";
 
 interface Props {
     movie: MovieDetails;
@@ -32,16 +31,7 @@ export default function DetailsMain({ movie }: Props) {
                     .join(", ")}
             </p>
             <Separator className="bg-red-500/20 max-w-100" />
-            <div className="flex flex-col md:flex-row gap-4">
-                <Button className="bg-amber-300 w-50 font-bold">
-                    <Bookmark strokeWidth={3} />
-                    Add to WatchList
-                </Button>{" "}
-                <Button className="bg-gray-300 w-50 font-bold">
-                    <Eye strokeWidth={3} />
-                    Mark as watched
-                </Button>
-            </div>
+            <DetailsBtns movieId={movie.id} />
         </div>
     );
 }

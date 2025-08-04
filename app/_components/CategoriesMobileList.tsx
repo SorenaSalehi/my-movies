@@ -24,16 +24,16 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
 
     return (
         <Tabs
-            defaultValue="account"
+            defaultValue="movies"
             style={{ minHeight: "65dvh" }}
             className="flex flex-col justify-center  items-center gap-4 my-4"
         >
             <TabsList className="my-4">
-                <TabsTrigger value="password">TV Shows</TabsTrigger>
-                <TabsTrigger value="account">Movies</TabsTrigger>
+                <TabsTrigger value="tv-shows">TV Shows</TabsTrigger>
+                <TabsTrigger value="movies">Movies</TabsTrigger>
             </TabsList>
             <TabsContent
-                value="account"
+                value="movies"
                 className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 md:grid-cols-3"
             >
                 {movieGenresList.map((m, i) => (
@@ -51,7 +51,7 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                 ))}
             </TabsContent>
             <TabsContent
-                value="password"
+                value="tv-shows"
                 className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 md:grid-cols-3"
             >
                 {tvGenresList.map((m, i) => (

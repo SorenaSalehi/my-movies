@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 
 @custom-variant dark (&:is(.dark *));
 

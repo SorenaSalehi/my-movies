@@ -19,7 +19,7 @@ export default async function page({ params }: Props) {
         // begin:: Media List
         return (
             <ListView
-                initialItems={initialItems}
+                initialItems={initialItems.results}
                 media={paramsPromise.media}
                 list={paramsPromise.slug}
                 apiPath={`/api/tmdb/${paramsPromise.media}/${paramsPromise.slug}`}
@@ -29,7 +29,6 @@ export default async function page({ params }: Props) {
     } else {
         const id = parseInt(paramsPromise.slug, 10);
         const details = await fetchMediaDetails(paramsPromise.media, id);
-        console.log("details", details);
 
         // begin:: Media Details
         return <MediaDetailsView details={details} />;

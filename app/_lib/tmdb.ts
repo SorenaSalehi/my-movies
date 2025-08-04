@@ -1,22 +1,33 @@
+import { Movie } from "../_components/OptimizedMovieImg";
+
 const TMDB = "https://api.themoviedb.org/3";
 
 type MediaType = "movie" | "tv";
 export type ListKind = "popular" | "top_rated" | "now_playing" | string;
+
+export interface MovieApiResponse {
+    results: Movie[];
+    page: number;
+    total_pages: number;
+}
 
 export async function fetchList(
     media: MediaType,
     list: ListKind,
     page = 1,
     signal?: AbortSignal
-) {
+): Promise<MovieApiResponse> {
     const url = `${TMDB}/${media}/${list}?api_key=${process.env.TMDB_KEY}&page=${page}`;
     const res = await fetch(url, { signal, next: { revalidate: 3600 * 24 } });
 
     if (!res.ok) throw new Error(`${media}/${list} failed (${res.status})`);
 
     const data = await res.json();
-
-    return data.results;
+    return {
+        results: data.results,
+        page: data.page,
+        total_pages: data.total_pages,
+    };
 }
 
 export async function fetchGenres(media: MediaType) {

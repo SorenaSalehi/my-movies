@@ -50,7 +50,7 @@ const MobileNavigation = () => {
                 <Link
                     key={item.id}
                     href={item.href}
-                    className="group inline-flex z-[1000] flex-col  justify-center items-center bg-red-800/50 mx-1 p-4  rounded-lg focus:outline-none w-[50px] md:w-[80px]  h-[50px]  transition-all duration-200 ease-in focus:bg-destructive text-center"
+                    className="group inline-flex z-[1000] flex-col  justify-center items-center bg-red-800/50 mx-1 p-4  rounded-lg focus:outline-none w-[50px] md:w-[80px]  h-[50px]  transition-all duration-200 ease-in focus:bg-destructive focus:outline-0 focus:border-transparent focus:ring-0 text-center"
                 >
                     <span className="w-7 h-7">{item.icon}</span>
                     <p className="text-xs text-nowrap">{item.title}</p>

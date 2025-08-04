@@ -11,3 +11,12 @@ export const filterGenresName = (ids: number[], genresMap: GenreMap) => {
 export const largeTitleConverter = (title: string) => {
     return title?.slice(0, 16) + "...";
 };
+
+export function safeParse<T>(value: string | null, fallback: T): T {
+    try {
+        if (value === null) return fallback;
+        return JSON.parse(value) as T;
+    } catch {
+        return fallback;
+    }
+}

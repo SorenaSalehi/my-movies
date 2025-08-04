@@ -40,6 +40,10 @@ export default function RootLayout({
                 />
                 <link rel="manifest" href="./manifest.json" />
                 <meta name="theme-color" content="#0f0f17" />
+                <meta
+                    name="viewport"
+                    content="width=device-width,initial-scale=1"
+                />
 
                 {/* iOS support */}
                 <link rel="apple-touch-icon" href="./icon.png" />
@@ -56,7 +60,7 @@ export default function RootLayout({
             >
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="system"
+                    defaultTheme="dark"
                     enableSystem
                     disableTransitionOnChange
                 >
@@ -68,7 +72,7 @@ export default function RootLayout({
                                     style={{
                                         minHeight: "100dvh",
                                     }}
-                                    className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden my-20"
+                                    className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden py-20"
                                 >
                                     {/* // begin:: Header  */}
                                     <Header />
