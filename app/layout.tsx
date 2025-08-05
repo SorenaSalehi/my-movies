@@ -72,7 +72,9 @@ export default function RootLayout({
                                     style={{
                                         minHeight: "100dvh",
                                         paddingTop:
-                                            "calc(env(safe-area-inset-top) + 5rem)",
+                                            "calc(env(safe-area-inset-top) + 80px)",
+                                        paddingBottom:
+                                            "calc(env(safe-area-inset-bottom) + 80px)",
                                     }}
                                     className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden"
                                 >

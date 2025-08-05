@@ -13,7 +13,7 @@ export default function Header() {
                 bg-sidebar-secondary/20 backdrop-blur-3xl
                 px-4
                 pt-[env(safe-area-inset-top)] 
-                h-20
+                h-[80px]
                 border-b border-red-500/10
               "
         >
