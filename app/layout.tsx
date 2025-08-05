@@ -71,8 +71,10 @@ export default function RootLayout({
                                 <main
                                     style={{
                                         minHeight: "100dvh",
+                                        paddingTop:
+                                            "calc(env(safe-area-inset-top) + 5rem)",
                                     }}
-                                    className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden py-20"
+                                    className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden"
                                 >
                                     {/* // begin:: Header  */}
                                     <Header />

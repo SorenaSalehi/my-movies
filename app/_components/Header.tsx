@@ -6,7 +6,17 @@ import SearchInput from "./SearchInput";
 
 export default function Header() {
     return (
-        <div className="z-[1000] fixed top-0 flex  lg:justify-start items-center bg-sidebar-secondary/20 backdrop-blur-3xl p-2 lg:px-[2rem] px-[1rem] lg:pr-4 w-full border-b-[.01rem] border-red-500/10  h-20">
+        <header
+            className="
+                fixed inset-x-0 top-0 z-[1000]
+                flex items-center justify-between
+                bg-sidebar-secondary/20 backdrop-blur-3xl
+                px-4
+                pt-[env(safe-area-inset-top)] 
+                h-20
+                border-b border-red-500/10
+              "
+        >
             <HeaderNavigation />
             <SearchInput />
             <Link
@@ -23,6 +33,6 @@ export default function Header() {
             </Link>
 
             <ThemeModeToggle />
-        </div>
+        </header>
     );
 }
