@@ -1,7 +1,7 @@
 import MainLcItems from "./MainLcItems";
 import { Movie } from "./OptimizedMovieImg";
 import Link from "next/link";
-import Spinner from "./Spinner";
+import Spinner from "../ui/Spinner";
 
 type Props = {
     items: Movie[];

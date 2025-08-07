@@ -3,10 +3,10 @@ import {
     CarouselContent,
     CarouselItem,
 } from "@/app/_components/ui/carousel";
-import HomeCarouselsTitle from "./HomeCarouselsTitle";
-import { Movie } from "./OptimizedMovieImg";
-import MainLcItems from "./MainLcItems";
+import { Movie } from "../media/OptimizedMovieImg";
+import MainLcItems from "../media/MainLcItems";
 import Link from "next/link";
+import HomeCarouselsTitle from "./HomeCarouselsTitle";
 type Props = {
     data: Movie[];
     title: string;
@@ -19,11 +19,14 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
             id="main-carousel-container"
             className="lg:hidden flex flex-col justify-center w-[85vw]  rounded-md"
         >
+            {/* begin:: carousel title */}
             <HomeCarouselsTitle
                 title={title}
                 seeMoreBtnText="See More"
                 path={path}
             />
+            {/* end:: carousel title */}
+
             <Carousel className="w-full mx-auto" opts={{ align: "center" }}>
                 <CarouselContent className="-ml-1 gap-4">
                     {data.map((m) => (
@@ -42,8 +45,6 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
                         </Link>
                     ))}
                 </CarouselContent>
-                {/* <CarouselPrevious />
-                <CarouselNext /> */}
             </Carousel>
         </div>
     );

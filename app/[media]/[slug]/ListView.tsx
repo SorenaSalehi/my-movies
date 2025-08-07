@@ -1,12 +1,12 @@
 "use server";
 
-import MainLcList from "@/app/_components/MainLcList";
-import MediaTitle from "@/app/_components/MediaTitle";
+import MainLcList from "@/app/_components/media/MainLcList";
+import MediaTitle from "@/app/_components/media/MediaTitle";
 import { ListKind } from "@/app/_lib/tmdb";
 import { Separator } from "@radix-ui/react-separator";
-import { Movie } from "../../_components/OptimizedMovieImg";
+import { Movie } from "../../_components/media/OptimizedMovieImg";
 import { Suspense } from "react";
-import Spinner from "@/app/_components/Spinner";
+import Spinner from "@/app/_components/ui/Spinner";
 
 interface Props {
     initialItems: Movie[];

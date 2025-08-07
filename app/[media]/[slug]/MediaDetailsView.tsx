@@ -1,6 +1,6 @@
 import DetailsLeftSide from "@/app/_components/movieDetails/DetailsLeftSide";
 import DetailsMain from "@/app/_components/movieDetails/DetailsMain";
-import Spinner from "@/app/_components/Spinner";
+import Spinner from "@/app/_components/ui/Spinner";
 import { Separator } from "@/app/_components/ui/separator";
 import { MovieDetails } from "@/app/_types/tmdbTypes";
 import { Suspense } from "react";

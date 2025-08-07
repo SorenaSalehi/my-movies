@@ -1,5 +1,5 @@
 import TextAnimateWriter from "./TextAnimateWriter";
-import PrinterLoader from "./ui/PrinterLoader";
+import PrinterLoader from "./PrinterLoader";
 
 export default function HeroTextBanner() {
     return (

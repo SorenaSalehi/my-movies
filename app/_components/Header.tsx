@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HeaderNavigation } from "./HeaderNavigation";
-import { ThemeModeToggle } from "./ThemeModeToggle";
+import { ThemeModeToggle } from "./ui/ThemeModeToggle";
 import Image from "next/image";
 import SearchInput from "./SearchInput";
 
@@ -17,8 +17,15 @@ export default function Header() {
                 border-b border-red-500/10
               "
         >
+            {/* begin:: header nav for lg screens */}
             <HeaderNavigation />
+            {/* end:: header nav for lg screens */}
+
+            {/* begin::search input for lg screens */}
             <SearchInput />
+            {/* end::search input for lg screens */}
+
+            {/* begin::App logo */}
             <Link
                 href="/"
                 className="lg:hidden flex justify-start items-center text-xs  text-center mr-auto"
@@ -31,8 +38,11 @@ export default function Header() {
                     className="object-cover"
                 />
             </Link>
+            {/* begin::App logo */}
 
+            {/* begin::Theme toggle for sm screens */}
             <ThemeModeToggle />
+            {/* end::Theme toggle for sm screens */}
         </header>
     );
 }

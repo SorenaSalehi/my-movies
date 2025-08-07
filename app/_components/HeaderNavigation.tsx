@@ -32,10 +32,13 @@ const contactMe = [
 ];
 
 export async function HeaderNavigation() {
+    //movie and TV Shows genres for display on nav
     const [movieGenres, tvGenres] = await Promise.all<Genre[]>([
         fetchGenres("movie"),
         fetchGenres("tv"),
     ]);
+
+    // begin::getting genres name and ids
     const movieGenresList = movieGenres.map((genre) => ({
         title: genre.name,
         href: `/movie/genre/${genre.id}`,
@@ -44,6 +47,7 @@ export async function HeaderNavigation() {
         title: genre.name,
         href: `/tv/genre/${genre.id}`,
     }));
+    // end::getting genres name and ids
 
     const navItems = [
         {
@@ -81,6 +85,7 @@ export async function HeaderNavigation() {
             listItems: contactMe,
         },
     ];
+
     return (
         <NavigationMenu viewport={false} className="hidden lg:flex">
             <NavigationMenuList>

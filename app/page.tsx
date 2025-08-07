@@ -1,11 +1,11 @@
-import HeroCarousel from "./_components/HeroCarousel";
-import { MainCarousel } from "./_components/MainCarousel";
+import HeroCarousel from "./_components/carousels/HeroCarousel";
+import { MainCarousel } from "./_components/carousels/MainCarousel";
 import { fetchGenres, fetchList } from "@/app/_lib/tmdb";
-import MainLcList from "./_components/MainLcList";
+import MainLcList from "./_components/media/MainLcList";
 import { DataProvider } from "./_context/DataProvider";
 import { Separator } from "./_components/ui/separator";
 import { Skeleton } from "./_components/ui/skeleton";
-import HeroTextBanner from "./_components/HeroTextBanner";
+import HeroTextBanner from "./_components/ui/HeroTextBanner";
 
 export const revalidate = 86400;
 

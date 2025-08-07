@@ -32,6 +32,8 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                 <TabsTrigger value="tv-shows">TV Shows</TabsTrigger>
                 <TabsTrigger value="movies">Movies</TabsTrigger>
             </TabsList>
+
+            {/* begin::movies categories */}
             <TabsContent
                 value="movies"
                 className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 md:grid-cols-3"
@@ -50,6 +52,9 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                     </Link>
                 ))}
             </TabsContent>
+            {/* end::movies categories */}
+
+            {/* begin::TV shows categories */}
             <TabsContent
                 value="tv-shows"
                 className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 md:grid-cols-3"
@@ -68,6 +73,7 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                     </Link>
                 ))}
             </TabsContent>
+            {/* end::TV shows categories */}
         </Tabs>
     );
 }

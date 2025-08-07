@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { MovieDetails } from "../_types/tmdbTypes";
+import { MovieDetails } from "../../_types/tmdbTypes";
 
 export type Movie = {
     id: number;

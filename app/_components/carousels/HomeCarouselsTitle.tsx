@@ -1,6 +1,5 @@
-import React from "react";
-import { Skeleton } from "./ui/skeleton";
-import SeeMoreBtn from "./SeeMoreBtn";
+import { Skeleton } from "../ui/skeleton";
+import SeeMoreBtn from "../ui/SeeMoreBtn";
 import { ArrowRightIcon } from "lucide-react";
 
 interface Props {

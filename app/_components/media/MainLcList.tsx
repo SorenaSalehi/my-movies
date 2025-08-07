@@ -2,8 +2,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Movie } from "./OptimizedMovieImg";
 import MainMediaUL from "./MainMediaUL";
-import { useData } from "../_context/DataProvider";
-import useScrollRestoration from "../_hooks/useScrollRestoration";
+import { useData } from "../../_context/DataProvider";
+import useScrollRestoration from "../../_hooks/useScrollRestoration";
 
 type Props = {
     initialItems: Movie[];
@@ -23,6 +23,7 @@ export default function MainLcList({
     const [isLoading, setIsLoading] = useState(false);
     const pageRef = useRef(1);
 
+    //TODO:react query infinite scroll
     const loadMoreItems = useCallback(async () => {
         if (isLoading) return;
         setIsLoading(true);
@@ -60,7 +61,7 @@ export default function MainLcList({
             setIsLoading(false);
         }
     }, [apiPath, genresMap, isLoading]);
-
+    //TODO
     useEffect(() => {
         const observe = new IntersectionObserver(
             (entries) => {

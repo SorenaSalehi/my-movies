@@ -17,10 +17,10 @@ import {
 } from "./ui/command";
 import { useEffect, useRef, useState } from "react";
 import { useSearchContext } from "../_context/SearchContext";
-import SpinnerMini from "./SpinnerMini";
+import SpinnerMini from "./ui/SpinnerMini";
 import { useSearchMulti } from "../_lib/useSearchMulti";
 import { useRouter } from "next/navigation";
-import OptimizedMovieImg from "./OptimizedMovieImg";
+import OptimizedMovieImg from "./media/OptimizedMovieImg";
 
 export default function MobileSearch() {
     const { query, setQuery } = useSearchContext();
@@ -44,17 +44,24 @@ export default function MobileSearch() {
 
     return (
         <Drawer open={open} onOpenChange={setOpen}>
+            {/* begin:: search btn icon  */}
             <DrawerTrigger>
                 <Search />
             </DrawerTrigger>
+            {/* end:: search btn icon  */}
 
+            {/* begin:: title and description for seo and screen readers, they are hidden  */}
             <DrawerTitle className="hidden">Search Movie/Series...</DrawerTitle>
             <DrawerDescription className="hidden">
                 my movie search drawer, it open from bottom and user will search
                 movie/series to find it.
             </DrawerDescription>
+            {/* end:: title and description for seo and screen readers, they are hidden  */}
+
+            {/* begin:: drawer content  */}
             <DrawerContent>
                 <Command shouldFilter={false}>
+                    {/* begin:: input  */}
                     <CommandInput
                         ref={inputRef}
                         value={query}
@@ -71,12 +78,21 @@ export default function MobileSearch() {
                         placeholder="Search for movie/series..."
                         className="h-10 text-md"
                     />
+                    {/* end:: input  */}
+
+                    {/* begin:: lists  */}
                     <CommandList key={query} className="px-4">
+                        {/* begin:: loading spinner  */}
                         {isLoading && <SpinnerMini />}
+                        {/* end:: loading spinner  */}
+
+                        {/* begin:: no results  */}
                         {!isLoading && results.length === 0 && (
                             <CommandEmpty>No Results.</CommandEmpty>
                         )}
+                        {/* end:: no results  */}
 
+                        {/* begin:: list group for movies  */}
                         <CommandGroup
                             heading={query.trim().length > 0 ? "Movies" : ""}
                         >
@@ -101,7 +117,9 @@ export default function MobileSearch() {
                                     </CommandItem>
                                 ))}
                         </CommandGroup>
+                        {/* end:: list group for movies  */}
 
+                        {/* begin:: list group for series  */}
                         <CommandGroup
                             heading={query.trim().length > 0 ? "TV Shows" : ""}
                         >
@@ -125,9 +143,12 @@ export default function MobileSearch() {
                                     </CommandItem>
                                 ))}
                         </CommandGroup>
+                        {/* begin:: list group for series  */}
                     </CommandList>
+                    {/* end:: lists  */}
                 </Command>
             </DrawerContent>
+            {/* end:: drawer content  */}
         </Drawer>
     );
 }

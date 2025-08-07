@@ -13,18 +13,21 @@ import { useParams } from "next/navigation";
 export default function DetailsBtns({ movieId }: { movieId: number }) {
     const { media } = useParams();
 
+    // begin:: getting movies/series id from local
     const [moviesWatchlist, setMoviesWatchlist] = useState<number[]>(() =>
         safeParse<number[]>(localStorage.getItem(MOVIE_WATCHLIST_KEY), [])
     );
     const [TvsWatchlist, setTvsWatchlist] = useState<number[]>(() =>
         safeParse<number[]>(localStorage.getItem(TV_SHOWS_WATCHLIST_KEY), [])
     );
+    // end:: getting movies/series id from local
 
     const isAlreadySaved =
         media === "movie"
             ? moviesWatchlist.includes(movieId)
             : TvsWatchlist.includes(movieId);
 
+    // begin:: saving movies/series ids to local
     useEffect(() => {
         localStorage.setItem(
             MOVIE_WATCHLIST_KEY,
@@ -37,7 +40,9 @@ export default function DetailsBtns({ movieId }: { movieId: number }) {
             JSON.stringify(TvsWatchlist)
         );
     }, [TvsWatchlist]);
+    // end:: saving movies/series ids to local
 
+    //media watchlist handler
     const handleClick = useCallback(() => {
         if (media === "movie") {
             setMoviesWatchlist((prev) => {

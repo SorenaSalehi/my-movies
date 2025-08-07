@@ -6,8 +6,8 @@ import {
     CarouselContent,
     CarouselItem,
 } from "@/app/_components/ui/carousel";
-import OptimizedMovieImg from "./OptimizedMovieImg";
-import { Movie } from "./OptimizedMovieImg";
+import OptimizedMovieImg from "../media/OptimizedMovieImg";
+import { Movie } from "../media/OptimizedMovieImg";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -24,7 +24,9 @@ export default function HeroCarousel({ topRated }: Props) {
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
         >
+            {/* begin:: hero carousel content */}
             <CarouselContent>
+                {/* begin:: hero carousel items */}
                 {topRated.map((m) => (
                     <CarouselItem
                         key={m.id}
@@ -35,7 +37,10 @@ export default function HeroCarousel({ topRated }: Props) {
                         id="hero-carousel-item"
                     >
                         <div className="relative rounded-xl w-full aspect-[21/9] lg:aspect-[1/1]  overflow-hidden ">
+                            {/* begin:: hero carousel img */}
                             <OptimizedMovieImg movie={m} isHero={true} />
+                            {/* end:: hero carousel img */}
+
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                             <h2 className="lg:hidden bottom-6 left-6 absolute drop-shadow font-bold text-white text-2xl">
                                 {m.title}
@@ -46,7 +51,9 @@ export default function HeroCarousel({ topRated }: Props) {
                         </div>
                     </CarouselItem>
                 ))}
+                {/* end:: hero carousel items */}
             </CarouselContent>
+            {/* end:: hero carousel content */}
         </Carousel>
     );
 }

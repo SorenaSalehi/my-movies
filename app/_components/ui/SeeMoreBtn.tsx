@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "./button";
 import Link from "next/link";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {

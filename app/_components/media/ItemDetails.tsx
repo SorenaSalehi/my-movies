@@ -1,6 +1,6 @@
 "use client";
-import { useData } from "../_context/DataProvider";
-import { largeTitleConverter } from "../_lib/helpers";
+import { useData } from "../../_context/DataProvider";
+import { largeTitleConverter } from "../../_lib/helpers";
 import { Movie } from "./OptimizedMovieImg";
 
 interface Props {

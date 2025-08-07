@@ -1,6 +1,6 @@
-import React from "react";
-import { User, LayoutGrid, Bookmark, Home } from "lucide-react";
 import Link from "next/link";
+import { User, LayoutGrid, Bookmark, Home } from "lucide-react";
+
 import MobileSearch from "./MobileSearch";
 
 type NavItem = {
