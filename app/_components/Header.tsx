@@ -8,9 +8,9 @@ export default function Header() {
     return (
         <header
             className="
-                fixed inset-x-0 top-0 z-[1000]
+                 inset-x-0 top-0 z-[1000]
     flex items-center justify-between
-     lg:bg-sidebar-secondary/20 lg:backdrop-blur-3xl bg-primary-foreground
+     lg:bg-sidebar-secondary/20 lg:backdrop-blur-3xl bg-background
     px-4 border-b border-red-500/20 
     h-20"
         >
