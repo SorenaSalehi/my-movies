@@ -15,6 +15,15 @@ export default function Header() {
     pt-[env(safe-area-inset-top,0px)]
     h-[calc(80px+env(safe-area-inset-top,0px))]"
         >
+            <div
+                aria-hidden
+                className="
+      absolute top-0 inset-x-0
+      h-[env(safe-area-inset-top,0px)]
+      bg-sidebar-secondary/90 backdrop-blur-3xl
+      pointer-events-none
+    "
+            />
             {/* begin:: header nav for lg screens */}
             <HeaderNavigation />
             {/* end:: header nav for lg screens */}

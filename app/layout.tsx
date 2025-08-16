@@ -76,15 +76,6 @@ export default function RootLayout({
       pt-[calc(env(safe-area-inset-top,0px)+80px)]
       pb-[env(safe-area-inset-bottom,0px)]"
                                 >
-                                    <div
-                                        aria-hidden
-                                        className="
-    fixed inset-x-0 top-0 left-0 right-0 z-[999]
-    h-[5vh] w-screen
-    bg-amber-500 backdrop-blur-3xl
-    pointer-events-none
-  "
-                                    />
                                     {/* // begin:: Header  */}
                                     <Header />
                                     {/* // end:: Header  */}
