@@ -47,8 +47,8 @@ const navItems: NavItem[] = [
 const MobileNavigation = () => {
     return (
         <div
-            className="lg:hidden z-[1000] fixed inset-x-0 bottom-0
-       flex justify-center shadow-destructive/30 shadow-lg mb-[2vh] p-1 backdrop-blur-3xl bg-sidebar-secondary   rounded-xl max-w-max mx-auto"
+            className="lg:hidden z-[1000] fixed inset-x-0 bottom-[2vh]
+       flex justify-center shadow-destructive/30 shadow-lg  p-1 backdrop-blur-3xl bg-sidebar-secondary   rounded-xl max-w-max mx-auto"
         >
             <BackButton />
             {navItems.map((item) => (
