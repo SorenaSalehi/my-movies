@@ -7,11 +7,11 @@ import {
     CarouselItem,
 } from "@/app/_components/ui/carousel";
 import OptimizedMovieImg from "../media/OptimizedMovieImg";
-import { Movie } from "../media/OptimizedMovieImg";
 import { useRouter } from "next/navigation";
+import { MovieDetails } from "@/app/_types/tmdbTypes";
 
 type Props = {
-    topRated: Movie[];
+    topRated: MovieDetails[];
 };
 
 export default function HeroCarousel({ topRated }: Props) {

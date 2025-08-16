@@ -44,6 +44,10 @@ export default function RootLayout({
                     name="viewport"
                     content="width=device-width,initial-scale=1"
                 />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1, viewport-fit=cover"
+                />
 
                 {/* iOS support */}
                 <link rel="apple-touch-icon" href="./icon.png" />
@@ -73,10 +77,13 @@ export default function RootLayout({
                                         minHeight: "100dvh",
                                         paddingTop:
                                             "calc(env(safe-area-inset-top) + 80px)",
-                                        paddingBottom:
-                                            "calc(env(safe-area-inset-bottom) + 80px)",
+                                        paddingBottom: "2vh",
                                     }}
-                                    className="relative flex flex-col justify-start items-center bg-sidebar-secondary/20 overflow-x-hidden"
+                                    className="relative flex flex-col items-center
+    bg-sidebar-secondary/20 overflow-x-hidden
+    min-h-[100dvh]
+    pt-[calc(env(safe-area-inset-top,0px)+80px)]
+    pb-[env(safe-area-inset-bottom,0px)]"
                                 >
                                     {/* // begin:: Header  */}
                                     <Header />

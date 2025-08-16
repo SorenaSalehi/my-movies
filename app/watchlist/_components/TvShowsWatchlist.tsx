@@ -1,14 +1,19 @@
 "use client";
-import { TV_SHOWS_WATCHLIST_KEY } from "@/app/_lib/contents";
-import { safeParse } from "@/app/_lib/helpers";
+
+import MediaList from "./MediaList";
 import { useState } from "react";
+import { safeParse } from "@/app/_lib/helpers";
+import { TV_SHOWS_WATCHLIST_KEY } from "@/app/_lib/contents";
 
 export default function TvShowsWatchlist() {
-    const [seriesWatchlistIds] = useState<number[]>(() => {
-        return safeParse<number[]>(
-            localStorage.getItem(TV_SHOWS_WATCHLIST_KEY),
+    const [ids] = useState<number[]>(() =>
+        safeParse<number[]>(
+            typeof window !== "undefined"
+                ? localStorage.getItem(TV_SHOWS_WATCHLIST_KEY)
+                : null,
             []
-        );
-    });
-    return;
+        )
+    );
+
+    return <MediaList mediaListIds={ids} media="tv" />;
 }

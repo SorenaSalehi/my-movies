@@ -3,12 +3,12 @@ import {
     CarouselContent,
     CarouselItem,
 } from "@/app/_components/ui/carousel";
-import { Movie } from "../media/OptimizedMovieImg";
 import MainLcItems from "../media/MainLcItems";
 import Link from "next/link";
 import HomeCarouselsTitle from "./HomeCarouselsTitle";
+import { MovieDetails } from "@/app/_types/tmdbTypes";
 type Props = {
-    data: Movie[];
+    data: MovieDetails[];
     title: string;
     path: string;
     mediaType: string;

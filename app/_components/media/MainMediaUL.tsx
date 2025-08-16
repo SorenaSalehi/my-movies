@@ -1,12 +1,12 @@
 import MainLcItems from "./MainLcItems";
-import { Movie } from "./OptimizedMovieImg";
 import Link from "next/link";
 import Spinner from "../ui/Spinner";
+import { MovieDetails } from "@/app/_types/tmdbTypes";
 
 type Props = {
-    items: Movie[];
-    isLoading: boolean;
-    loaderRef: React.RefObject<HTMLLIElement | null>;
+    items: MovieDetails[];
+    isLoading?: boolean;
+    loaderRef?: React.RefObject<HTMLLIElement | null>;
     mediaType: string;
 };
 

@@ -1,10 +1,10 @@
 import OptimizedMovieImg from "./OptimizedMovieImg";
 import { Card, CardContent } from "../ui/card";
-import { Movie } from "./OptimizedMovieImg";
 import ItemDetails from "./ItemDetails";
+import { MovieDetails } from "@/app/_types/tmdbTypes";
 
 type Props = {
-    movie: Movie;
+    movie: MovieDetails;
 };
 
 export default function MainLcItems({ movie }: Props) {

@@ -4,12 +4,12 @@ import MainLcList from "@/app/_components/media/MainLcList";
 import MediaTitle from "@/app/_components/media/MediaTitle";
 import { ListKind } from "@/app/_lib/tmdb";
 import { Separator } from "@radix-ui/react-separator";
-import { Movie } from "../../_components/media/OptimizedMovieImg";
 import { Suspense } from "react";
 import Spinner from "@/app/_components/ui/Spinner";
+import { MovieDetails } from "@/app/_types/tmdbTypes";
 
 interface Props {
-    initialItems: Movie[];
+    initialItems: MovieDetails[];
     media: "movie" | "tv";
     list: ListKind;
     apiPath: string;

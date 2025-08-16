@@ -1,4 +1,4 @@
-import { Movie } from "../_components/media/OptimizedMovieImg";
+import { MovieDetails } from "../_types/tmdbTypes";
 
 const TMDB = "https://api.themoviedb.org/3";
 const apiKey = process.env.TMDB_KEY;
@@ -7,7 +7,7 @@ export type MediaType = "movie" | "tv";
 export type ListKind = "popular" | "top_rated" | "now_playing" | string;
 
 export interface MovieApiResponse {
-    results: Movie[];
+    results: MovieDetails[];
     page: number;
     total_pages: number;
 }
@@ -79,34 +79,30 @@ export async function fetchBySearch(query: string) {
     const data = await res.json();
     return data.results;
 }
-export async function fetchById(media: "movie" | "tv", id: number) {
+export async function fetchOneById(media: "movie" | "tv", id: number) {
     const url = `${TMDB}/${media}/${id}?api_key=${apiKey}`;
-    console.log("url", url);
+
     const res = await fetch(url, { next: { revalidate: 86400 } });
-    console.log("res", res);
-    if (!res.ok) throw new Error("Fetch by id Failed!!");
+
+    if (!res.ok) throw new Error("Fetch one by id Failed!!");
 
     const data = await res.json();
     return data;
 }
+
 export async function fetchAllById(ids: number[], media: "movie" | "tv") {
-    const apiKey = process.env.TMDB_KEY;
-    if (!apiKey) throw new Error("TMDB_KEY is not defined!!");
-    console.log("apiKey", apiKey);
-    if (ids.length === 0) return [];
+    console.log("ids", ids);
+    if (!ids || ids.length === 0) return [];
 
-    const res = await Promise.all(
-        ids.map((id) => {
-            const url = new URL(`${TMDB}/3/${media}/${id}?api_key=${apiKey}`);
-            return fetch(url.toString(), { next: { revalidate: 86400 } }).then(
-                (res) => {
-                    if (!res.ok) return res.json();
-
-                    return res.json();
-                }
-            );
-        })
+    const settled = await Promise.allSettled(
+        ids?.map((id) => fetchOneById(media, id))
     );
-    console.log("res", res);
-    return res;
+
+    const ok = settled
+        .filter(
+            (s): s is PromiseFulfilledResult<string> => s.status === "fulfilled"
+        )
+        .map((s) => s.value);
+
+    return ok;
 }

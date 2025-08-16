@@ -20,7 +20,7 @@ const navItems: NavItem[] = [
 
     {
         id: "watchlist",
-        href: "/watchlist",
+        href: "/watchlist/movie",
         icon: <Bookmark className="w-6 h-6" />,
         title: "Saves",
     },
@@ -47,7 +47,7 @@ const MobileNavigation = () => {
     return (
         <div
             className="lg:hidden z-[1000] fixed inset-x-0 bottom-0
-    pb-[env(safe-area-inset-bottom)+1rem]   flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-sidebar-secondary  p-2 rounded-xl max-w-max mx-auto"
+    pb-[2vh]   flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-sidebar-secondary  p-2 rounded-xl max-w-max mx-auto"
         >
             {navItems.map((item) => (
                 <Link

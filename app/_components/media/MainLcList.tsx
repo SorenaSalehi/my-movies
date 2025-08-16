@@ -1,12 +1,12 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Movie } from "./OptimizedMovieImg";
 import MainMediaUL from "./MainMediaUL";
 import { useData } from "../../_context/DataProvider";
 import useScrollRestoration from "../../_hooks/useScrollRestoration";
+import { MovieDetails } from "@/app/_types/tmdbTypes";
 
 type Props = {
-    initialItems: Movie[];
+    initialItems: MovieDetails[];
     apiPath: string;
     mediaType: string;
 };
@@ -33,9 +33,9 @@ export default function MainLcList({
             const res = await fetch(`${apiPath}?page=${nextPage}`);
             if (!res.ok) throw new Error("Failed to load more items");
 
-            const { results }: { results: Movie[] } = await res.json();
+            const { results }: { results: MovieDetails[] } = await res.json();
             setItems((prev) => {
-                const map = new Map<number, Movie>();
+                const map = new Map<number, MovieDetails>();
 
                 prev?.forEach((m) => map.set(m.id, m));
 
