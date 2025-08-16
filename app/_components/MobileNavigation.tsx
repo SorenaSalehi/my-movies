@@ -2,6 +2,7 @@ import Link from "next/link";
 import { User, LayoutGrid, Bookmark, Home } from "lucide-react";
 
 import MobileSearch from "./MobileSearch";
+import BackButton from "./ui/BackBtn";
 
 type NavItem = {
     id: string;
@@ -47,8 +48,9 @@ const MobileNavigation = () => {
     return (
         <div
             className="lg:hidden z-[1000] fixed inset-x-0 bottom-0
-    pb-[2vh]   flex justify-center shadow-destructive/10 shadow-lg backdrop-blur-3xl bg-sidebar-secondary  p-2 rounded-xl max-w-max mx-auto"
+       flex justify-center shadow-destructive/30 shadow-lg mb-[2vh] p-1 backdrop-blur-3xl bg-sidebar-secondary   rounded-xl max-w-max mx-auto"
         >
+            <BackButton />
             {navItems.map((item) => (
                 <Link
                     key={item.id}

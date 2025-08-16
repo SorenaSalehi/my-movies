@@ -40,10 +40,7 @@ export default function RootLayout({
                 />
                 <link rel="manifest" href="./manifest.json" />
                 <meta name="theme-color" content="#0f0f17" />
-                <meta
-                    name="viewport"
-                    content="width=device-width,initial-scale=1"
-                />
+
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1, viewport-fit=cover"
@@ -73,17 +70,11 @@ export default function RootLayout({
                             <ClientInit>
                                 {/* begin:: App Main */}
                                 <main
-                                    style={{
-                                        minHeight: "100dvh",
-                                        paddingTop:
-                                            "calc(env(safe-area-inset-top) + 80px)",
-                                        paddingBottom: "2vh",
-                                    }}
-                                    className="relative flex flex-col items-center
-    bg-sidebar-secondary/20 overflow-x-hidden
-    min-h-[100dvh]
-    pt-[calc(env(safe-area-inset-top,0px)+80px)]
-    pb-[env(safe-area-inset-bottom,0px)]"
+                                    className="  relative flex flex-col items-center
+      bg-sidebar-secondary/20 overflow-x-hidden
+      min-h-[100dvh]
+      pt-[calc(env(safe-area-inset-top,0px)+80px)]
+      pb-[env(safe-area-inset-bottom,0px)]"
                                 >
                                     {/* // begin:: Header  */}
                                     <Header />
