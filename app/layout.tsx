@@ -79,9 +79,9 @@ export default function RootLayout({
                                     <div
                                         aria-hidden
                                         className="
-    fixed inset-x-0 top-0 z-[999]
-    h-[env(safe-area-inset-top,0px)]
-    bg-sidebar-secondary/90 backdrop-blur-3xl
+    fixed inset-x-0 top-0 left-0 right-0 z-[999]
+    h-[5vh] w-screen
+    bg-amber-500 backdrop-blur-3xl
     pointer-events-none
   "
                                     />
