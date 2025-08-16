@@ -10,20 +10,10 @@ export default function Header() {
             className="
                 fixed inset-x-0 top-0 z-[1000]
     flex items-center justify-between
-    bg-sidebar-secondary/20 backdrop-blur-3xl
-    px-4 border-b border-red-500/10
-    pt-[env(safe-area-inset-top,0px)]
-    h-[calc(80px+env(safe-area-inset-top,0px))]"
+     lg:bg-sidebar-secondary/20 lg:backdrop-blur-3xl bg-primary-foreground
+    px-4 border-b border-red-500/20 
+    h-20"
         >
-            <div
-                aria-hidden
-                className="
-      absolute top-0 inset-x-0
-      h-[env(safe-area-inset-top,0px)]
-      bg-sidebar-secondary/90 backdrop-blur-3xl
-      pointer-events-none
-    "
-            />
             {/* begin:: header nav for lg screens */}
             <HeaderNavigation />
             {/* end:: header nav for lg screens */}

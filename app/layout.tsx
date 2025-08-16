@@ -73,8 +73,8 @@ export default function RootLayout({
                                     className="  relative flex flex-col items-center
       bg-sidebar-secondary/20 overflow-x-hidden
       min-h-[100dvh]
-      pt-[calc(env(safe-area-inset-top,0px)+80px)]
-      pb-[env(safe-area-inset-bottom,0px)]"
+      py-20
+     "
                                 >
                                     {/* // begin:: Header  */}
                                     <Header />
