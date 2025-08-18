@@ -12,13 +12,13 @@ export default function DetailsMain({ movie }: Props) {
     console.log(movie);
     return (
         <div className="flex flex-col gap-4 justify-center items-center  lg:w-[60vw] relative">
-            <div className="absolute -z-10 brightness-6 top-10">
+            <div className="absolute -z-10 brightness-16 top-10">
                 <div className="w-screen md:w-[250px] h-auto md:h-100 relative ">
                     <OptimizedMovieImg movie={movie} isHero={false} />
                 </div>
             </div>
             {/* begin:: media genres  */}
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap ">
                 <h4 className="text-lg md:text-2xl font-bold">
                     {movie.title || movie.name}
                 </h4>

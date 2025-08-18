@@ -52,10 +52,10 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                                 src={`/${m.title}.jpg`}
                                 alt={`${m.title} movie image for displaying to my movies web app categories.`}
                                 fill
-                                className="absolute w-full h-full brightness-20"
+                                className="absolute w-full h-full brightness-80"
                             />
                             <div
-                                className={`text-center bg-primary-foreground/80 px-2 py-1 rounded-xl border-b-2 font-bold absolute w-full bottom-0 text-lime-500 h-15`}
+                                className={`text-center bg-primary-foreground/80 px-2 py-1 rounded-xl border-b-2 font-bold  absolute w-full bottom-0 text-lime-500 h-15`}
                             >
                                 {m.title}
                             </div>
@@ -82,7 +82,7 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                                 src={`/${m.title}-tv.jpg`}
                                 alt={`${m.title} movie image for displaying to my movies web app categories.`}
                                 fill
-                                className="absolute w-full h-full brightness-20"
+                                className="absolute w-full h-full brightness-80"
                             />
                             <div
                                 className={`text-center bg-primary-foreground/80 px-2 py-1 rounded-xl border-b-2 font-bold absolute w-full bottom-0 text-lime-500 h-15`}

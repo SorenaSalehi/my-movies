@@ -1,3 +1,4 @@
+// MobileSearch.tsx
 "use client";
 import {
     Drawer,
@@ -22,7 +23,16 @@ import { useSearchMulti } from "../_lib/useSearchMulti";
 import { useRouter } from "next/navigation";
 import OptimizedMovieImg from "./media/OptimizedMovieImg";
 
-export default function MobileSearch() {
+type MobileSearchProps = {
+    onOpenChange?: (open: boolean) => void;
+    /** اگر بخوای تریگر سفارشی بدی (مثلاً دکمه‌ی نوار پایین) */
+    children?: React.ReactNode;
+};
+
+export default function MobileSearch({
+    onOpenChange,
+    children,
+}: MobileSearchProps) {
     const { query, setQuery } = useSearchContext();
     const { results, isLoading } = useSearchMulti(query);
     const [open, setOpen] = useState(false);
@@ -31,37 +41,41 @@ export default function MobileSearch() {
 
     function handleSelect(path: string) {
         setOpen(false);
-        setTimeout(() => {
-            router.push(path);
-        }, 150);
+        setTimeout(() => router.push(path), 150);
     }
 
     useEffect(() => {
-        if (open) {
-            requestAnimationFrame(() => inputRef.current?.focus());
-        }
+        if (open) requestAnimationFrame(() => inputRef.current?.focus());
     }, [open]);
 
     return (
-        <Drawer open={open} onOpenChange={setOpen}>
-            {/* begin:: search btn icon  */}
-            <DrawerTrigger>
-                <Search />
+        <Drawer
+            open={open}
+            onOpenChange={(o) => {
+                setOpen(o);
+                onOpenChange?.(o);
+            }}
+        >
+            {/* تریگر سفارشی از بیرون */}
+            <DrawerTrigger asChild>
+                {children ?? (
+                    <button
+                        type="button"
+                        className="grid place-items-center w-12 h-12"
+                    >
+                        <Search />
+                    </button>
+                )}
             </DrawerTrigger>
-            {/* end:: search btn icon  */}
 
-            {/* begin:: title and description for seo and screen readers, they are hidden  */}
             <DrawerTitle className="hidden">Search Movie/Series...</DrawerTitle>
             <DrawerDescription className="hidden">
                 my movie search drawer, it open from bottom and user will search
                 movie/series to find it.
             </DrawerDescription>
-            {/* end:: title and description for seo and screen readers, they are hidden  */}
 
-            {/* begin:: drawer content  */}
             <DrawerContent>
                 <Command shouldFilter={false}>
-                    {/* begin:: input  */}
                     <CommandInput
                         ref={inputRef}
                         value={query}
@@ -78,21 +92,13 @@ export default function MobileSearch() {
                         placeholder="Search for movie/series..."
                         className="h-10 text-md"
                     />
-                    {/* end:: input  */}
 
-                    {/* begin:: lists  */}
                     <CommandList key={query} className="px-4">
-                        {/* begin:: loading spinner  */}
                         {isLoading && <SpinnerMini />}
-                        {/* end:: loading spinner  */}
-
-                        {/* begin:: no results  */}
                         {!isLoading && results.length === 0 && (
                             <CommandEmpty>No Results.</CommandEmpty>
                         )}
-                        {/* end:: no results  */}
 
-                        {/* begin:: list group for movies  */}
                         <CommandGroup
                             heading={query.trim().length > 0 ? "Movies" : ""}
                         >
@@ -102,9 +108,9 @@ export default function MobileSearch() {
                                     <CommandItem
                                         key={"m" + movie.id}
                                         value={movie.title || ""}
-                                        onSelect={() => {
-                                            handleSelect(`/movie/${movie.id}`);
-                                        }}
+                                        onSelect={() =>
+                                            handleSelect(`/movie/${movie.id}`)
+                                        }
                                         className="flex items-center justify-start"
                                     >
                                         <Film className="mr-2" /> {movie.title}
@@ -117,9 +123,7 @@ export default function MobileSearch() {
                                     </CommandItem>
                                 ))}
                         </CommandGroup>
-                        {/* end:: list group for movies  */}
 
-                        {/* begin:: list group for series  */}
                         <CommandGroup
                             heading={query.trim().length > 0 ? "TV Shows" : ""}
                         >
@@ -128,9 +132,9 @@ export default function MobileSearch() {
                                 .map((tv) => (
                                     <CommandItem
                                         key={"t" + tv.id}
-                                        onSelect={() => {
-                                            handleSelect(`/tv/${tv.id}`);
-                                        }}
+                                        onSelect={() =>
+                                            handleSelect(`/tv/${tv.id}`)
+                                        }
                                         className="flex items-center justify-start"
                                     >
                                         <Tv className="mr-2" /> {tv.name}
@@ -143,12 +147,9 @@ export default function MobileSearch() {
                                     </CommandItem>
                                 ))}
                         </CommandGroup>
-                        {/* begin:: list group for series  */}
                     </CommandList>
-                    {/* end:: lists  */}
                 </Command>
             </DrawerContent>
-            {/* end:: drawer content  */}
         </Drawer>
     );
 }

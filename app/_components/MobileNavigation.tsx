@@ -1,14 +1,16 @@
+// MobileNavigation.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { User, LayoutGrid, Bookmark, Home, Search } from "lucide-react";
+import { User, LayoutGrid, Bookmark, Home } from "lucide-react";
 import React from "react";
+import MobileSearch from "./MobileSearch";
 
 type NavItem = {
     id: string;
-    icon: React.ReactNode;
-    href: string;
+    icon?: React.ReactNode;
+    href?: string;
     title: string;
 };
 
@@ -26,13 +28,7 @@ const navItems: NavItem[] = [
         title: "Saves",
     },
 
-    // وسط — زیر ناچ
-    {
-        id: "search",
-        href: "/search",
-        icon: <Search className="w-6 h-6" />,
-        title: "Search",
-    },
+    { id: "search", title: "Search" },
 
     {
         id: "home",
@@ -50,37 +46,41 @@ const navItems: NavItem[] = [
 
 type Props = { notchBg?: string };
 
-/** فقط سگمنت اول مسیر تب را برمی‌گرداند (base) */
 const basePathOf = (href: string) => {
-    if (href === "/") return "/";
+    if (!href || href === "/") return href ?? "/";
     const seg = href.split("?")[0].split("#")[0].split("/").filter(Boolean)[0];
     return seg ? `/${seg}` : "/";
 };
 
-/** اگر pathname با یکی از تب‌ها مچ شد، ایندکس آن را می‌دهد؛ وگرنه -1 */
-const matchIndexFromPath = (pathname: string) => {
-    return navItems.findIndex((item) => {
+const matchIndexFromPath = (pathname: string) =>
+    navItems.findIndex((item) => {
+        if (!item.href) return false;
         const base = basePathOf(item.href);
         if (base === "/") return pathname === "/";
         return pathname === base || pathname.startsWith(base + "/");
     });
-};
 
 const MobileNavigation: React.FC<Props> = ({
     notchBg = "hsl(var(--background))",
 }) => {
     const pathname = usePathname();
     const count = navItems.length;
+    const searchIndex = navItems.findIndex((i) => i.id === "search");
 
-    // مقدار اولیه: اگر مچ شد همان تب، وگرنه وسط
+    // ⚠️ پیش‌فرض را به «هوم» ببریم، نه وسط/سرچ
+    const defaultIndex =
+        navItems.findIndex((i) => i.href === "/") !== -1
+            ? navItems.findIndex((i) => i.href === "/")
+            : navItems.findIndex((i) => !!i.href); // اگر هوم نبود، اولین آیتم دارای href
+
     const [activeIndex, setActiveIndex] = React.useState<number>(() => {
-        const idx = matchIndexFromPath(
-            typeof window !== "undefined" ? window.location.pathname : "/"
-        );
-        return idx === -1 ? Math.floor(count / 2) : idx;
+        if (typeof window === "undefined") return defaultIndex;
+        const idx = matchIndexFromPath(window.location.pathname);
+        return idx === -1 ? defaultIndex : idx; // ⚠️ اینجا قبلاً می‌رفت وسط (سرچ)
     });
 
-    // فقط وقتی مسیر با تب‌ها مچ شد، اکتیو را آپدیت کن؛ وگرنه دست نزن
+    const prevActiveRef = React.useRef(activeIndex);
+
     React.useEffect(() => {
         const idx = matchIndexFromPath(pathname);
         if (idx !== -1) setActiveIndex(idx);
@@ -92,40 +92,40 @@ const MobileNavigation: React.FC<Props> = ({
         ["--notch-bg" as string]: notchBg,
     } as React.CSSProperties;
 
+    const btnBase =
+        "flex-1 h-12 grid place-items-center rounded-xl no-underline select-none " +
+        "text-zinc-500 hover:text-white/90 hover:bg-white/5 transition-colors";
+
     return (
-        <div className="fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+16px)] z-[1000] flex justify-center lg:hidden pointer-events-none">
+        <div className="fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+16px)] z-40 flex justify-center lg:hidden pointer-events-none">
             <nav
                 role="navigation"
                 aria-label="Bottom navigation"
-                className="relative pointer-events-auto w-[min(92vw,520px)] h-16 px-2 flex items-center gap-1
+                className="relative isolate pointer-events-auto w-[min(92vw,520px)] h-16 px-2 flex items-center gap-1
                    rounded-2xl bg-zinc-900/90 ring-1 ring-white/10 shadow-[0_10px_28px_rgba(0,0,0,.35)]
-                   backdrop-blur-xl motion-reduce:transition-none"
+                   backdrop-blur-xl"
                 style={{
                     ...cssVars,
                     WebkitBackdropFilter: "blur(12px)",
                     backdropFilter: "blur(12px)",
                 }}
             >
-                {/* ناچ */}
+                {/* notch*/}
                 <span
                     aria-hidden="true"
-                    className="absolute -top-[4px] w-[68px] h-[16px] rounded-b-full
+                    className="pointer-events-none absolute -top-[4px] w-[68px] h-[16px] rounded-b-full
                      shadow-[0_8px_16px_rgba(0,0,0,.35),inset_0_-1px_0_rgba(255,255,255,.06)]
-                     transition-[left] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]
-                     motion-reduce:transition-none bg-background"
+                     transition-[left] duration-300 bg-background ease-[cubic-bezier(0.22,1,0.36,1)] z-0"
                     style={{
                         left: "calc((100%/var(--count)) * (var(--active) + 0.5))",
                         transform: "translateX(-50%)",
-                        // background: "var(--notch-bg)",
                     }}
                 />
-                {/* دایره‌ی بالای ناچ */}
+                {/* notch dot*/}
                 <span
                     aria-hidden="true"
-                    className="absolute -top-[16px] w-3 h-3 rounded-full bg-red-500
-                     shadow-[0_0_0_6px_rgba(59,130,246,.18)]
-                     transition-[left] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]
-                     motion-reduce:transition-none"
+                    className="pointer-events-none absolute -top-[8px] w-3 h-3 rounded-full bg-red-500
+                     transition-[left] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] z-0"
                     style={{
                         left: "calc((100%/var(--count)) * (var(--active) + 0.5))",
                         transform: "translateX(-50%)",
@@ -134,27 +134,82 @@ const MobileNavigation: React.FC<Props> = ({
 
                 {navItems.map((item, i) => {
                     const active = i === activeIndex;
-                    return (
-                        <Link
-                            prefetch={false}
-                            key={item.id}
-                            href={item.href}
-                            aria-label={item.title}
-                            aria-current={active ? "page" : undefined}
-                            onClick={() => setActiveIndex(i)} // با کلیک فوری اکتیو می‌شود
-                            className="flex-1 h-12 grid place-items-center rounded-xl no-underline select-none
-                         text-zinc-500 hover:text-white/90 hover:bg-white/5
-                         transition-colors motion-reduce:transition-none z-[10001] ring-transparent"
-                        >
-                            <span
+
+                    if (item.id !== "search") {
+                        return (
+                            <Link
+                                prefetch={false}
+                                key={item.id}
+                                href={item.href!}
+                                aria-label={item.title}
+                                aria-current={active ? "page" : undefined}
+                                onClick={() => setActiveIndex(i)}
                                 className={[
-                                    "pointer-events-none",
-                                    active ? "text-red-500" : "",
+                                    btnBase,
+                                    active
+                                        ? "text-red-500"
+                                        : "ring-2 ring-transparent",
+                                    "z-10",
                                 ].join(" ")}
                             >
-                                {item.icon}
-                            </span>
-                        </Link>
+                                {/* ⚠️ تضمین رنگ قرمز روی خود آیکن هم، اگر رنگ از والد ارث داده نشد */}
+                                <span
+                                    className={[
+                                        "pointer-events-none",
+                                        active ? "text-red-500" : "",
+                                    ].join(" ")}
+                                >
+                                    {item.icon}
+                                </span>
+                            </Link>
+                        );
+                    }
+
+                    return (
+                        <MobileSearch
+                            key="search"
+                            onOpenChange={(open) => {
+                                if (open) {
+                                    prevActiveRef.current = activeIndex;
+                                    setActiveIndex(searchIndex);
+                                } else {
+                                    const idx = matchIndexFromPath(pathname);
+                                    setActiveIndex(
+                                        idx !== -1 ? idx : prevActiveRef.current
+                                    );
+                                }
+                            }}
+                        >
+                            <button
+                                type="button"
+                                aria-label="Search"
+                                className={[
+                                    btnBase,
+                                    active
+                                        ? "text-red-500 "
+                                        : "ring-2 ring-transparent",
+                                    "z-10",
+                                ].join(" ")}
+                            >
+                                {/* ⚠️ همین‌جا هم قرمزی را مستقیم روی SVG ست می‌کنیم تا 100% اعمال شود */}
+                                <svg
+                                    className={[
+                                        "w-6 h-6",
+                                        active ? "text-red-500" : "",
+                                    ].join(" ")}
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </MobileSearch>
                     );
                 })}
             </nav>
