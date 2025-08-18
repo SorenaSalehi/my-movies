@@ -3,6 +3,7 @@ import { HeaderNavigation } from "./HeaderNavigation";
 import { ThemeModeToggle } from "./ui/ThemeModeToggle";
 import Image from "next/image";
 import SearchInput from "./SearchInput";
+import BackButton from "./ui/BackBtn";
 
 export default function Header() {
     return (
@@ -22,6 +23,7 @@ export default function Header() {
             <SearchInput />
             {/* end::search input for lg screens */}
 
+            <BackButton />
             {/* begin::App logo */}
             <Link
                 href="/"

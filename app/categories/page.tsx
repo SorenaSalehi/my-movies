@@ -6,6 +6,7 @@ export default async function categoriesPage() {
         fetchGenres("movie"),
         fetchGenres("tv"),
     ]);
+
     return (
         <CategoriesMobileList movieGenres={movieGenres} tvGenres={tvGenres} />
     );

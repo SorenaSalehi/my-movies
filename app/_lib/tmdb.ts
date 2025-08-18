@@ -44,9 +44,7 @@ export async function fetchGenres(media: MediaType) {
 
 export async function fetchMediaDetails(media: "movie" | "tv", id: number) {
     const url = `${TMDB}/${media}/${id}?api_key=${apiKey}`;
-
     const res = await fetch(url, { next: { revalidate: 3600 * 24 } });
-
     if (!res.ok) throw new Error(`${media}/${id} fetch failed (${res.status})`);
 
     const data = await res.json();

@@ -11,7 +11,7 @@ interface Props {
 
 export default async function MediaDetailsView({ details }: Props) {
     return (
-        <div className="flex flex-col pb-10 w-full gap-4 justify-start items-center   px-4 ">
+        <div className="flex flex-col pb-10 w-full h-screen gap-4 justify-start items-center px-4 ">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-baseline mt-4 justify-evenly">
                 <Suspense fallback={<Spinner />}>
                     {/* // begin:: Details left side : img , title,... */}

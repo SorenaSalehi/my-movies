@@ -39,7 +39,7 @@ export default async function page() {
                 mediaType="movie"
             />
             {/* //end:: movie carousel for sm/md screens  */}
-            <Separator className="my-4 bg-red-500/20 lg:hidden " />
+            <Separator className="my-4 bg-red-500 lg:hidden " />
             {/* //begin:: tv carousel for sm/md screens  */}
             <MainCarousel
                 data={tvPopular}
@@ -48,7 +48,7 @@ export default async function page() {
                 mediaType="tv"
             />
             {/* //end:: tv carousel for sm/md screens  */}
-            <Separator className="my-4 bg-red-500/20 lg:hidden " />
+            <Separator className="my-4 bg-red-500 lg:hidden " />
             {/* //begin:: top rated carousel for sm/md screens  */}
             <MainCarousel
                 data={topRated}
@@ -57,7 +57,7 @@ export default async function page() {
                 mediaType="movie"
             />
             {/* //end:: top rated carousel for sm/md screens  */}
-            <Skeleton className="my-4 h-1 w-full bg-red-500/20 lg:hidden " />
+            <Skeleton className="my-4 h-1 w-full bg-red-500 lg:hidden " />
 
             {/* //begin:: list for lg screens   */}
             <div id="home-main-media-ul-container" className="hidden lg:block">
