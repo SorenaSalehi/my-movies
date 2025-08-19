@@ -3,6 +3,7 @@ import { HeaderNavigation } from "./HeaderNavigation";
 import Image from "next/image";
 import SearchInput from "./SearchInput";
 import BackButton from "./ui/BackBtn";
+import { ThemeModeToggle } from "./ui/ThemeModeToggle";
 
 export default function Header() {
     return (
@@ -37,7 +38,7 @@ export default function Header() {
             {/* begin::App logo */}
 
             {/* begin::Theme toggle for sm screens */}
-            {/* <ThemeModeToggle /> */}
+            <ThemeModeToggle />
             {/* end::Theme toggle for sm screens */}
         </header>
     );

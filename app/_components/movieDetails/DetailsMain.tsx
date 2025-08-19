@@ -18,7 +18,7 @@ export default function DetailsMain({ movie }: Props) {
                 </div>
             </div>
             {/* begin:: media genres  */}
-            <div className="flex gap-2 flex-wrap ">
+            <div className="flex gap-2 flex-wrap text-zinc-100">
                 <h4 className="text-2xl md:text-2xl font-bold">
                     {movie.title || movie.name}
                 </h4>
@@ -26,25 +26,25 @@ export default function DetailsMain({ movie }: Props) {
             <div className="flex gap-2 flex-wrap">
                 {/* begin:: movie release time  */}
                 {movie?.release_date && (
-                    <span className="text-primary/70  ">
+                    <span className="text-zinc-200/90  ">
                         {movie.release_date?.slice(0, 4)}
                         {movie.first_air_date}
-                        <span className="font-bold"> /</span>
+                        <span className="font-bold "> /</span>
                     </span>
                 )}
                 {/* end:: movie release time  */}
                 {movie.spoken_languages && (
-                    <span className="text-primary/70 uppercase">
+                    <span className="text-zinc-300/90 uppercase">
                         {movie.spoken_languages
                             .map((lang) => lang.iso_639_1)
                             .join(", ")}
                     </span>
                 )}
                 {/* end:: movie release time  */}
-                <p>/</p>
+                <p className="text-zinc-300/90">/</p>
                 {/* begin:: series release time  */}
                 {movie.first_air_date && (
-                    <span className="text-primary/70 ">
+                    <span className="text-zinc-300/90 ">
                         {movie.first_air_date?.slice(0, 4) +
                             "-" +
                             movie.last_air_date?.slice(0, 4)}{" "}
@@ -54,7 +54,7 @@ export default function DetailsMain({ movie }: Props) {
                 {/* end:: series release time  */}
                 {/* begin:: movie release run time  */}
                 {movie.runtime && (
-                    <span className="text-primary/70 ">
+                    <span className="text-zinc-300/90 ">
                         {movie.runtime} min
                     </span>
                 )}{" "}
@@ -62,7 +62,7 @@ export default function DetailsMain({ movie }: Props) {
                 {/* begin:: series release run time  */}
                 {movie?.episode_run_time &&
                     movie?.episode_run_time?.length !== 0 && (
-                        <span className="text-primary/70 ">
+                        <span className="text-zinc-300/90 ">
                             {movie?.episode_run_time[0]} min
                         </span>
                     )}
@@ -70,9 +70,12 @@ export default function DetailsMain({ movie }: Props) {
             </div>
 
             <div className="flex flex-wrap justify-center items-center">
-                <span className="text-primary/70">Genres : </span>
+                <span className="text-zinc-300/90">Genres : </span>
                 {movie?.genres.map((genre, i) => (
-                    <span key={i} className=" lg:text-xl text-xs ml-1">
+                    <span
+                        key={i}
+                        className=" lg:text-xl text-xs ml-1 text-zinc-100"
+                    >
                         {genre.name}
                         {i + 1 < movie.genres.length ? ", " : ""}
                     </span>
@@ -80,7 +83,7 @@ export default function DetailsMain({ movie }: Props) {
             </div>
             {/* end:: media genres  */}
 
-            <Separator className="bg-red-500/20 lg:max-w-100" />
+            <Separator className="bg-red-500/50 lg:max-w-100" />
 
             {/* begin:: media overview  */}
             <CollapseText text={movie.overview} />

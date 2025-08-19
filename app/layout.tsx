@@ -76,7 +76,7 @@ export default function RootLayout({
                                     {/* begin:: App Main */}
                                     <main
                                         id="main_app_container"
-                                        className="relative flex flex-col items-center bg-sidebar-secondary/20 overflow-x-hidden  scroll-smooth overflow-y-scroll max-h-[80vh] lg:max-h-auto lg:overflow-y-auto"
+                                        className="relative flex flex-col items-center bg-sidebar-secondary/20 overflow-x-hidden  scroll-smooth overflow-y-scroll max-h-[80vh] lg:max-h-none lg:overflow-y-auto"
                                     >
                                         {/* // begin:: Children */}
                                         {children}

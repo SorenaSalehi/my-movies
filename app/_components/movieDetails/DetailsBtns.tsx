@@ -60,7 +60,7 @@ export default function DetailsBtns({ movieId }: { movieId: number }) {
     return (
         <div className="flex md:flex-row gap-4">
             <Button
-                className="bg-amber-300 w-50 font-bold"
+                className="bg-amber-300 w-50 font-bold text-zinc-800/90"
                 onClick={handleClick}
                 disabled={isAlreadySaved}
             >
