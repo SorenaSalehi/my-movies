@@ -28,7 +28,7 @@ export default function SearchResultsList() {
                             IMDb : {item?.vote_average?.toFixed(1)}
                         </p>
                         <OptimizedMovieImg movie={item} isHero={false} />
-                        <h1 className=" lg:hidden text-xs absolute bottom-0 left-0 bg-red-800 p-1 rounded-md text-gray-100  shadow-2xl">
+                        <h1 className=" lg:hidden text-center  absolute bottom-0 left-0 bg-red-800 p-1 rounded-md text-zinc-200  shadow-2xl w-full min-h-14 flex justify-center items-center">
                             {item?.title || item?.name}
                         </h1>
                     </Link>
