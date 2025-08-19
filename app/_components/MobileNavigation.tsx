@@ -1,8 +1,7 @@
-// MobileNavigation.tsx
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { User, LayoutGrid, Bookmark, Home } from "lucide-react";
 import React from "react";
 import MobileSearch from "./MobileSearch";
@@ -64,19 +63,19 @@ const MobileNavigation: React.FC<Props> = ({
     notchBg = "hsl(var(--background))",
 }) => {
     const pathname = usePathname();
+    const router = useRouter();
     const count = navItems.length;
     const searchIndex = navItems.findIndex((i) => i.id === "search");
 
-    // ⚠️ پیش‌فرض را به «هوم» ببریم، نه وسط/سرچ
     const defaultIndex =
         navItems.findIndex((i) => i.href === "/") !== -1
             ? navItems.findIndex((i) => i.href === "/")
-            : navItems.findIndex((i) => !!i.href); // اگر هوم نبود، اولین آیتم دارای href
+            : navItems.findIndex((i) => !!i.href);
 
     const [activeIndex, setActiveIndex] = React.useState<number>(() => {
         if (typeof window === "undefined") return defaultIndex;
         const idx = matchIndexFromPath(window.location.pathname);
-        return idx === -1 ? defaultIndex : idx; // ⚠️ اینجا قبلاً می‌رفت وسط (سرچ)
+        return idx === -1 ? defaultIndex : idx;
     });
 
     const prevActiveRef = React.useRef(activeIndex);
@@ -97,12 +96,12 @@ const MobileNavigation: React.FC<Props> = ({
         "text-zinc-500 hover:text-white/90 hover:bg-white/5 transition-colors";
 
     return (
-        <div className="fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+16px)] z-40 flex justify-center lg:hidden pointer-events-none">
+        <div className="fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+16px)] z-40 flex justify-center lg:hidden pointer-events-none ">
             <nav
                 role="navigation"
                 aria-label="Bottom navigation"
                 className="relative isolate pointer-events-auto w-[min(92vw,520px)] h-16 px-2 flex items-center gap-1
-                   rounded-2xl bg-zinc-900/90 ring-1 ring-white/10 shadow-[0_10px_28px_rgba(0,0,0,.35)]
+                   rounded-2xl bg-zinc-900/90 ring-1 ring-white/10 inset-shadow-red-800/20 inset-shadow-sm
                    backdrop-blur-xl"
                 style={{
                     ...cssVars,
@@ -152,7 +151,6 @@ const MobileNavigation: React.FC<Props> = ({
                                     "z-10",
                                 ].join(" ")}
                             >
-                                {/* ⚠️ تضمین رنگ قرمز روی خود آیکن هم، اگر رنگ از والد ارث داده نشد */}
                                 <span
                                     className={[
                                         "pointer-events-none",
@@ -172,11 +170,7 @@ const MobileNavigation: React.FC<Props> = ({
                                 if (open) {
                                     prevActiveRef.current = activeIndex;
                                     setActiveIndex(searchIndex);
-                                } else {
-                                    const idx = matchIndexFromPath(pathname);
-                                    setActiveIndex(
-                                        idx !== -1 ? idx : prevActiveRef.current
-                                    );
+                                    router.push("/search");
                                 }
                             }}
                         >
@@ -191,7 +185,6 @@ const MobileNavigation: React.FC<Props> = ({
                                     "z-10",
                                 ].join(" ")}
                             >
-                                {/* ⚠️ همین‌جا هم قرمزی را مستقیم روی SVG ست می‌کنیم تا 100% اعمال شود */}
                                 <svg
                                     className={[
                                         "w-6 h-6",

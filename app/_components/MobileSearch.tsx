@@ -56,7 +56,6 @@ export default function MobileSearch({
                 onOpenChange?.(o);
             }}
         >
-            {/* تریگر سفارشی از بیرون */}
             <DrawerTrigger asChild>
                 {children ?? (
                     <button

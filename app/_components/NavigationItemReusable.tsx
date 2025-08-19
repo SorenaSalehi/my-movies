@@ -40,13 +40,13 @@ export default function NavigationItemReusable({
                 <>
                     <NavigationMenuTrigger>{triggerText}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid gap-2  md:grid-cols-2 w-max">
+                        <ul className="grid gap-2  md:grid-cols-2 w-max z-[20001]">
                             {listItems?.map((item) => (
                                 <ListItem
                                     key={item.title}
                                     title={item.title}
                                     href={item.href}
-                                    className="border-l-2 border-red-500/25 "
+                                    className="border-l-2 border-red-500/25 z-[20001]"
                                 ></ListItem>
                             ))}
                         </ul>

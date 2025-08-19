@@ -15,7 +15,7 @@ export default function MainLcItems({ movie }: Props) {
                     IMDb : {movie?.vote_average?.toFixed(1)}
                 </p>
                 <OptimizedMovieImg movie={movie} isHero={false} />
-                <div className="lg:hidden text-xs absolute bottom-0 left-0 bg-red-800 p-1 rounded-md text-gray-100  shadow-2xl w-full">
+                <div className="lg:hidden  text-center absolute bottom-0 left-0 bg-red-800/90 min-h-14 p-1 rounded-md text-gray-100  shadow-2xl w-full flex items-center justify-center tracking-wider font-bold">
                     <h1 className=" ">{movie?.title || movie?.name}</h1>
                 </div>
                 <ItemDetails movie={movie} />

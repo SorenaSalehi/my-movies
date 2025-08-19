@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Genre } from "../_types/dataProvTypes";
 import NavigationItemReusable from "./NavigationItemReusable";
 import { fetchGenres } from "../_lib/tmdb";
+import Link from "next/link";
 
 export const revalidate = 86400;
 
@@ -50,19 +51,6 @@ export async function HeaderNavigation() {
     // end::getting genres name and ids
 
     const navItems = [
-        {
-            type: "link" as const,
-            href: "/",
-            children: (
-                <Image
-                    src={"/icon.webp"}
-                    alt="my movies icon , it is a old camera mixed by red and gray colors"
-                    fill
-                    className="object-cover "
-                    quality={100}
-                />
-            ),
-        },
         { type: "link" as const, href: "/", children: "Home" },
         {
             type: "button" as const,
@@ -88,6 +76,17 @@ export async function HeaderNavigation() {
 
     return (
         <NavigationMenu viewport={false} className="hidden lg:flex">
+            <Link href={"/"}>
+                {" "}
+                <Image
+                    src={"/icon.webp"}
+                    alt="my movies icon , it is a old camera mixed by red and gray colors"
+                    className="object-cover "
+                    quality={100}
+                    width={74}
+                    height={74}
+                />
+            </Link>
             <NavigationMenuList>
                 {navItems.map((item, i) => (
                     <NavigationItemReusable key={i} {...item} />

@@ -31,8 +31,12 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
             className="flex flex-col justify-center  items-center gap-4 my-4"
         >
             <TabsList className="my-4">
-                <TabsTrigger value="tv-shows">TV Shows</TabsTrigger>
-                <TabsTrigger value="movies">Movies</TabsTrigger>
+                <TabsTrigger value="tv-shows" className="text-xl ">
+                    TV Shows
+                </TabsTrigger>
+                <TabsTrigger value="movies" className="text-xl ">
+                    Movies
+                </TabsTrigger>
             </TabsList>
 
             {/* begin::movies categories */}
@@ -52,11 +56,9 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                                 src={`/${m.title}.jpg`}
                                 alt={`${m.title} movie image for displaying to my movies web app categories.`}
                                 fill
-                                className="absolute w-full h-full brightness-80"
+                                className="absolute w-full h-full brightness-80 object-cover"
                             />
-                            <div
-                                className={`text-center bg-primary-foreground/80 px-2 py-1 rounded-xl border-b-2 font-bold  absolute w-full bottom-0 text-lime-500 h-15`}
-                            >
+                            <div className="justify-center tracking-wider text-xl bg-red-800/85 px-2 py-1 rounded-xl border-b-2 font-bold  absolute w-full bottom-0 text-primary h-15 flex items-center ">
                                 {m.title}
                             </div>
                         </Link>
@@ -82,11 +84,9 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                                 src={`/${m.title}-tv.jpg`}
                                 alt={`${m.title} movie image for displaying to my movies web app categories.`}
                                 fill
-                                className="absolute w-full h-full brightness-80"
+                                className="absolute w-full h-full brightness-80 object-cover"
                             />
-                            <div
-                                className={`text-center bg-primary-foreground/80 px-2 py-1 rounded-xl border-b-2 font-bold absolute w-full bottom-0 text-lime-500 h-15`}
-                            >
+                            <div className="justify-center tracking-wider text-xl bg-red-800/85 px-2 py-1 rounded-xl border-b-2 font-bold  absolute w-full bottom-0 text-primary h-15 flex items-center ">
                                 {m.title}
                             </div>
                         </Link>

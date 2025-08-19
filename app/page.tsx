@@ -60,7 +60,10 @@ export default async function page() {
             <Skeleton className="my-4 h-1 w-full bg-red-500 lg:hidden " />
 
             {/* //begin:: list for lg screens   */}
-            <div id="home-main-media-ul-container" className="hidden lg:block">
+            <div
+                id="home-main-media-ul-container"
+                className="hidden lg:block -z-[1]"
+            >
                 <MainLcList
                     initialItems={popular}
                     apiPath="/api/tmdb/movie/popular"

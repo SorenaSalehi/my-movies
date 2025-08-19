@@ -68,12 +68,12 @@ export default function RootLayout({
                     <ReactQueryProvider>
                         <SearchProvider>
                             <ClientInit>
-                                <div className=" max-h-[100vh] lg:h-auto">
+                                <div className="max-h-[100vh]   lg:max-h-screen">
                                     {/* // begin:: Header  */}
                                     <Header />
                                     {/* // end:: Header  */}
                                     {/* begin:: App Main */}
-                                    <main className="  relative flex flex-col items-center bg-sidebar-secondary/20 overflow-x-hidden  scroll-smooth overflow-y-scroll max-h-[80vh] lg:h-auto lg:overflow-y-auto">
+                                    <main className="  relative flex flex-col items-center bg-sidebar-secondary/20 overflow-x-hidden  scroll-smooth overflow-y-scroll max-h-[80vh] lg:max-h-auto lg:overflow-y-auto">
                                         {/* // begin:: Children */}
                                         {children}
                                         {/* // end:: Children */}
