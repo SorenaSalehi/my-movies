@@ -8,6 +8,7 @@ import MobileNavigation from "./_components/MobileNavigation";
 import ReactQueryProvider from "./_context/ReactQueryProvider";
 import { SearchProvider } from "./_context/SearchContext";
 import ClientInit from "./_context/ClientInit";
+import BackToTop from "./_components/ui/BackToTop";
 
 // const geistSans = Geist({
 //     variable: "--font-geist-sans",
@@ -73,7 +74,10 @@ export default function RootLayout({
                                     <Header />
                                     {/* // end:: Header  */}
                                     {/* begin:: App Main */}
-                                    <main className="  relative flex flex-col items-center bg-sidebar-secondary/20 overflow-x-hidden  scroll-smooth overflow-y-scroll max-h-[80vh] lg:max-h-auto lg:overflow-y-auto">
+                                    <main
+                                        id="main_app_container"
+                                        className="relative flex flex-col items-center bg-sidebar-secondary/20 overflow-x-hidden  scroll-smooth overflow-y-scroll max-h-[80vh] lg:max-h-auto lg:overflow-y-auto"
+                                    >
                                         {/* // begin:: Children */}
                                         {children}
                                         {/* // end:: Children */}
@@ -83,6 +87,8 @@ export default function RootLayout({
                                     {/* begin:: Mobile Navigation */}
                                     <MobileNavigation />
                                     {/* end:: Mobile Navigation */}
+
+                                    <BackToTop />
                                 </div>
                             </ClientInit>
                         </SearchProvider>
