@@ -39,3 +39,12 @@ export interface Genre {
     id: number;
     name: string;
 }
+
+export interface TMDBVideo {
+    key: string;
+    name: string;
+    site: "YouTube" | "Vimeo" | string;
+    type: "Trailer" | "Teaser" | "Clip" | string;
+    official?: boolean;
+    published_at?: string;
+}

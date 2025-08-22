@@ -17,7 +17,7 @@ export default function MediaList({ mediaListIds, media }: Props) {
     });
     if (isFetching) return <Spinner />;
 
-    if (!watchlistData || (watchlistData.length === 0 && !isFetching))
+    if (!watchlistData || (watchlistData?.results?.length === 0 && !isFetching))
         return (
             <div className="col-span-full text-center opacity-70">
                 Your {media === "movie" ? "movie" : "TV"} watchlist is empty.

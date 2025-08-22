@@ -17,10 +17,10 @@ export default function WatchlistTabs({ media }: { media: "movie" | "tv" }) {
             style={{ minHeight: "65dvh" }}
             className="flex flex-col items-center gap-4 my-4"
         >
-            <h1 className="text-center border border-red-500/20 p-2 rounded-xl animate-pulse delay-1000 text-xs backdrop-brightness-200 shadow-lg mx-4">
+            {/* <h1 className="text-center border border-red-500/20 p-2 rounded-xl animate-pulse delay-1000 text-xs backdrop-brightness-200 shadow-lg mx-4">
                 You can keep a local watchlist, but it may be lost. Please log
                 in to keep it safe.
-            </h1>
+            </h1> */}
 
             <TabsList className="my-4">
                 <TabsTrigger value="tv" asChild>

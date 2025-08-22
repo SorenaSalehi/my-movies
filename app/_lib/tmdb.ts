@@ -1,4 +1,4 @@
-import { MovieDetails } from "../_types/tmdbTypes";
+import { MovieDetails, TMDBVideo } from "../_types/tmdbTypes";
 
 const TMDB = "https://api.themoviedb.org/3";
 const apiKey = process.env.TMDB_KEY;
@@ -89,7 +89,6 @@ export async function fetchOneById(media: "movie" | "tv", id: number) {
 }
 
 export async function fetchAllById(ids: number[], media: "movie" | "tv") {
-    console.log("ids", ids);
     if (!ids || ids.length === 0) return [];
 
     const settled = await Promise.allSettled(
@@ -103,4 +102,35 @@ export async function fetchAllById(ids: number[], media: "movie" | "tv") {
         .map((s) => s.value);
 
     return ok;
+}
+
+export async function fetchTrailer(id: number, media: "movie" | "tv") {
+    if (!id) return;
+    const url = `${TMDB}/${media}/${id}/videos?api_key=${apiKey}`;
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+
+    if (!res.ok) return;
+    const data = (await res.json()) as { results?: TMDBVideo[] };
+
+    const vids = (data.results ?? [])
+        .filter((v) => ["Trailer", "Teaser"].includes(v.type))
+        .sort((a, b) => {
+            const o = Number(b.official === true) - Number(a.official === true);
+            if (o !== 0) return o;
+            return (
+                new Date(b.published_at ?? 0).getTime() -
+                new Date(a.published_at ?? 0).getTime()
+            );
+        });
+
+    const v = vids.find((x) => x.site === "YouTube") ?? vids[0];
+    if (v) {
+        const url =
+            v.site === "YouTube"
+                ? `https://www.youtube.com/watch?v=${v.key}`
+                : v.site === "Vimeo"
+                ? `https://vimeo.com/${v.key}`
+                : "";
+        if (url) return url;
+    }
 }

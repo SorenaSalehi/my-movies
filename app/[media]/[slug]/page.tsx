@@ -1,4 +1,9 @@
-import { fetchList, fetchMediaDetails, ListKind } from "@/app/_lib/tmdb";
+import {
+    fetchList,
+    fetchMediaDetails,
+    fetchTrailer,
+    ListKind,
+} from "@/app/_lib/tmdb";
 import ListView from "./ListView";
 import MediaDetailsView from "./MediaDetailsView";
 
@@ -29,9 +34,10 @@ export default async function page({ params }: Props) {
     } else {
         const id = parseInt(paramsPromise.slug, 10);
         const details = await fetchMediaDetails(paramsPromise.media, id);
+        const trailer = await fetchTrailer(id, paramsPromise.media);
 
         // begin:: Media Details
-        return <MediaDetailsView details={details} />;
+        return <MediaDetailsView details={details} trailer={trailer} />;
         // end:: Media Details
     }
 }

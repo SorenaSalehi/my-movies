@@ -9,16 +9,18 @@ interface Props {
 }
 
 export default function DetailsMain({ movie }: Props) {
-    console.log(movie);
     return (
         <div className="flex flex-col gap-4 justify-center items-center  lg:w-[60vw] relative">
             <div className="absolute -z-10 brightness-16 top-0">
-                <div className="w-screen md:w-[250px] h-auto md:h-100 relative ">
+                <div className="w-screen lg:hidden md:w-[250px] h-auto md:h-100 relative ">
                     <OptimizedMovieImg movie={movie} isHero={false} />
+                </div>
+                <div className="hidden w-full lg:block  h-100  relative rounded-2xl overflow-hidden">
+                    <OptimizedMovieImg movie={movie} isHero={true} />
                 </div>
             </div>
             {/* begin:: media genres  */}
-            <div className="flex gap-2 flex-wrap text-zinc-100">
+            <div className="flex gap-2 flex-wrap text-zinc-100 text-center">
                 <h4 className="text-2xl md:text-2xl font-bold">
                     {movie.title || movie.name}
                 </h4>

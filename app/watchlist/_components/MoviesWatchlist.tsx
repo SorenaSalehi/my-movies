@@ -14,6 +14,5 @@ export default function MoviesWatchlist() {
             []
         )
     );
-    console.log("ids", ids);
     return <MediaList mediaListIds={ids} media="movie" />;
 }

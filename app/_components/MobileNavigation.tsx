@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { User, LayoutGrid, Bookmark, Home } from "lucide-react";
+import { LayoutGrid, Bookmark, Home } from "lucide-react";
 import React from "react";
 import MobileSearch from "./MobileSearch";
 
@@ -35,12 +35,12 @@ const navItems: NavItem[] = [
         icon: <Home className="w-6 h-6" />,
         title: "Home",
     },
-    {
-        id: "dashboard",
-        href: "/dashboard",
-        icon: <User className="w-6 h-6" />,
-        title: "Profile",
-    },
+    // {
+    //     id: "dashboard",
+    //     href: "/dashboard",
+    //     icon: <User className="w-6 h-6" />,
+    //     title: "Profile",
+    // },
 ];
 
 type Props = { notchBg?: string };

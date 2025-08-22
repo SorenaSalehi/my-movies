@@ -75,7 +75,7 @@ export async function HeaderNavigation() {
     ];
 
     return (
-        <NavigationMenu viewport={false} className="hidden lg:flex">
+        <NavigationMenu viewport={false} className="hidden lg:flex z-[10001]">
             <Link href={"/"}>
                 {" "}
                 <Image

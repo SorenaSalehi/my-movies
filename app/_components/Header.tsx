@@ -8,8 +8,8 @@ import { ThemeModeToggle } from "./ui/ThemeModeToggle";
 export default function Header() {
     return (
         <header
-            className="
-                 inset-x-0 top-0 z-[2000]
+            className="lg:fixed lg:top-0
+                 inset-x-0  z-[10001]
     flex items-center justify-between
      lg:bg-sidebar-secondary/20 lg:backdrop-blur-3xl bg-background
     px-4 border-b border-red-500/20 

@@ -2,7 +2,7 @@
 
 import { Bookmark, BookmarkCheck } from "lucide-react";
 import { Button } from "../ui/button";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
     MOVIE_WATCHLIST_KEY,
     TV_SHOWS_WATCHLIST_KEY,
@@ -22,10 +22,13 @@ export default function DetailsBtns({ movieId }: { movieId: number }) {
     );
     // end:: getting movies/series id from local
 
-    const isAlreadySaved =
-        media === "movie"
-            ? moviesWatchlist.includes(movieId)
-            : TvsWatchlist.includes(movieId);
+    const isAlreadySaved = useMemo(
+        () =>
+            media === "movie"
+                ? moviesWatchlist.includes(movieId)
+                : TvsWatchlist.includes(movieId),
+        [media, movieId, moviesWatchlist, TvsWatchlist]
+    );
 
     // begin:: saving movies/series ids to local
     useEffect(() => {
@@ -44,25 +47,36 @@ export default function DetailsBtns({ movieId }: { movieId: number }) {
 
     //media watchlist handler
     const handleClick = useCallback(() => {
-        if (media === "movie") {
-            setMoviesWatchlist((prev) => {
-                if (prev.includes(movieId)) return prev;
-                return [...prev, movieId];
-            });
-        } else {
-            setTvsWatchlist((prev) => {
-                if (prev.includes(movieId)) return prev;
-                return [...prev, movieId];
-            });
+        if (isAlreadySaved) {
+            if (media === "movie") {
+                setMoviesWatchlist((items) =>
+                    items?.filter((i) => i !== movieId)
+                );
+            } else {
+                setTvsWatchlist((items) => items?.filter((i) => i !== movieId));
+            }
         }
-    }, [media, movieId]);
+
+        if (!isAlreadySaved) {
+            if (media === "movie") {
+                setMoviesWatchlist((prev) => {
+                    if (prev.includes(movieId)) return prev;
+                    return [...prev, movieId];
+                });
+            } else {
+                setTvsWatchlist((prev) => {
+                    if (prev.includes(movieId)) return prev;
+                    return [...prev, movieId];
+                });
+            }
+        }
+    }, [media, movieId, isAlreadySaved]);
 
     return (
         <div className="flex md:flex-row gap-4">
             <Button
                 className="bg-amber-300 w-50 font-bold text-zinc-800/90"
                 onClick={handleClick}
-                disabled={isAlreadySaved}
             >
                 {isAlreadySaved ? (
                     <BookmarkCheck strokeWidth={3} />
