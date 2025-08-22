@@ -1,25 +1,24 @@
 "use client";
 import { MovieDetails } from "@/app/_types/tmdbTypes";
-import { useData } from "../../_context/DataProvider";
-import { largeTitleConverter } from "../../_lib/helpers";
+import { useMemo } from "react";
+import { GenreMap } from "@/app/_types/dataProvTypes";
+import { savedGenres } from "@/app/_lib/genres";
 
 interface Props {
     movie: MovieDetails;
 }
 
 export default function ItemDetails({ movie }: Props) {
-    const { genresMap } = useData();
+    const genresMap = useMemo<GenreMap>(
+        () => Object.fromEntries(savedGenres.map((g) => [g.id, g.name])),
+        []
+    );
 
     const genresIds =
         movie?.genre_ids?.map((id) => genresMap[id]).slice(0, 3) || [];
     const genresArray = movie?.genres;
-
     return (
         <div className="bottom-0 absolute  transition-all duration-300 ease-in-out   inset-x-0 flex flex-col gap-2 bg-red-800/95 p-4 h-40 translate-y-full rounded-xl opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 text-center">
-            <h1 className="justify-self-center text-center text-sm col-start-1 row-start-1 font-bold md:text-xl">
-                {largeTitleConverter(movie?.title) ||
-                    largeTitleConverter(movie?.name)}
-            </h1>
             <p className=" text-amber-200 flex flex-wrap justify-center">
                 {genresIds &&
                     genresIds?.map((genre, i) => (
@@ -38,9 +37,21 @@ export default function ItemDetails({ movie }: Props) {
                         </span>
                     ))}
             </p>
-            <h6 className=" text-gray-300">
-                Released: {movie?.release_date?.split("-")[0]}
-            </h6>
+            {movie?.release_date && (
+                <h6 className=" text-gray-300">
+                    Released: {movie?.release_date?.split("-")[0]}
+                </h6>
+            )}
+            {movie?.first_air_date && (
+                <h6 className=" text-gray-300">
+                    First Air Date: {movie?.first_air_date?.split("-")[0]}
+                </h6>
+            )}{" "}
+            {movie?.original_language && (
+                <h6 className=" text-gray-300">
+                    Language: {movie?.original_language}
+                </h6>
+            )}
         </div>
     );
 }

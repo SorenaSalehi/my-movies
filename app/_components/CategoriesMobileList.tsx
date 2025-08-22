@@ -56,6 +56,7 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                                 src={`/${m.title}.jpg`}
                                 alt={`${m.title} movie image for displaying to my movies web app categories.`}
                                 fill
+                                sizes="(max-width:calc(var(--spacing) * 40)) 100vw"
                                 className="absolute w-full h-full brightness-80 object-cover"
                             />
                             <div className="justify-center tracking-wider text-xl bg-red-800/85 px-2 py-1 rounded-xl border-b-2 font-bold  absolute w-full bottom-0 text-primary h-15 flex items-center ">
@@ -84,6 +85,7 @@ export default function CategoriesMobileList({ movieGenres, tvGenres }: Props) {
                                 src={`/${m.title}-tv.jpg`}
                                 alt={`${m.title} movie image for displaying to my movies web app categories.`}
                                 fill
+                                sizes="(max-width:calc(var(--spacing) * 40)) 100vw"
                                 className="absolute w-full h-full brightness-80 object-cover"
                             />
                             <div className="justify-center tracking-wider text-xl bg-red-800/85 px-2 py-1 rounded-xl border-b-2 font-bold  absolute w-full bottom-0 text-primary h-15 flex items-center ">

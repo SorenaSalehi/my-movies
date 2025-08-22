@@ -29,8 +29,9 @@ export default function MainLcList({
         setIsLoading(true);
 
         const nextPage = pageRef.current + 1;
+        const url = `${apiPath}?page=${nextPage}`;
         try {
-            const res = await fetch(`${apiPath}?page=${nextPage}`);
+            const res = await fetch(url);
             if (!res.ok) throw new Error("Failed to load more items");
 
             const { results }: { results: MovieDetails[] } = await res.json();

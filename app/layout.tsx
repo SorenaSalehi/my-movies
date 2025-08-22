@@ -9,6 +9,8 @@ import ReactQueryProvider from "./_context/ReactQueryProvider";
 import { SearchProvider } from "./_context/SearchContext";
 import ClientInit from "./_context/ClientInit";
 import BackToTop from "./_components/ui/BackToTop";
+import { Suspense } from "react";
+import Spinner from "./_components/ui/Spinner";
 
 // const geistSans = Geist({
 //     variable: "--font-geist-sans",
@@ -23,7 +25,7 @@ import BackToTop from "./_components/ui/BackToTop";
 export const metadata: Metadata = {
     title: "My Movies",
     description:
-        "My Movies is a movie app that allows you to search for movies and tv shows. It's created by Reza salehi to show my skills and personal use.It's created by Sorena salehi to show my skills and personal use.",
+        "My Movies is a Watchlist WebApp that allows you to search for movies and tv shows. It's created by Reza salehi to show my skills and personal use.It's created by Sorena salehi to show my skills and personal use.",
 };
 
 export default function RootLayout({
@@ -78,9 +80,11 @@ export default function RootLayout({
                                         id="main_app_container"
                                         className="relative flex flex-col items-center bg-sidebar-secondary/20 overflow-x-hidden  scroll-smooth overflow-y-scroll max-h-[80vh] lg:max-h-none lg:overflow-y-auto lg:pt-[20vh]"
                                     >
-                                        {/* // begin:: Children */}
-                                        {children}
-                                        {/* // end:: Children */}
+                                        <Suspense fallback={<Spinner />}>
+                                            {/* // begin:: Children */}
+                                            {children}
+                                            {/* // end:: Children */}
+                                        </Suspense>
                                     </main>
                                     {/* end:: App Main */}
 

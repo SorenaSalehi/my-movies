@@ -22,6 +22,7 @@ export const useData = (): DataContextType => {
 };
 
 export const DataProvider = ({ genres, children }: DataProviderProps) => {
+    console.log("ctx", genres);
     const genresMap = useMemo<GenreMap>(
         () => Object.fromEntries(genres.map((g) => [g.id, g.name])),
         [genres]

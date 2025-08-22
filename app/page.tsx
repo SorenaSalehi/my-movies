@@ -24,7 +24,6 @@ export default async function page() {
         fetchGenres("movie"),
         fetchGenres("tv"),
     ]);
-
     return (
         <DataProvider genres={genres.flat()}>
             <HeroTextBanner />

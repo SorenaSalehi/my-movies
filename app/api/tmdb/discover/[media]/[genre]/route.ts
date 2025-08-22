@@ -6,13 +6,13 @@ export async function GET(
     { params }: { params: Promise<{ media: string; genre: string }> }
 ) {
     const { media, genre } = await params;
-    const page = Number(req.nextUrl.searchParams.get("page") ?? "1");
+    const page = req.nextUrl.searchParams.get("page") ?? "1";
 
     try {
         const results = await fetchByGenre(
             media as "movie" | "tv",
             Number(genre),
-            page
+            parseInt(page, 10)
         );
         return NextResponse.json(results);
     } catch (err: unknown) {

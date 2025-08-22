@@ -8,6 +8,7 @@ export async function GET(
     const { media, list } = await params;
     const page = req.nextUrl.searchParams.get("page") ?? "1";
 
+    
     try {
         const data = await fetchList(
             media as "movie" | "tv",

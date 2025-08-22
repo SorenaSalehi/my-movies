@@ -31,6 +31,7 @@ export async function fetchList(
     };
 }
 
+//it's fetching all  movie genres
 export async function fetchGenres(media: MediaType) {
     const url = `${TMDB}/genre/${media}/list?api_key=${apiKey}`;
     const res = await fetch(url, { next: { revalidate: 3600 * 24 } });
@@ -54,15 +55,20 @@ export async function fetchMediaDetails(media: "movie" | "tv", id: number) {
 export async function fetchByGenre(
     media: MediaType,
     genreId: number,
-    page = 1
-) {
+    page = 1,
+    signal?: AbortSignal
+): Promise<MovieApiResponse> {
     const url = `${TMDB}/discover/${media}?api_key=${apiKey}&with_genres=${genreId}&page=${page}`;
 
-    const res = await fetch(url, { next: { revalidate: 3600 * 24 } });
+    const res = await fetch(url, { signal, next: { revalidate: 3600 * 24 } });
     if (!res.ok) throw new Error(`Discover ${media} failed (${res.status})`);
 
     const data = await res.json();
-    return data.results;
+    return {
+        results: data.results,
+        page: data.page,
+        total_pages: data.total_pages,
+    };
 }
 
 export async function fetchBySearch(query: string) {
