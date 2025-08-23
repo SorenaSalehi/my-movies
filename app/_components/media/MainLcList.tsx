@@ -1,9 +1,9 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
 import MainMediaUL from "./MainMediaUL";
 import { useData } from "../../_context/DataProvider";
 import useScrollRestoration from "../../_hooks/useScrollRestoration";
 import { MovieDetails } from "@/app/_types/tmdbTypes";
+import useInfiniteList from "@/app/_hooks/useInfiniteList";
 
 type Props = {
     initialItems: MovieDetails[];
@@ -18,73 +18,14 @@ export default function MainLcList({
 }: Props) {
     useScrollRestoration();
     const { genresMap } = useData();
-    const loaderRef = useRef<HTMLLIElement | null>(null);
-    const [items, setItems] = useState(initialItems);
-    const [isLoading, setIsLoading] = useState(false);
-    const pageRef = useRef(1);
-
-    //TODO:react query infinite scroll
-    const loadMoreItems = useCallback(async () => {
-        if (isLoading) return;
-        setIsLoading(true);
-
-        const nextPage = pageRef.current + 1;
-        const url = `${apiPath}?page=${nextPage}`;
-        try {
-            const res = await fetch(url);
-            if (!res.ok) throw new Error("Failed to load more items");
-
-            const { results }: { results: MovieDetails[] } = await res.json();
-            setItems((prev) => {
-                const map = new Map<number, MovieDetails>();
-
-                prev?.forEach((m) => map.set(m.id, m));
-
-                results?.forEach((m) => {
-                    if (!map.has(m.id)) {
-                        map.set(m.id, m);
-                    }
-                });
-
-                const mergedItems = Array.from(map?.values());
-                const filteredItems = mergedItems?.filter(
-                    (m) =>
-                        !m.genre_ids
-                            ?.map((id) => genresMap[id])
-                            ?.includes("Romance")
-                );
-                return filteredItems;
-            });
-            pageRef.current = nextPage;
-        } catch (err: unknown) {
-            console.log("err", err);
-        } finally {
-            setIsLoading(false);
-        }
-    }, [apiPath, genresMap, isLoading]);
-    //TODO
-    useEffect(() => {
-        const observe = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    loadMoreItems();
-                }
-            },
-            { root: null, rootMargin: "200px", threshold: 0 }
-        );
-
-        const el = loaderRef.current;
-        if (el) observe.observe(el);
-
-        return () => {
-            observe.disconnect();
-        };
-    }, [apiPath, loadMoreItems]);
+    const { items, loaderRef, isLoading, isFetchingNextPage } = useInfiniteList(
+        { apiPath, initialItems, genresMap }
+    );
 
     return (
         <MainMediaUL
             items={items}
-            isLoading={isLoading}
+            isLoading={isLoading || isFetchingNextPage}
             loaderRef={loaderRef}
             mediaType={mediaType}
         />

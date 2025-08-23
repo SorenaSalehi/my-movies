@@ -19,8 +19,8 @@ export default function CollapseText({ text }: Props) {
         }
     }, [isCollapse, displayText, text]);
     return (
-        <div className="text-justify px-5  md:text-xl lg:text-2xl transition-all duration-400 ease-in">
-            <h5 className="text-zinc-200/90">
+        <div className="text-justify px-5 self-start lg:text-base transition-all duration-400 ease-in">
+            <h5 className="text-zinc-200/90 ">
                 {displayText}
                 <Button
                     onClick={() => setIsCollapse((isCol) => !isCol)}

@@ -17,7 +17,7 @@ export function MainCarousel({ data, title, path, mediaType }: Props) {
     return (
         <div
             id="main-carousel-container"
-            className="lg:hidden flex flex-col justify-center w-[85vw]  rounded-md"
+            className="lg:hidden flex flex-col justify-center px-2  rounded-md"
         >
             {/* begin:: carousel title */}
             <HomeCarouselsTitle

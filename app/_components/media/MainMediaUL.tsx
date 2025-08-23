@@ -15,8 +15,8 @@ function MainMediaUL({ items, isLoading, loaderRef, mediaType }: Props) {
         <ul
             className={` grid-cols-2 gap-2 grid  md:gap-4 lg:grid xl:grid-cols-6  md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 `}
         >
-            {items.map((m) => (
-                <li key={m.id}>
+            {items?.map((m) => (
+                <li key={m.id} id={m.title}>
                     <Link href={`/${mediaType}/${m.id}`}>
                         <MainLcItems movie={m} />
                     </Link>

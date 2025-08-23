@@ -11,6 +11,7 @@ import ClientInit from "./_context/ClientInit";
 import BackToTop from "./_components/ui/BackToTop";
 import { Suspense } from "react";
 import Spinner from "./_components/ui/Spinner";
+import ScrollRestoration from "./_components/ui/ScrollRestoration";
 
 // const geistSans = Geist({
 //     variable: "--font-geist-sans",
@@ -91,6 +92,9 @@ export default function RootLayout({
                                     {/* begin:: Mobile Navigation */}
                                     <MobileNavigation />
                                     {/* end:: Mobile Navigation */}
+                                    <Suspense fallback={null}>
+                                        <ScrollRestoration containerId="main_app_container" />
+                                    </Suspense>
 
                                     <BackToTop />
                                 </div>

@@ -11,7 +11,7 @@ export default function DetailsLeftSide({ movie }: Props) {
                 <div className="lg:hidden">
                     <OptimizedMovieImg movie={movie} isHero={true} />
                 </div>
-                <div className="hidden lg:block">
+                <div className="hidden lg:block border-1 border-red-950/10 shadow-lg shadow-red-950/50  rounded-2xl overflow-hidden">
                     <OptimizedMovieImg movie={movie} isHero={false} />
                 </div>
                 <div className="text-primary/70 font-extrabold ml-1 absolute bottom-0 flex items-center gap-1 lg:left-0  left-3 bg-red-500/80 backdrop-blur-2xl px-2 rounded-2xl shadow-amber-500 ">

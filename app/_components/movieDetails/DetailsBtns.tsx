@@ -15,10 +15,10 @@ export default function DetailsBtns({ movieId }: { movieId: number }) {
 
     // begin:: getting movies/series id from local
     const [moviesWatchlist, setMoviesWatchlist] = useState<number[]>(() =>
-        safeParse<number[]>(localStorage.getItem(MOVIE_WATCHLIST_KEY), [])
+        safeParse<number[]>(localStorage?.getItem(MOVIE_WATCHLIST_KEY), [])
     );
     const [TvsWatchlist, setTvsWatchlist] = useState<number[]>(() =>
-        safeParse<number[]>(localStorage.getItem(TV_SHOWS_WATCHLIST_KEY), [])
+        safeParse<number[]>(localStorage?.getItem(TV_SHOWS_WATCHLIST_KEY), [])
     );
     // end:: getting movies/series id from local
 
@@ -73,18 +73,16 @@ export default function DetailsBtns({ movieId }: { movieId: number }) {
     }, [media, movieId, isAlreadySaved]);
 
     return (
-        <div className="flex md:flex-row gap-4">
-            <Button
-                className="bg-amber-300 w-50 font-bold text-zinc-800/90"
-                onClick={handleClick}
-            >
-                {isAlreadySaved ? (
-                    <BookmarkCheck strokeWidth={3} />
-                ) : (
-                    <Bookmark strokeWidth={3} />
-                )}
-                {isAlreadySaved ? "It's already saved" : "Add to WatchList"}
-            </Button>
-        </div>
+        <Button
+            className="bg-amber-300 font-bold text-zinc-800/90"
+            // style={{ padding: ".1rem" }}
+            onClick={handleClick}
+        >
+            {isAlreadySaved ? (
+                <BookmarkCheck strokeWidth={3} />
+            ) : (
+                <Bookmark strokeWidth={3} />
+            )}
+        </Button>
     );
 }
