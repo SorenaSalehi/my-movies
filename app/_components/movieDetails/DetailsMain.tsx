@@ -24,7 +24,7 @@ export default function DetailsMain({ movie, trailer }: Props) {
                     </section>
                 </Suspense>
                 {/* // end:: trailer*/}
-                <div className="flex flex-col gap-4 items-start">
+                <div className="flex flex-col gap-4 lg:items-start items-center">
                     {/* begin:: media genres  */}
                     <div className="flex gap-2 flex-wrap text-zinc-100 text-center">
                         <h4 className="text-2xl md:text-2xl font-bold ">

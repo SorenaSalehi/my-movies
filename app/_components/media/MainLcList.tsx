@@ -1,9 +1,9 @@
 "use client";
 import MainMediaUL from "./MainMediaUL";
 import { useData } from "../../_context/DataProvider";
-import useScrollRestoration from "../../_hooks/useScrollRestoration";
 import { MovieDetails } from "@/app/_types/tmdbTypes";
 import useInfiniteList from "@/app/_hooks/useInfiniteList";
+import useScrollRestore from "@/app/_hooks/useScrollRestoration";
 
 type Props = {
     initialItems: MovieDetails[];
@@ -16,11 +16,24 @@ export default function MainLcList({
     apiPath,
     mediaType,
 }: Props) {
-    useScrollRestoration();
     const { genresMap } = useData();
-    const { items, loaderRef, isLoading, isFetchingNextPage } = useInfiniteList(
-        { apiPath, initialItems, genresMap }
-    );
+    const {
+        items,
+        loaderRef,
+        isLoading,
+        isFetchingNextPage,
+        hasNextPage,
+        fetchNextPage,
+    } = useInfiniteList({ apiPath, initialItems, genresMap });
+    const storageKey = `scroll:${apiPath || "root"}`;
+    useScrollRestore({
+        storageKey,
+        containerId: "main_app_container",
+        hasNextPage,
+        fetchNextPage: async () => {
+            await fetchNextPage();
+        },
+    });
 
     return (
         <MainMediaUL
@@ -28,6 +41,7 @@ export default function MainLcList({
             isLoading={isLoading || isFetchingNextPage}
             loaderRef={loaderRef}
             mediaType={mediaType}
+            storageKey={storageKey}
         />
     );
 }

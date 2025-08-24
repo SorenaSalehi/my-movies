@@ -137,6 +137,7 @@ const MobileNavigation: React.FC<Props> = ({
                     if (item.id !== "search") {
                         return (
                             <Link
+                                scroll={false}
                                 prefetch={false}
                                 key={item.id}
                                 href={item.href!}

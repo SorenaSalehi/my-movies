@@ -2,6 +2,7 @@ import OptimizedMovieImg from "./OptimizedMovieImg";
 import { Card, CardContent } from "../ui/card";
 import ItemDetails from "./ItemDetails";
 import { MovieDetails } from "@/app/_types/tmdbTypes";
+import { largeTitleConverter } from "@/app/_lib/helpers";
 
 type Props = {
     movie: MovieDetails;
@@ -16,7 +17,10 @@ export default function MainLcItems({ movie }: Props) {
                 </p>
                 <OptimizedMovieImg movie={movie} isHero={false} />
                 <div className="  text-center absolute bottom-0 left-0 bg-red-800/90 min-h-14 p-1 rounded-md text-gray-100  shadow-2xl w-full flex items-center justify-center tracking-wider font-bold">
-                    <h1 className=" ">{movie?.title || movie?.name}</h1>
+                    <h1 className=" ">
+                        {largeTitleConverter(movie?.title) ||
+                            largeTitleConverter(movie?.name)}
+                    </h1>
                 </div>
                 <ItemDetails movie={movie} />
             </CardContent>

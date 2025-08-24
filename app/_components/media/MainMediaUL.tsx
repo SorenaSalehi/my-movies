@@ -8,16 +8,38 @@ type Props = {
     isLoading?: boolean;
     loaderRef?: React.RefObject<HTMLLIElement | null>;
     mediaType: string;
+    storageKey: string;
 };
 
-function MainMediaUL({ items, isLoading, loaderRef, mediaType }: Props) {
+function MainMediaUL({
+    items,
+    isLoading,
+    loaderRef,
+    mediaType,
+    storageKey,
+}: Props) {
+    //to save scroll position
+    const handleItemClick = (movieId: number) => {
+        const container = document.getElementById("main_app_container");
+        if (!container) return;
+        const payload = {
+            pos: container.scrollTop,
+            anchorId: `media-${movieId}`,
+            t: Date.now(),
+        };
+        sessionStorage.setItem(storageKey, JSON.stringify(payload));
+    };
     return (
         <ul
             className={` grid-cols-2 gap-2 grid  md:gap-4 lg:grid xl:grid-cols-6  md:px-12 lg:grid-cols-4 md:grid-cols-4 pt-4 `}
         >
             {items?.map((m) => (
-                <li key={m.id} id={m.title}>
-                    <Link href={`/${mediaType}/${m.id}`}>
+                <li key={m.id} id={`media-${m.id}`}>
+                    <Link
+                        href={`/${mediaType}/${m.id}`}
+                        scroll={false}
+                        onClick={() => handleItemClick(m.id)}
+                    >
                         <MainLcItems movie={m} />
                     </Link>
                 </li>

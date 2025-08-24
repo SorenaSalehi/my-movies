@@ -11,13 +11,15 @@ export const revalidate = 86400;
 
 export default async function page() {
     const [
-        { results: topRated },
+        { results: movieTopRated },
         { results: popular },
         { results: tvPopular },
+        { results: tvTopRated },
     ] = await Promise.all([
         fetchList("movie", "top_rated"),
         fetchList("movie", "popular"),
         fetchList("tv", "popular"),
+        fetchList("tv", "top_rated"),
     ]);
 
     const [...genres] = await Promise.all([
@@ -28,12 +30,12 @@ export default async function page() {
         <DataProvider genres={genres.flat()}>
             <HeroTextBanner />
             {/*begin:: hero carousel for sm/md screens */}
-            <HeroCarousel topRated={topRated} />
+            <HeroCarousel topRated={movieTopRated} />
             {/*end:: hero carousel for sm/md screens */}
             {/* //begin:: movie carousel for sm/md screens  */}
             <MainCarousel
                 data={popular}
-                title="What's Hot"
+                title="Hot Movies"
                 path="movie/popular"
                 mediaType="movie"
             />
@@ -42,7 +44,7 @@ export default async function page() {
             {/* //begin:: tv carousel for sm/md screens  */}
             <MainCarousel
                 data={tvPopular}
-                title="Top TV Shows"
+                title="Popular TV Shows"
                 path="tv/popular"
                 mediaType="tv"
             />
@@ -50,12 +52,21 @@ export default async function page() {
             <Separator className="my-4 bg-red-500 lg:hidden " />
             {/* //begin:: top rated carousel for sm/md screens  */}
             <MainCarousel
-                data={topRated}
+                data={movieTopRated}
                 title="Top Rated Movies"
                 path="movie/top_rated"
                 mediaType="movie"
             />
             {/* //end:: top rated carousel for sm/md screens  */}
+            <Separator className="my-4 bg-red-500 lg:hidden " />
+            {/* //begin:: top rated tv carousel for sm/md screens  */}
+            <MainCarousel
+                data={tvTopRated}
+                title="Top Rated TV Shows"
+                path="tv/top_rated"
+                mediaType="tv"
+            />
+            {/* //end:: top rated tv carousel for sm/md screens  */}
             <Skeleton className="my-4 h-1 w-full bg-red-500 lg:hidden " />
 
             {/* //begin:: list for lg screens   */}
