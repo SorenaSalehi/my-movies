@@ -9,6 +9,7 @@ type Props = {
 };
 
 export default function MainLcItems({ movie }: Props) {
+    console.log(movie.name);
     return (
         <Card className="aspect-[2/3] w-full overflow-hidden rounded-lg relative">
             <CardContent className="group shadow-md">
@@ -18,8 +19,7 @@ export default function MainLcItems({ movie }: Props) {
                 <OptimizedMovieImg movie={movie} isHero={false} />
                 <div className="  text-center absolute bottom-0 left-0 bg-red-800/90 min-h-14 p-1 rounded-md text-gray-100  shadow-2xl w-full flex items-center justify-center tracking-wider font-bold">
                     <h1 className=" ">
-                        {largeTitleConverter(movie?.title) ||
-                            largeTitleConverter(movie?.name)}
+                        {largeTitleConverter(movie?.title || movie?.name)}
                     </h1>
                 </div>
                 <ItemDetails movie={movie} />

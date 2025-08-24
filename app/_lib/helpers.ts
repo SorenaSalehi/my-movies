@@ -9,6 +9,7 @@ export const filterGenresName = (ids: number[], genresMap: GenreMap) => {
 };
 
 export const largeTitleConverter = (title: string) => {
+    if (title?.length < 25) return title;
     return title?.slice(0, 25) + "...";
 };
 
