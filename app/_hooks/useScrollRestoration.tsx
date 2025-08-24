@@ -8,7 +8,7 @@ type Options = {
     storageKey?: string; // default: "scroll:/list"
     /** اگر لیست اینفینیت داری، اینارو بده تا خودش صفحات بعدی رو بکشه */
     hasNextPage?: boolean;
-    fetchNextPage?: () => Promise<any>;
+    fetchNextPage?: () => Promise<unknown>;
     /** حداکثر چندبار تلاش برای لود تا رسیدن به آیتم مرجع */
     maxTries?: number; // default: 20
     /** فاصله بین تلاش‌ها به میلی‌ثانیه */
@@ -111,7 +111,7 @@ export default function useScrollRestore({
 
         // وگرنه تلاش تکراری؛ در هر تلاش اگر آیتم نبود و hasNextPage=true صفحه بعدی رو بکش
         let tries = 0;
-        let timer = window.setInterval(async () => {
+        const timer = window.setInterval(async () => {
             if (tryScroll()) {
                 window.clearInterval(timer);
                 return;

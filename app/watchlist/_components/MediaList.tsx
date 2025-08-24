@@ -44,6 +44,7 @@ export default function MediaList({ mediaListIds, media }: Props) {
                     <MainMediaUL
                         items={watchlistData.results}
                         mediaType={media}
+                        storageKey=""
                     />
                 </div>
             </Suspense>
