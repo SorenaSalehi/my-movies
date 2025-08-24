@@ -57,8 +57,6 @@ A fast, responsive movie & TV web app with infinite scrolling, precise scroll-re
 
 ## Screenshots
 
-> Put your images in `public/screenshots/` and keep these names or adjust paths.
-
 <p align="center">
   <img src="public/screenshots/mobile.jpg" alt="Mobile screenshot" width="320" />
   &nbsp;&nbsp;
