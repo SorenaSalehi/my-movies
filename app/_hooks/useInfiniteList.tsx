@@ -68,7 +68,7 @@ export default function useInfiniteList({
             pageParams: [1],
         },
         //optional
-        staleTime: 60_000,
+        staleTime: 30 * 60_000,
         refetchOnMount: false,
         refetchOnWindowFocus: false,
     });
