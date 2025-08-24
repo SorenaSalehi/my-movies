@@ -34,7 +34,6 @@ A fast, responsive movie & TV web app with infinite scrolling, precise scroll-re
 -   [Deployment](#deployment)
 -   [Roadmap](#roadmap)
 -   [Contributing](#contributing)
--   [License](#license)
 -   [Contact](#contact)
 -   [Acknowledgements](#acknowledgements)
 
@@ -56,6 +55,8 @@ A fast, responsive movie & TV web app with infinite scrolling, precise scroll-re
 ---
 
 ## Screenshots
+
+> Put your images in `public/screenshots/` and keep these names or adjust paths.
 
 <p align="center">
   <img src="public/screenshots/mobile.jpg" alt="Mobile screenshot" width="320" />
@@ -87,87 +88,81 @@ A fast, responsive movie & TV web app with infinite scrolling, precise scroll-re
 
 Create a `.env.local` in the project root:
 
-```bash
 # TMDB v3 API key (simple key, sometimes used in query string)
+
 TMDB_KEY=YOUR_TMDB_V3_API_KEY
 
 # TMDB v4 access token (Bearer token used in Authorization header)
+
 TMDB_ACCESS_TOKEN=YOUR_TMDB_V4_READ_TOKEN
 
+---
 
-# Install & Run
-npm install
-npm run dev
-# Build & Production
-npm run build
-npm run start
+## Project Structure
 
-# Available scripts
-{
-  "dev": "next dev --turbopack",
-  "build": "next build",
-  "prod": "next build && next start",
-  "start": "next start",
-  "lint": "next lint"
-}
+# app/
 
-# Project Structure
-app/
-  _components/
-  _context/
-  _hooks/
-  _lib/
-  _styles/
-  _types/
-  [media]/
-           |[slug]
-           |genre
-  categories/
-  search/
-  watchlist/
+\_components/
+\_context/
+\_hooks/
+\_lib/
+\_styles/
+\_types/
+[media]/
+[slug]/
+genre/
+categories/
+search/
+watchlist/
 public/
-  manifest.json
-  sw.js
-  icons/
+manifest.json
+sw.js
+icons/
 
-  Implementation Notes
+---
 
-Infinite Query keys
-Every list uses a stable key: ["media", apiPath].
-Pagination is handled via getNextPageParam using TMDB page / total_pages.
+## Implementation Notes
 
-Scroll Restore
-Before navigating to details, the list stores:
+-   **Infinite Query keys:**
+    Each list uses a stable key: ["media", apiPath].
+    Pagination via getNextPageParam using TMDB page / total_pages.
+
+-   **Scroll Restore:**
+    Before navigating to details, the list stores:
 
 pos (container scrollTop)
 
-anchorId (media-<id>)
-under sessionStorage key scroll:${apiPath}.
-On return, the page scrolls to the anchor (or falls back to pos) and loads more pages if needed.
+-   **anchorId (media-<id>):**
+    under sessionStorage key scroll:${apiPath}.
+    On return, it scrolls to the anchor (or falls back to pos) and loads more pages if needed.
 
-Caching
-React Query is configured with generous staleTime/gcTime.
-Optional persistence with @tanstack/react-query-persist-client can keep pages across reloads/session.
+-   **Caching:**
+    React Query configured with generous staleTime / gcTime.
+    Optional persistence with @tanstack/react-query-persist-client to keep pages across reloads/session.
 
-PWA
-manifest.json, theme-color, and iOS meta for a native-like experience.
+-   **PWA:**
+    manifest.json, theme-color, and iOS meta for a native-like experience.
 
-Performance
-preconnect to https://image.tmdb.org, SSR/ISR (revalidate: 86400), and lazy components where appropriate.
+-   **Performance:**
+    preconnect to https://image.tmdb.org, SSR/ISR (revalidate: 86400), lazy components.
 
-Deployment
+---
 
-Vercel
+## Deployment
+
+-   **Vercel**
 
 Connect the Git repository to Vercel.
 
 Add environment variables (TMDB_KEY, TMDB_ACCESS_TOKEN) in Project Settings → Environment Variables.
 
-Build command: npm run build. Output directory: .next.
+Build command: npm run build. Output: .next.
 
-Set your custom domain if needed.
+(Optional) Set a custom domain.
 
-Roadmap
+---
+
+## Roadmap
 
 ⬇️ Download & streaming — coming soon
 
@@ -177,10 +172,11 @@ More skeletons/shimmers & micro-interactions
 
 E2E tests with Playwright
 
-Contributing
+---
+
+## Contributing
 
 PRs are welcome!
-Please:
 
 Branch from main.
 
@@ -188,23 +184,24 @@ Run npm run lint and ensure the app builds.
 
 Include screenshots/notes in the PR description.
 
-License
+---
 
-MIT — feel free to use, modify, and distribute with attribution.
-
-Contact
+## Contact
 
 Email: itssorenadev@gmail.com
 
 WhatsApp: +90 539 967 6995
+WhatsApp: +98 935 309 3435
 
-Acknowledgements
+---
+
+## Acknowledgements
 
 Data provided by The Movie Database (TMDB)
- — this project is not affiliated with or endorsed by TMDB.
+— not affiliated or endorsed.
 
 Icons by lucide-react.
 
 Thanks to the Next.js and TanStack communities.
 
-```
+---
