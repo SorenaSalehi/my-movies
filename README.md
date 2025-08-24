@@ -56,8 +56,6 @@ A fast, responsive movie & TV web app with infinite scrolling, precise scroll-re
 
 ## Screenshots
 
-> Put your images in `public/screenshots/` and keep these names or adjust paths.
-
 <p align="center">
   <img src="public/screenshots/mobile.jpg" alt="Mobile screenshot" width="320" />
   &nbsp;&nbsp;
@@ -102,22 +100,22 @@ TMDB_ACCESS_TOKEN=YOUR_TMDB_V4_READ_TOKEN
 
 # app/
 
-\_components/
-\_context/
-\_hooks/
-\_lib/
-\_styles/
-\_types/
-[media]/
-[slug]/
-genre/
-categories/
-search/
-watchlist/
-public/
-manifest.json
-sw.js
-icons/
+-   **\_components/**
+-   **\_context/**
+-   **\_hooks/**
+-   **\_lib/**
+-   **\_styles/**
+-   **\_types/**
+-   **\[media]/**
+-   **\[slug]/**
+-   **\_genre/**
+-   **\_categories/**
+-   **\_search/**
+-   **\_watchlist/**
+-   **\_public/**
+    manifest.json
+    sw.js
+    screenshots/
 
 ---
 
